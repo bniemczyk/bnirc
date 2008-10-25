@@ -78,7 +78,7 @@ AC_CHECK_HEADERS(\
 		 errno.h \
 )
 
-EXT_CFLAGS="$EXT_CFLAGS -D_REENTRANT -Wall -Wno-unused-function "
+EXT_CFLAGS="$EXT_CFLAGS -D_REENTRANT -Wall -Wno-unused-function -O0 "
 CFLAGS="$CFLAGS $EXT_CFLAGS"
 CPPFLAGS="$CPPFLAGS -Dstrcasecmp=strcmp_nc -Dstrncasecmp=strncmp_nc"
 LIBS="$LIBS $EXT_LIBS $PTHREAD_LIBS -no-undefined"
