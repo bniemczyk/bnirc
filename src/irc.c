@@ -390,7 +390,9 @@ void irc_snick(const char *name, irc_server_t * serv)
 		if (bool_option("verbose"))
 			cio_out("initial user on server [%s] has key [%s]\n",
 				key(serv), key(serv->user));
-	}
+	} else {
+        serv->user->name = copy_string(name);
+    }
 
 	irc_sout(key(serv), "NICK %s\n", name);
 }
