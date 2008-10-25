@@ -27,6 +27,7 @@ extern "C" int printf(const char *, ...);
 #define NULL ((void *)0)
 #endif
 
+#include "irc.h"
 #include "plugin.h"
 
 static int connect_hook(int argc, char *argv[])
@@ -47,6 +48,19 @@ static int connect_hook(int argc, char *argv[])
 	}
 
 	return 0;
+}
+
+static int disconnect_hook(int argc, char *argv[])
+{
+    char *server = NULL;
+
+    if(argc == 1) {
+        server = irc_pick_server();
+    } else {
+        server = argv[1];
+    }
+
+    return irc_disconnect(server);
 }
 
 static int nick_hook(int argc, char *argv[])
@@ -330,6 +344,9 @@ static command_t commands[] = {
 	{"connect", "connect [server] [port]", 1, 3, connect_hook,
 	 "connects you to a server or sets your active server"
 	 ", if no arguments are given it shows you what server you are active on"},
+    {"disconnect", "disconnect [server]", 1, 2, disconnect_hook,
+     "disconnects you from [server] or the active server if no hostname"
+     " is provided"},
 	{"nick", "nick <nickname>", 2, 2, nick_hook, "sets your nickname"},
 	{"join", "join <channel>", 2, 2, join_hook,
 	 "join a channel, or switch to active channel"},

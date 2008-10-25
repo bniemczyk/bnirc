@@ -207,6 +207,7 @@ extern	int	io_get_width	( void );
 
 /* some network io routines */
 extern 	void	irc_connect 	( int port, const char *server );
+extern  int     irc_disconnect  ( const char *server );
 extern	void	irc_out(const char *fmt, ...) __attribute__ ((format (printf, 1, 2)));
 extern	void	irc_sout(const char *server, const char *fmt, ...) __attribute__ ((format (printf, 2, 3)));
 extern	void	irc_nick(const char *username);

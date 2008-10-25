@@ -451,6 +451,22 @@ static void after_connect(irc_server_t * serv)
 	}
 }
 
+int irc_disconnect(const char *hostname)
+{
+    irc_server_t *server = hash_find_nc(connections, hostname, irc_server_t *);
+    if(server == NULL) {
+        io_colored_out(USER_RED, "Error: Not connected to %s!\n", hostname);
+        return -1;
+    }
+
+    hash_remove(server);
+    unregister_poll(&(server->con.con.poll));
+    free(server);
+    cio_out("disconnected from %s\n", hostname);
+
+    return 0;
+}
+
 void irc_connect(int port, const char *server)
 {
 	if (hash_find_nc(connections, server, void *) != NULL) {
@@ -479,8 +495,6 @@ static void irc_reconnect(client_line_connection_t * client_connection)
 {
     char *hostname = copy_string(client_connection->con.hostname);
     int port = client_connection->con.port;
-    irc_server_t *server = hash_find(connections, hostname, irc_server_t *);
-    hash_remove(server);
-    unregister_poll(&(client_connection->con.poll));
+    irc_disconnect(hostname);
     irc_connect(port, hostname);
 }
