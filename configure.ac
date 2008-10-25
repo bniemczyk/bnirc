@@ -3,8 +3,9 @@ AC_INIT(include/config.h.in)
 AM_INIT_AUTOMAKE(bnIRC, 0.2.18)
 AM_CONFIG_HEADER(include/config.h)
 
-CFLAGS=""
-CPPFLAGS=""
+CFLAGS="-g"
+CPPFLAGS="-g"
+LDFLAGS="-g"
 
 dnl needed compilers
 SNP_CC
