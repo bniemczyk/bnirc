@@ -1,0 +1,47 @@
+# set default options
+/set about_channels on
+/set force_server_respect off
+/set away_string logging msgs
+/set back_string checking msgs
+/set verbose off
+/set command_char /
+/set version_string @package@-@version@
+/set quit_string @package@ - smack my BitchX up
+/set part_string @package@ - smack my BitchX up
+/set logo_file ascii/logo
+/set timestamp on
+/set strict_rfc off
+/set color on
+/set festival_command festival --tts
+/set address_speak off
+/set speak_all off
+/set tell_queue_sent on
+/set hide_info_bar off
+/set display_away on
+/set log off
+/set strip_markup on
+/set drop_output false
+/set bell_on_address off
+/set bell_on_speak off
+/set bash_style_tab on
+/set sleep_len 1000
+/unset server_password
+/unset realname
+/set show_all_server_strings off
+
+# load some plugins
+/load server_strings
+/load ctcp
+/load irc_input
+/load script
+/load python
+
+# set some common aliases
+/alias j join
+/alias server connect
+/alias w who
+/alias date exec -o date
+/alias leave part
+
+# load some nifty scripts
+/python persistant.py

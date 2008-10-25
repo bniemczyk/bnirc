@@ -1,0 +1,18 @@
+# load the plugins i care about
+/load debug bnirc.debug.log
+
+# connect to irc.freenode.net
+/connect irc.freenode.net
+
+# set my nickname
+/nick brandon_niemczyk
+
+# join some channels
+/j #bnirc
+
+# in another window
+/win 2
+/j #justlinux
+
+# i want to be in the window with #bnirc by default
+/win 1

@@ -1,0 +1,62 @@
+How come when i join channels they are all in the same window?
+irssi has the annoying habit of opening you a new window everytime you join a channel
+this can be extremely irritating if you chill in 20 rooms that are mostly idle, so in bnirc you have
+to manually switch the window by pressing F{1-12} or with /win {1-12}, if you want to open 3 channels in sep windows
+in your ~/.bnirc do this:
+
+/win 1
+/j #channel1
+/win 2
+/j #some_other_loser_channel
+/win 3
+/j #blar
+
+when i connect, nothing happens!
+you probably didn't 'make install', almost all of bnirc's functionallity is in plugins and it looks for these
+in ${PREFIX}/lib/bnirc/plugins
+moral of the story:  'make install' _then_ run, and if you still have problems, you can bitch at me ;p
+
+does bnirc have DCC capabilities?
+not yet, but it will soon, that is my current project, you can check the status by loading the dcc plugin (/load dcc)
+if it doesn't give you a warning, it's done ;p
+
+how do i load a plugin?
+/load <plugin name>
+
+how do i leave a msg for an idle user
+/queue <nick> your message
+
+how do i save my msgs that i get when i'm gone and check them later?
+/away
+/back
+
+how do i send someone a private message?
+/msg <nick> message
+
+how do i switch channels?
+/join <channel> (if you are already in it, it will just become your "active" channel)
+
+how do i use a backup name in my .bnirc?
+just put /nick <backup> before your preferred name, like
+/nick brandon|second
+/nick brandon
+
+where can i get help?
+/connect irc.freenode.net
+/nick lostnewb
+/join #justlinux
+
+when i connect it just keeps reconnecting?
+you probably forgot to /nick after your connect
+
+where can i get a sample .bnirc file
+sample.bnirc should have come with your distribution
+
+how do i change my window in my .bnirc file?
+/win {1-12} or
+/window {1-12}
+
+i read about command <x> for irc, but it doesnt show up in /help !
+only commands that bnirc actually parses locally will show up in help
+if it does not recognize a command, it will blindly pass it to the server
+as is (without the / though of course).  So it should work.

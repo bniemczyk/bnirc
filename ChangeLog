@@ -1,0 +1,315 @@
+2005-01-26  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* src/poll.c, include/irc.h, configure.ac:
+	check errno after a poll before reporting a BUG() [because EINTR is ok].
+
+2005-01-25  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* plugins/io_ncurses/io_ncurses.c, plugins/script/script.c, configure.ac:
+	now takes CPPFLAGS from environment on ./configure and adds to them, instead
+	of writing over them
+
+	script now builds on my sparc box, although it is still failing to execute functions
+
+	* src/plugin.c, include/irc.h, src/bnirc.c, src/io.c, src/parse_input_string.c, ChangeLog:
+	cleaned up warnings on FBSD-sparc64
+
+	* src/user.c: privmsg_print now calls ctcp_in_hook when approriate
+
+2005-01-25  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* src/user.c: privmsg_print now calls ctcp_in_hook when approriate
+
+2005-01-23  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* src/support.c: fixed fuckinggoogleit.com links
+
+	* src/Makefile.am, src/irc.c, src/networkio.c, src/parse_input_string.c, src/plugin.c, src/support.c, include/plugin.h:
+	various bug fixes
+	added deps field to plugin_t
+	moved networkio.c to more sensible name irc.c
+	fixed bnirc_getline() to return error on EOF like GNU's does
+
+2005-01-21  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* plugins/server_strings/server_strings.c:
+	fixed bug where nicks stayed around in tab complete
+
+	* plugins/io_ncurses/io_ncurses.c:
+	fixed the bug where the lines cut off at the original size of the term instead of
+	the real size
+
+	* src/away.c, ChangeLog, common.tmplt: updated changelog
+	added display_away option
+
+2005-01-21  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* plugins/io_ncurses/io_ncurses.c:
+	added some new color schemes to io_ncurses info line
+
+	* src/bnirc.c, src/user.c, buildrelease.sh: fixed bug in recv_nick
+
+2005-01-20  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* plugins/server_strings/server_strings.c:
+	keeps user state after they quit if flags are set now
+
+	* include/config.h.in: fixing build system...
+
+	* scripts/Makefile.in, src/Makefile.in, plugins/rserver/Makefile.in, plugins/script/Makefile.in, plugins/server_strings/Makefile.in, include/Makefile.in, plugins/Makefile.in, plugins/ctcp/Makefile.in, plugins/dcc/Makefile.in, plugins/debug/Makefile.in, plugins/hello/Makefile.in, plugins/io_ncurses/Makefile.in, plugins/irc_input/Makefile.in, configure, configure.ac, Makefile.in:
+	removed configure script and Makefile.in files from cvs
+
+	* plugins/Makefile.am, plugins/Makefile.in, plugins/script/script.c, scripts/startup.sl, default.tmplt, include/list.h, nocurses.tmplt, common.tmplt:
+	scripting is fixed [including festival stuff]
+
+	* include/config.h.in, plugins/io_ncurses/io_ncurses.c, plugins/script/script.c, scripts/startup.sl, src/parse_server_string.c, common.tmplt, configure:
+	now has the hide_info_line option
+	as well as the /sinfoc command to set the color of your info line
+
+2005-01-19  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* plugins/io_ncurses/io_ncurses.c, configure.ac:
+	now uses default colors instead of black/white (although the api still assumes BLACK/WHITE)
+
+	* plugins/io_ncurses/io_ncurses.c:
+	fixed resizing so it doesn't kill all the text
+
+	* src/user.c, common.tmplt: fixed /queue command
+
+	* src/user.c:
+	that's it... i'm done coding for today... see the last 2 commits... god i'm
+	having issues
+
+	* src/user.c:
+	stupid mistakes.... fixes both handle_away_msg call and highlighting issues....
+
+	* src/user.c:
+	forgot to add handle_away_msg() call when i wrote the new privmsg code
+
+	* src/bnirc.c, src/connect.c, src/options.c, src/support.c, include/irc.h, configure.ac:
+	mostly cleanups, especially make_argv and make_max_argv
+	the sigsegv handler now displays variables as well
+
+	* src/poll.c: fixed stupid typo in comment
+
+	* src/networkio.c, src/user.c, configure.ac, configure:
+	fixed irc_nick going to wrong server on reconnect
+	check for ncurses then curses in configure.ac added (why was it commented out?)
+
+2005-01-18  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* src/user.c:
+	the ACTION keyword on ctcp actions shouldn't be printed anymore
+
+2005-01-17  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* src/bnirc.c, ChangeLog:
+	fixed build error on non-linux systems where print_backtrace() was not defined
+
+	* src/bnirc.c:
+	added signal handler for SIGSEGV that prints out a backtrace
+
+2005-01-16  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* ChangeLog: fixed changelog... it was all fscked up
+
+	* ChangeLog: dummy-op
+
+	* plugins/server_strings/server_strings.c, src/networkio.c, src/user.c, ChangeLog:
+	fixes a stupid segfault from actions...
+
+	* ChangeLog, src/user.c:
+	using auto-update for changelogs now, added strlen() check in action_print() so nasty irc servers can't exploit us...
+
+	* plugins/irc_input/irc_input.c, plugins/server_strings/server_strings.c, src/channel.c, src/io.c, src/networkio.c, src/support.c, src/user.c, include/irc.h, include/user.h, plugins/ctcp/ctcp.c:
+	got rid of that ugly channel_msg() function, and replaced it with user->privmsg_print()
+
+	* src/channel.c, src/networkio.c, include/channel.h:
+	added default nick because some people were getting confused...
+	now rejoins channels on a reconnect
+
+	* src/support.c: sync
+
+2005-01-15  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* src/channel.c: sync
+
+	* src/networkio.c, src/support.c, include/irc.h:
+	added bnirc_zmalloc [support.c] and added a malloc() macro [irc.h], so now
+	all calls to malloc are guaranteed to return a zero-filled region of memory
+
+	* src/networkio.c, src/readme.c:
+	fixed reconnects (i think... haven't died yet, so it's not tested)
+
+	* sample.bnirc: updated to use new auto-made backup nicks
+
+	* README: updated to point to wiki
+
+2005-01-14  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* src/connect.c, src/networkio.c, src/support.c, plugins/irc_input/irc_input.c:
+	added auto-reconnect to the new connection interface
+
+	* plugins/server_strings/server_strings.c: added timestamp to joins
+
+	* src/parse_input_string.c:
+	sending stderr to /dev/null on /exec now, because it was causing problems with some scripting engines (esp regina) acting funny when redirected to stdout
+
+	* src/connect.c, src/networkio.c:
+	the user wasn't being set to NULL when a connection was created... this was causing some major PITA bugs
+
+	* src/parse_server_string.c, src/poll.c, src/connect.c, src/parse_input_string.c:
+	sync
+
+2005-01-13  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* src/support.c:
+	fixed strncpy() with no termination in urlize [support.c]
+
+	* plugins/irc_input/irc_input.c, src/parse_input_string.c, src/parse_server_string.c, buildrelease.sh, include/irc.h:
+	/join #channel #otherchannel now works
+
+	* buildrelease.sh, configure: fixed buildrelease.sh script
+
+	* src/user.c, plugins/server_strings/server_strings.c, include/user.h:
+	fixed tab-completion bug... i missed a paranthase ... god emacs highlighting is weird
+
+	* src/networkio.c, plugins/io_ncurses/io_ncurses.c:
+	fixed the annoying bug where the line went away as soon as anyone spoke in a different window
+
+	* src/support.c:
+	aha! the alias problems were from string_replace where the results where never
+	null-terminated.... this could have/probably did cause all kinds of nasty
+	hard-to-track down memory-corruption bugs...
+
+	* src/networkio.c, src/parse_input_string.c, configure, buildrelease.sh:
+	everything seems to be in a semi-stable state now, i still need to track down
+	why aliases are fucked up though, as I bet that will lead to fixing some other
+	bugs as well...
+
+	* plugins/irc_input/irc_input.c, src/networkio.c, src/parse_input_string.c, common.tmplt:
+	sync
+
+	* src/bnirc.c, src/networkio.c, src/parse_input_string.c, src/support.c, configure.ac, configure:
+	if the formatting is fucked up, i apologize, i'm forcing myself to learn emacs
+
+	added some comments to clarify how things work
+	fixed problem in irc_server_nick()
+
+	* src/networkio.c: sync
+
+	* src/networkio.c, src/parse_input_string.c, src/support.c, src/user.c, common.tmplt:
+	fixed a nasty bug in grab_nick() where it never NULL-terminated the nick it returned...
+
+	fixed bug in irc_server_nick() where it accessed serv->user->name before checking if serv->user was non-NULL
+
+2005-01-12  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* src/networkio.c, src/support.c, src/user.c, src/users.c, include/irc.h, plugins/server_strings/server_strings.c, src/channel.c, configure, buildrelease.sh:
+	runnable now...
+
+	* Makefile.am, Makefile.in, buildrelease.sh, plugins/server_strings/server_strings.c, src/networkio.c, src/parse_input_string.c, src/user.c:
+	added some debugging output to help track down the problems with the new user.c and channel.c
+
+	* buildrelease.sh, configure, configure.ac, include/Makefile.am, include/Makefile.in, include/channel.h, include/ircserver.h, include/user.h:
+	added buildrelease.sh and updated configure.ac so i can tell what version i am running easily
+
+	* plugins/server_strings/server_strings.c, src/Makefile.am, src/Makefile.in, src/away.c, src/bnirc.c, src/channel.c, src/io.c, src/networkio.c, src/parse_input_string.c, src/plugin.c, src/support.c, src/user.c, plugins/ctcp/ctcp.c, plugins/io_ncurses/io_ncurses.c, plugins/irc_input/irc_input.c, plugins/script/script.c, include/config.h.in, include/irc.h, include/list.h, include/plugin.h, plugins/Makefile.am, plugins/Makefile.in, common.tmplt, configure, configure.ac, default.tmplt, nocurses.tmplt:
+	restructuring in process, this compiles but will not run correctly... im working on it
+
+2005-01-11  maccorin  <maccorin@maccorin.homelinux.org>
+
+	* scripts/startup.sl, src/networkio.c, include/irc.h, plugins/irc_input/irc_input.c, plugins/server_strings/server_strings.c:
+	sync
+
+	* include/list.h, src/networkio.c:
+	multiple servers fixed possibly? hash_find(_nc)? doesnt die now if a NULL is sent to it
+
+	* plugins/io_ncurses/Makefile.am, plugins/io_ncurses/Makefile.in, plugins/io_ncurses/io_ncurses.c:
+	Initial cvs import
+
+	* plugins/io_ncurses/Makefile.am, plugins/io_ncurses/Makefile.in, plugins/io_ncurses/io_ncurses.c:
+	New file.
+
+	* plugins/irc_input/Makefile.am, plugins/irc_input/Makefile.in, plugins/irc_input/irc_input.c, plugins/script/Makefile.in:
+	Initial cvs import
+
+	* plugins/irc_input/Makefile.am, plugins/irc_input/Makefile.in, plugins/irc_input/irc_input.c, plugins/script/Makefile.in:
+	New file.
+
+	* plugins/hello/Makefile.in, plugins/hello/hello.c, plugins/rserver/Makefile.am, plugins/rserver/Makefile.in, plugins/rserver/rserver.c, plugins/script/Makefile.am, plugins/script/script.c, plugins/server_strings/Makefile.am, plugins/server_strings/Makefile.in, plugins/server_strings/server_strings.c:
+	Initial cvs import
+
+	* plugins/hello/Makefile.in, plugins/hello/hello.c, plugins/rserver/Makefile.am, plugins/rserver/Makefile.in, plugins/rserver/rserver.c, plugins/script/Makefile.am, plugins/script/script.c, plugins/server_strings/Makefile.am, plugins/server_strings/Makefile.in, plugins/server_strings/server_strings.c:
+	New file.
+
+	* plugins/hello/Makefile.am: Initial cvs import
+
+	* plugins/hello/Makefile.am: New file.
+
+	* plugins/Makefile.in, plugins/ctcp/Makefile.am, plugins/ctcp/Makefile.in, plugins/ctcp/ctcp.c, plugins/dcc/Makefile.am, plugins/dcc/Makefile.in, plugins/dcc/dcc.c, plugins/debug/Makefile.am, plugins/debug/Makefile.in, plugins/debug/debug.c:
+	Initial cvs import
+
+	* plugins/Makefile.in, plugins/ctcp/Makefile.am, plugins/ctcp/Makefile.in, plugins/ctcp/ctcp.c, plugins/dcc/Makefile.am, plugins/dcc/Makefile.in, plugins/dcc/dcc.c, plugins/debug/Makefile.am, plugins/debug/Makefile.in, plugins/debug/debug.c:
+	New file.
+
+	* include/Makefile.in, include/config.h.in, include/list.h, include/plugin.h, plugins/Makefile.am:
+	Initial cvs import
+
+	* include/Makefile.in, include/config.h.in, include/list.h, include/plugin.h, plugins/Makefile.am:
+	New file.
+
+	* include/Makefile.am, include/irc.h, scripts/Makefile.am, scripts/Makefile.in, scripts/bot.sl, scripts/startup.sl, src/bnirc.c, src/plugin.c, src/readme.c, src/users.c:
+	Initial cvs import
+
+	* include/Makefile.am, include/irc.h, scripts/Makefile.am, scripts/Makefile.in, scripts/bot.sl, scripts/startup.sl, src/bnirc.c, src/plugin.c, src/readme.c, src/users.c:
+	New file.
+
+	* src/Makefile.in, src/options.c, src/poll.c, src/support.c:
+	Initial cvs import
+
+	* src/Makefile.in, src/options.c, src/poll.c, src/support.c: New file.
+
+	* src/Makefile.am, src/away.c, src/connect.c, src/faq.c, src/history.c, src/networkio.c, src/parse_input_string.c, src/parse_server_string.c:
+	Initial cvs import
+
+	* src/Makefile.am, src/away.c, src/connect.c, src/faq.c, src/history.c, src/networkio.c, src/parse_input_string.c, src/parse_server_string.c:
+	New file.
+
+	* COPYING, ChangeLog, INSTALL, bot.tmplt, nocurses.tmplt, src/io.c:
+	Initial cvs import
+
+	* COPYING, ChangeLog, INSTALL, bot.tmplt, nocurses.tmplt, src/io.c:
+	New file.
+
+	* AUTHORS, Makefile.am, Makefile.in, common.tmplt, missing, ylwrap:
+	Initial cvs import
+
+	* AUTHORS, Makefile.am, Makefile.in, common.tmplt, missing, ylwrap:
+	New file.
+
+	* config.sub, install-sh: Initial cvs import
+
+	* config.sub, install-sh: New file.
+
+	* config.guess: Initial cvs import
+
+	* config.guess: New file.
+
+	* configure, configure.ac, default.tmplt, sample.bnirc:
+	Initial cvs import
+
+	* configure, configure.ac, default.tmplt, sample.bnirc: New file.
+
+	* ltmain.sh: Initial cvs import
+
+	* ltmain.sh: New file.
+
+	* README, aclocal.m4: Initial cvs import
+
+	* README, aclocal.m4: New file.
+
+	* FAQ, NEWS, TODO, depcomp, logo: Initial cvs import
+
+	* FAQ, NEWS, TODO, depcomp, logo: New file.
+
