@@ -3,6 +3,9 @@ AC_INIT(include/config.h.in)
 AM_INIT_AUTOMAKE(bnIRC, 0.2.18)
 AM_CONFIG_HEADER(include/config.h)
 
+CFLAGS=""
+CPPFLAGS=""
+
 dnl needed compilers
 SNP_CC
 
@@ -78,7 +81,7 @@ AC_CHECK_HEADERS(\
 		 errno.h \
 )
 
-EXT_CFLAGS="$EXT_CFLAGS -D_REENTRANT -Wall -Wno-unused-function -O0 "
+EXT_CFLAGS="-D_REENTRANT -Wall -Wno-unused-function -O0 "
 CFLAGS="$CFLAGS $EXT_CFLAGS"
 CPPFLAGS="$CPPFLAGS -Dstrcasecmp=strcmp_nc -Dstrncasecmp=strncmp_nc"
 LIBS="$LIBS $EXT_LIBS $PTHREAD_LIBS -no-undefined"
