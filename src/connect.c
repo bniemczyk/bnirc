@@ -84,6 +84,7 @@ void construct_client_connection(int port, const char *server,
 	(*con)->poll.eof_callback = NULL;
 	(*con)->poll.error_callback = NULL;
 	(*con)->hostname = copy_string(server);
+    (*con)->port = port;
 	(*con)->poll.data = (void *) (*con);
 	(*con)->poll.callback = (callback_t) callback;
 	if (bool_option("verbose"))

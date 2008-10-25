@@ -475,28 +475,10 @@ void irc_connect(int port, const char *server)
 
 static void irc_reconnect(client_line_connection_t * client_connection)
 {
-	irc_server_t *server =
-	    hash_find(connections, client_connection->con.hostname,
-		      irc_server_t *);
-	assert(server != NULL);
-	io_colored_out(USER_RED, "reconnecting to %s\n", key(server));
-	server->con.con.poll.fd = socket(PF_INET, SOCK_STREAM, 0);
-	if (connect(server->con.con.poll.fd,
-		    (struct sockaddr *) &(server->con.con.address),
-		    sizeof(struct sockaddr_in))) {
-		cio_out("could not reconnect to [%s] trying again\n",
-			key(server));
-		irc_reconnect(client_connection);
-		return;
-	}
-
-	int one = 1;
-	clearerr(server->con.con.poll.in);
-	clearerr(server->con.con.poll.out);
-	setsockopt(server->con.con.poll.fd, SOL_SOCKET, SO_KEEPALIVE, &one,
-		   sizeof(int));
-	server->con.con.poll.in = fdopen(server->con.con.poll.fd, "r");
-	server->con.con.poll.out = fdopen(server->con.con.poll.fd, "w");
-	io_colored_out(USER_WHITE, "reconnected to [%s]\n", key(server));
-	after_connect(server);
+    char *hostname = copy_string(client_connection->con.hostname);
+    int port = client_connection->con.port;
+    irc_server_t *server = hash_find(connections, hostname, irc_server_t *);
+    hash_remove(server);
+    unregister_poll(&(client_connection->con.poll));
+    irc_connect(port, hostname);
 }
