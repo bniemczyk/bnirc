@@ -180,9 +180,9 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-EXTRA_DIST = startup.sl __main__.py toc.py joo_utils.py rot13.py dcc.py persistant.py
+EXTRA_DIST = startup.sl __main__.py toc.py joo_utils.py rot13.py dcc.py persistant.py pastebin.py
 scriptdir = $(datadir)/$(PACKAGE)-$(VERSION)/scripts
-script_DATA = rot13.py startup.sl __main__.py toc.py joo_utils.py dcc.py persistant.py
+script_DATA = rot13.py startup.sl __main__.py toc.py joo_utils.py dcc.py persistant.py pastebin.py
 all: all-am
 
 .SUFFIXES:
