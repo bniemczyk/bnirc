@@ -1,5 +1,3 @@
-Full documentation is available online at http://sfexplore.com/~bniemczyk/wiki/index.php/BnIRC
-
 you can put any commands in your ~/.bnirc file, they will be auto-executed on startup
 check sample.bnirc for an example
 
@@ -8,3 +6,7 @@ LOTS MORE that aren't listed work, but are only passed to the server, but i'm no
 
 RFC compliance:
 by default the IRC RFC are broken in a few non-dangerous ways to deal with stupid clients, particularly with regards to NOTICE verse PRIVMSG, care has been taken to avoid "bot-chatter" when in this mode, if you want you can go to strict compliance with /set strict_rfc on
+
+PREREQS - You need both the libs and headers for the below
+ncurses (ncursesw if you want UTF support)
+python
