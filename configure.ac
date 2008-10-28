@@ -17,7 +17,10 @@ AC_FUNC_ALLOCA
 
 SNP_PYTHON
 
-AC_CHECK_LIB(ncurses, printw, AC_SUBST(CURSES_LIBS,-lncurses), AC_CHECK_LIB(curses, printw, AC_SUBST(CURSES_LIBS,-lcurses)))
+AC_CHECK_LIB(ncursesw, printw, AC_SUBST(CURSES_LIB,-lncursesw),
+    AC_CHECK_LIB(ncurses, printw, AC_SUBST(CURSES_LIBS,-lncurses), 
+        AC_CHECK_LIB(curses, printw, AC_SUBST(CURSES_LIBS,-lcurses))))
+
 AC_CHECK_HEADER(windows.h,[LDFLAGS="${LDFLAGS} -L/usr/bin" win32=true],[AC_CHECK_LIB(termcap, tgetnum)])
 
 AM_CONDITIONAL(WIN32, test "x${win32}" = "xtrue")
@@ -40,13 +43,21 @@ SNP_CHECK_PKG(slang, SLang_init_slang, slang.h, SNP_MAKE_TRUE(SLANG_AVAIL), SNP_
 #)
 #
 
-SNP_CHECK_PKG(ncurses, printw, ncurses.h, [
+SNP_CHECK_PKG(ncursesw, printw, ncursesw/ncurses.h, [
+                                            SNP_MAKE_TRUE(CURSESW_AVAIL)
+                                            SNP_MAKE_TRUE(CURSES_AVAIL) 
+                                            SNP_MAKE_TRUE(HAVE_curses) 
+                                            SNP_MAKE_TRUE(HAVE_ncurses)
+                                            SNP_MAKE_TRUE(HAVE_ncursesw)
+                                            ],
+
+[SNP_CHECK_PKG(ncurses, printw, ncurses.h, [
 		SNP_MAKE_TRUE(CURSES_AVAIL)
 		SNP_MAKE_TRUE(HAVE_curses)
 		SNP_MAKE_TRUE(HAVE_ncurses)
 		], [
 		SNP_CHECK_PKG(curses, printw, curses.h, SNP_MAKE_TRUE(CURSES_AVAIL), SNP_MAKE_FALSE(CURSES_AVAIL))
-		])
+		])])
 
 AC_CHECK_FUNC(backtrace_symbols, [AC_DEFINE(HAVE_BACKTRACE, 1, [backtrace_symbols check])])
 AC_CHECK_FUNC(use_default_colors, [AC_DEFINE(HAVE_USE_DEFAULT_COLORS, 1, [user_default_colors() available?])])

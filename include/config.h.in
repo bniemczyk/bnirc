@@ -5,6 +5,9 @@
    */
 #undef CRAY_STACKSEG_END
 
+/* CURSESW_AVAIL */
+#undef CURSESW_AVAIL
+
 /* CURSES_AVAIL */
 #undef CURSES_AVAIL
 
@@ -149,6 +152,9 @@
 
 /* HAVE_ncurses */
 #undef HAVE_ncurses
+
+/* HAVE_ncursesw */
+#undef HAVE_ncursesw
 
 /* no FILE * */
 #undef NO_FILES

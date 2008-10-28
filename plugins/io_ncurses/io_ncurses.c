@@ -29,7 +29,9 @@ extern "C" int printf(const char *, ...);
 
 #include "plugin.h"
 
-#ifdef HAVE_ncurses
+#if defined(HAVE_ncursesw)
+#include <ncursesw/ncurses.h>
+#elif defined(HAVE_ncurses)
 #include <ncurses.h>
 #elif defined(HAVE_curses)
 #include <curses.h>
