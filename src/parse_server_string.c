@@ -246,8 +246,11 @@ found_string_handler:
 	} else {
 		make_max_argv(&argc, &argv, buf, si->argc - 1);
 		char **tmp = malloc(sizeof(char *) * (argc + 1));
-		tmp[0] = copy_string(irc_pick_server());
-		add_char_to_str(tmp[0], 0, ':');
+		//tmp[0] = copy_string(irc_pick_server());
+        tmp[0] = malloc(strlen(irc_pick_server()) + 2);
+        tmp[0][0] = ':';
+        strcpy(&tmp[0][1], irc_pick_server());
+		//add_char_to_str(tmp[0], 0, ':');
 		for(i = 0; i < argc; i++) {
 			tmp[i + 1] = copy_string(argv[i]);
 		}
