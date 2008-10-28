@@ -27,6 +27,7 @@ extern "C" int printf(const char *, ...);
 #define NULL ((void *)0)
 #endif
 
+#include <locale.h>
 #include "irc.h"
 
 static char *profile = STARTUPDIR "default";
@@ -42,6 +43,7 @@ static int default_startup = 1;
 static int do_options(int argc, char *argv[])
 {
 	int c;
+    setlocale(LC_ALL, "");
 
 	while (1) {
 		c = getopt(argc, argv, "p:s:h");
