@@ -283,6 +283,7 @@ extern const char **users_in_channel ( const char *channel );
 /*
  * some keys
  */
+#define F0          0xff00
 #define F1			0xff01
 #define F2			0xff02
 #define F3			0xff03

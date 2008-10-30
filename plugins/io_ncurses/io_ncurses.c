@@ -155,7 +155,17 @@ static int getc_hook(void)
 	if(c == ERR)
 		return NO_CHAR_AVAIL;
 
+    if(bool_option("debug_keys"))
+        cio_out("recieved %d\n", c);
+
 	switch (c) {
+        case 27: // ALT KEY (ESC)
+            c = wgetch(input_window);
+            if(c <= '0' || c > '9')
+                return c;
+            else
+                return F0+(c - '0');
+
 	case KEY_RESIZE:
 		new_sigwinch_handler_(SIGWINCH);
 		return getc_hook();
