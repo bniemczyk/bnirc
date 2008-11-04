@@ -17,8 +17,12 @@ in ${PREFIX}/lib/bnirc/plugins
 moral of the story:  'make install' _then_ run, and if you still have problems, you can bitch at me ;p
 
 does bnirc have DCC capabilities?
-not yet, but it will soon, that is my current project, you can check the status by loading the dcc plugin (/load dcc)
-if it doesn't give you a warning, it's done ;p
+YES! all the dcc commands start with /dcc:
+examples:
+/dcc:get
+/dcc:send
+/dcc:chat
+see /help for more details
 
 how do i load a plugin?
 /load <plugin name>
@@ -29,6 +33,7 @@ how do i leave a msg for an idle user
 how do i save my msgs that i get when i'm gone and check them later?
 /away
 /back
+this will also show you all public lines that contain your name
 
 how do i send someone a private message?
 /msg <nick> message
@@ -45,9 +50,6 @@ where can i get help?
 /connect irc.freenode.net
 /nick lostnewb
 /join #justlinux
-
-when i connect it just keeps reconnecting?
-you probably forgot to /nick after your connect
 
 where can i get a sample .bnirc file
 sample.bnirc should have come with your distribution
