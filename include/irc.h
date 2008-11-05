@@ -539,6 +539,7 @@ extern void remove_tab_completes ( tabfunc );
 extern int use_comments;
 extern void send_char_to_input(int);
 extern void add_timed_func (int, void(*)(void *), void *arg);
+extern void del_timed_func (void(*)(void *));
 extern void run_timed_funcs ( void );
 
 #include "channel.h"

@@ -579,6 +579,7 @@ static inline void clear_all_windows(void)
 
 static int cleanup_hook(void)
 {
+    del_timed_func(refresher_func);
 	endwin();
 
 	// sigaction(SIGWINCH, (struct sigaction *)SIG_DFL, NULL);
