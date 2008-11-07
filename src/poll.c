@@ -180,7 +180,7 @@ static void poll_loop_func  (void)
 	 * go as long as possible until either we can read something
 	 * or a signal interrupts us
 	 ***************************************************************/
-	poll_ok = poll(fds, slots_in_use, -1);
+	poll_ok = poll(fds, slots_in_use, 1000);
 
 	/***************************************************************
 	 * cheap optimization so that we don't have to
