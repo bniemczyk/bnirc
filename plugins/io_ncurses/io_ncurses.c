@@ -144,13 +144,20 @@ static int wputstring_hook(window_t w, const char *s)
 	return 0;
 }
 
+#define ALT_KEYCODE (27)
+
 static void new_sigwinch_handler_(int sig);
 static int getc_hook(void)
 {
 	int c;
 
 	nodelay(input_window, TRUE);
+    noecho();
+
 	c = wgetch(input_window);
+
+    if(c != ALT_KEYCODE) 
+        waddch(input_window, c);
 
 	if(c == ERR)
 		return NO_CHAR_AVAIL;
@@ -159,93 +166,93 @@ static int getc_hook(void)
         cio_out("recieved %d\n", c);
 
 	switch (c) {
-        case 27: // ALT KEY (ESC)
+        case ALT_KEYCODE: // ALT KEY (ESC)
             c = wgetch(input_window);
             if(c <= '0' || c > '9')
                 return c;
             else
                 return F0+(c - '0');
 
-	case KEY_RESIZE:
-		new_sigwinch_handler_(SIGWINCH);
-		return getc_hook();
-	case KEY_F(1):
-	case F1:
-		return F1;
-	case KEY_F(2):
-	case F2:
-		return F2;
-	case KEY_F(3):
-	case F3:
-		return F3;
-	case KEY_F(4):
-	case F4:
-		return F4;
-	case KEY_F(5):
-	case F5:
-		return F5;
-	case KEY_F(6):
-	case F6:
-		return F6;
-	case KEY_F(7):
-	case F7:
-		return F7;
-	case KEY_F(8):
-	case F8:
-		return F8;
-	case KEY_F(9):
-	case F9:
-		return F9;
-	case KEY_F(10):
-	case F10:
-		return F10;
-	case KEY_F(11):
-	case F11:
-		return F11;
-	case KEY_F(12):
-	case F12:
-		return F12;
-	case 0x7:
-	case KEY_DC:
-	case DELETE:
-		return DELETE;
-	case KEY_BACKSPACE:
-	case 127:
-	case BACKSPACE:
-		return BACKSPACE;
-	case KEY_UP:
-	case UP:
-		return UP;
-	case KEY_DOWN:
-	case DOWN:
-		return DOWN;
-	case KEY_LEFT:
-	case LEFT:
-		return LEFT;
-	case KEY_RIGHT:
-	case RIGHT:
-		return RIGHT;
-	case KEY_NPAGE:
-		if (page_up > 0)
-			page_up--;
-		REFRESH();
-		return getc_hook();
-	case KEY_PPAGE:
-		if (page_up < max_page_up)
-			page_up++;
-		REFRESH();
-		return getc_hook();
-	case KEY_HOME:
-		return HOME;
-	case KEY_END:
-		return END;
-	case '\n':
-		werase(input_window);
-		REFRESH();
-		return '\n';
-	default:
-		return c;
-	}
+        case KEY_RESIZE:
+            new_sigwinch_handler_(SIGWINCH);
+            return getc_hook();
+        case KEY_F(1):
+        case F1:
+            return F1;
+        case KEY_F(2):
+        case F2:
+            return F2;
+        case KEY_F(3):
+        case F3:
+            return F3;
+        case KEY_F(4):
+        case F4:
+            return F4;
+        case KEY_F(5):
+        case F5:
+            return F5;
+        case KEY_F(6):
+        case F6:
+            return F6;
+        case KEY_F(7):
+        case F7:
+            return F7;
+        case KEY_F(8):
+        case F8:
+            return F8;
+        case KEY_F(9):
+        case F9:
+            return F9;
+        case KEY_F(10):
+        case F10:
+            return F10;
+        case KEY_F(11):
+        case F11:
+            return F11;
+        case KEY_F(12):
+        case F12:
+            return F12;
+        case 0x7:
+        case KEY_DC:
+        case DELETE:
+            return DELETE;
+        case KEY_BACKSPACE:
+        case 127:
+        case BACKSPACE:
+            return BACKSPACE;
+        case KEY_UP:
+        case UP:
+            return UP;
+        case KEY_DOWN:
+        case DOWN:
+            return DOWN;
+        case KEY_LEFT:
+        case LEFT:
+            return LEFT;
+        case KEY_RIGHT:
+        case RIGHT:
+            return RIGHT;
+        case KEY_NPAGE:
+            if (page_up > 0)
+                page_up--;
+            REFRESH();
+            return getc_hook();
+        case KEY_PPAGE:
+            if (page_up < max_page_up)
+                page_up++;
+            REFRESH();
+            return getc_hook();
+        case KEY_HOME:
+            return HOME;
+        case KEY_END:
+            return END;
+        case '\n':
+            werase(input_window);
+            REFRESH();
+            return '\n';
+        default:
+            return c;
+    }
 }
 
 static int ungetc_hook(int c)
