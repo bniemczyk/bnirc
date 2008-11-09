@@ -156,8 +156,10 @@ static int getc_hook(void)
 
 	c = wgetch(input_window);
 
+    /*
     if(c != ALT_KEYCODE) 
         waddch(input_window, c);
+    */
 
 	if(c == ERR)
 		return NO_CHAR_AVAIL;
@@ -251,6 +253,7 @@ static int getc_hook(void)
             REFRESH();
             return '\n';
         default:
+            waddch(input_window, c);
             return c;
     }
 }
