@@ -1,8 +1,9 @@
-before 1.0.0:
-finish dcc plugin
-clean up all warnings
-add option to put /msg's in a new window
-figure out why window resizes add junk chars to the input window
-add emacs-like line editing... goddammit i hate emacs, you whiners ;p 
-[ a more elegant solution to the emacs editing would be to use readline() somehow, but i think it's gonna take some massive hacking ]
-fix "double space" when a newline is the first char to be moved to next line
+* clean up all warnings
+
+* add option to put /msg's in a new window
+
+* fix "double space" when a newline is the first char to be moved to next line
+
+* fix bug on tab-completion in window with no channels (reported by Atealtha)
+
+* fix bug that causes the time to not update without activity (reported by Athealtha and maddslacker)
