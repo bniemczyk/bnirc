@@ -7,3 +7,9 @@
 * fix bug on tab-completion in window with no channels (reported by Atealtha)
 
 * fix bug that causes the time to not update without activity (reported by Athealtha and maddslacker)
+
+* grow the text input window on line wrap
+
+* add command to create a .bnirc based on current settings
+
+* alphabatize nicks in /names output
