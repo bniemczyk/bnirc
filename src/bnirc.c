@@ -109,35 +109,6 @@ static void print_backtrace(int fd)
  * SIGSEGV handler
  **********************************************/
 
-static void _sigsegv_handler(int sig)
-{
-	unload_all_plugins();
-	char msg[] =
-	    "bnIRC has triggered a fatal error, if\n"
-	    "you could make a bug report at:\n"
-	    "http://sourceforge.net/tracker/?atid=698780&group_id=123832&func=browse\n"
-	    "it would be very helpful\n\n"
-	    "remove any security-sensitive information and\n"
-	    "replace it with [removed for security]\n"
-	    "or something similar to let me know\n" "Thank you.\n";
-
-	write(2, msg, strlen(msg));
-	if(current_input_string) {
-		write(2, "processing: ", strlen("processing: "));
-		write(2, current_input_string, strlen(current_input_string));
-		write(2, "\n", 1);
-	}
-
-	if(current_server_string) {
-		write(2, "processing: ", strlen("processing: "));
-		write(2, current_server_string, strlen(current_server_string));
-		write(2, "\n", 1);
-	}
-	print_backtrace(2);
-	dump_options_fd(2);
-	exit(EXIT_FAILURE);
-}
-
 static void stdin_poll_func(void *ignoreme)
 {
 	char *buf = io_get_input();
@@ -158,7 +129,6 @@ int main(int argc, char *argv[])
 
 	register_poll(&stdin_poll);
 	// signal(SIGCHLD, SIG_IGN);
-	signal(SIGSEGV, _sigsegv_handler);
 	do_options(argc, argv);
 
 
