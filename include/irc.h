@@ -226,9 +226,6 @@ extern const char *current_query ( void );
 
 /* supporting routines */
 /* extern	void	channel_msg(const char *, const char *chan, const char *server, const char *cdata); */
-extern void **array_sort (int(*comparer)(void *, void *), void **, int array_len);
-extern void **array_filter (int(*filter)(void *), void **, int *array_len);
-
 char		*urlize	(const char *);
 void		fgoogle	( const char * );
 void		google	( const char * );

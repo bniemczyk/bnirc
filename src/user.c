@@ -282,7 +282,22 @@ const char **users_in_channel(const char *channel)
 		}
 	}
 
-	return array_sort(rv, strcmp_nc, found);
+    /*
+	rv = (char **)array_sort(strcmp_nc, rv, found);
+    rv = realloc(rv, (found + 1) * sizeof(char *));
+    rv[found] = NULL;
+    return rv;
+    */
+
+    int _strpcmp(void *a, void *b)
+    {
+        char **ca = a;
+        char **cb = b;
+        return strcmp_nc(*ca, *cb);
+    }
+
+    qsort(rv, found, sizeof(char *), _strpcmp);
+    return rv;
 }
 
 tablist_t *user_find_all_matches(const char *partial)
