@@ -282,7 +282,7 @@ const char **users_in_channel(const char *channel)
 		}
 	}
 
-	return rv;
+	return array_sort(rv, strcmp_nc, found);
 }
 
 tablist_t *user_find_all_matches(const char *partial)
