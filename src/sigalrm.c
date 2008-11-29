@@ -158,6 +158,7 @@ void add_timed_func ( int msecs, void(*func)(void *), void *arg )
 
 void run_timed_funcs ( void )
 {
+	sig_handler(0);
 	struct timeval now;
 
 	do_timed_funcs();
