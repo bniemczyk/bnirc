@@ -208,7 +208,6 @@ libpython_la_SOURCES = python.c
 libpython_la_LDFLAGS = $(PYLIB)
 libpython_la_LIBADD = $(top_builddir)/src/libbnirc.la
 pluginsdir = @libdir@/$(PACKAGE)/plugins
-pyfile = $(top_srcdir)/plugins/python/setup.py
 all: all-am
 
 .SUFFIXES:
@@ -388,7 +387,7 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) all-local
+all-am: Makefile $(LTLIBRARIES)
 installdirs:
 	for dir in "$(DESTDIR)$(pluginsdir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
@@ -419,8 +418,8 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-local \
-	clean-pluginsLTLIBRARIES mostlyclean-am
+clean-am: clean-generic clean-libtool clean-pluginsLTLIBRARIES \
+	mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -440,7 +439,7 @@ info-am:
 
 install-data-am: install-pluginsLTLIBRARIES
 
-install-exec-am: install-exec-local
+install-exec-am:
 
 install-info: install-info-am
 
@@ -468,13 +467,12 @@ ps-am:
 
 uninstall-am: uninstall-info-am uninstall-pluginsLTLIBRARIES
 
-.PHONY: CTAGS GTAGS all all-am all-local check check-am clean \
-	clean-generic clean-libtool clean-local \
-	clean-pluginsLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-exec install-exec-am \
-	install-exec-local install-info install-info-am install-man \
+.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
+	clean-libtool clean-pluginsLTLIBRARIES ctags distclean \
+	distclean-compile distclean-generic distclean-libtool \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am install-exec \
+	install-exec-am install-info install-info-am install-man \
 	install-pluginsLTLIBRARIES install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
@@ -482,16 +480,6 @@ uninstall-am: uninstall-info-am uninstall-pluginsLTLIBRARIES
 	tags uninstall uninstall-am uninstall-info-am \
 	uninstall-pluginsLTLIBRARIES
 
-
-all-local: python.o
-	LDFLAGS="$(LDFLAGS)" VERSION="$(VERSION)" python $(pyfile) build
-
-install-exec-local:
-	if test "$(DESTDIR)" = ""; then python $(pyfile) install; else python $(pyfile) install --root "$(DESTDIR)"; fi
-
-clean-local:
-	python $(pyfile) clean
-	rm -rf build
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
