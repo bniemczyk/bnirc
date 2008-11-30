@@ -90,9 +90,6 @@
 /* Define to 1 if you have the <signal.h> header file. */
 #undef HAVE_SIGNAL_H
 
-/* Define to 1 if you have the <slang.h> header file. */
-#undef HAVE_SLANG_H
-
 /* Define to 1 if you have the <socket.h> header file. */
 #undef HAVE_SOCKET_H
 
@@ -156,6 +153,10 @@
 /* HAVE_ncursesw */
 #undef HAVE_ncursesw
 
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#undef LT_OBJDIR
+
 /* no FILE * */
 #undef NO_FILES
 
@@ -182,9 +183,6 @@
 
 /* we are building for PalmOS */
 #undef PALM_OS
-
-/* SLANG_AVAIL */
-#undef SLANG_AVAIL
 
 /* If using the C implementation of alloca, define if you know the
    direction of stack growth for your system; otherwise it will be
