@@ -1,0 +1,13 @@
+Source: bnirc
+Section: unknown
+Priority: extra
+Maintainer: Brandon Niemczyk <brandon.niemczyk@gmail.com>
+Build-Depends: debhelper (>= 7), autotools-dev, libncursesw5-dev, python-dev
+Standards-Version: 3.7.3
+Homepage: <insert the upstream URL, if relevant>
+
+Package: bnirc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python, libncursesw5
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
