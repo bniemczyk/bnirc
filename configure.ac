@@ -3,7 +3,6 @@ dnl Process this file with autoconf to produce a configure script.
 AC_INIT(include/config.h.in)
 AM_INIT_AUTOMAKE(bnIRC, 1.0)
 AM_CONFIG_HEADER(include/config.h)
-LT_INIT
 
 CFLAGS="-g"
 CPPFLAGS="-g"
@@ -28,9 +27,7 @@ AC_CHECK_HEADER(windows.h,[LDFLAGS="${LDFLAGS} -L/usr/bin" win32=true],[AC_CHECK
 AM_CONDITIONAL(WIN32, test "x${win32}" = "xtrue")
 
 AC_CHECK_LIB(readline, readline)
-#AC_CHECK_LIB(slang, SLang_init_slang, [AC_SUBST(SLANG_LIBS,-lslang) have_slang=yes])
 #AM_CONDITIONAL(SLANG_AVAIL, test "x${have_slang}" = "xyes")
-SNP_CHECK_PKG(slang, SLang_init_slang, slang.h, SNP_MAKE_TRUE(SLANG_AVAIL), SNP_MAKE_FALSE(SLANG_AVAIL))
 
 #AC_CHECK_LIB(ncurses, printw,[
 #	LIBS="$LIBS -lncurses"
@@ -79,7 +76,6 @@ AC_CHECK_HEADERS(\
 		 getopt.h \
 		 stdarg.h \
 		 sys/time.h \
-		 slang.h \
 		 execinfo.h \
 		 resolv.h \
 		 sys/types.h \
