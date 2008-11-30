@@ -1,7 +1,9 @@
 dnl Process this file with autoconf to produce a configure script.
+
 AC_INIT(include/config.h.in)
-AM_INIT_AUTOMAKE(bnIRC, 0.2.18)
+AM_INIT_AUTOMAKE(bnIRC, git)
 AM_CONFIG_HEADER(include/config.h)
+LT_INIT
 
 CFLAGS="-g"
 CPPFLAGS="-g"
