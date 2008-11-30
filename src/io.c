@@ -418,6 +418,21 @@ void send_char_to_input ( int c ) {
 	assert(io_get_input() == NULL);
 }
 
+char *ask(const char *question)
+{
+	assert(question != NULL);
+	io_colored_out(USER_WHITE, "[Input Required] ");
+	io_colored_out(USER_RED, "%s\n", question);
+
+	char *buf;
+	do {
+		buf = io_get_input();
+		bnirc_usleep(10);
+	} while(buf == NULL);
+
+	return buf;
+}
+
 /***************************************************************
  * the goto makes this a bit hard to follow, but the basic
  * idea is to simulate a coroutine, without any bad asm hacks :)

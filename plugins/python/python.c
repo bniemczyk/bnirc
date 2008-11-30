@@ -618,6 +618,14 @@ static PyObject *py_CurrentIp ( PyObject *self, PyObject *args )
 	return PyString_FromString(current_ip());
 }
 
+static PyObject *py_Ask ( PyObject *self, PyObject *args )
+{
+	const char *question;
+	if(!PyArg_ParseTuple(args, "s", &question))
+		return NULL;
+	return PyString_FromString(ask(question));
+}
+
 static PyObject *py_GetCurrentInfo ( PyObject *self, PyObject *args )
 {
 	return Py_BuildValue("(ssss)",
@@ -946,6 +954,8 @@ static PyMethodDef bnircMethods[] = {
 		"GetCurrentInfo(): returns your nick, channel, and server in a tuple (in that order)." },
 	{"Urlize", py_Urlize, METH_VARARGS,
 		"Urlize(string): Makes a URL usable string." },
+	{"Ask", py_Ask, METH_VARARGS,
+		"Ask(string): Ask the user for a question and prompt for the answer" },
 	{NULL, NULL, 0, NULL}
 };
 

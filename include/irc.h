@@ -201,6 +201,7 @@ extern	void	io_colored_out	( int color, const char *fmt, ...) __attribute__ ((fo
 extern	void	wio_colored_out	( window_t w, int color, const char *fmt, ...) __attribute__ ((format (printf, 3, 4)));
 extern	void	io_clear_screen	( window_t w );
 extern	char	*io_get_input	( void );
+extern	char	*ask		(const char *question);
 extern	void	io_start_scroll	( void );
 extern	void	io_refresh_info_line	( void );
 extern	int	io_get_width	( void );
