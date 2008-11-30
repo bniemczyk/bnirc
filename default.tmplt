@@ -5,3 +5,4 @@
 /python dcc.py
 /load io_ncurses
 /logo
+/python mkinitfile.py
