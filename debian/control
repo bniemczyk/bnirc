@@ -8,7 +8,7 @@ Homepage: http://sf.net/projects/bnirc
 
 Package: bnirc
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, python, libncursesw5
+Depends: ${misc:Depends}, libncursesw5, libreadline5, libncurses5, libc6, python2.5
 Description: ncurses irc client with python scripting
  bnIRC is a full IRC client and development framework.  For development, 
  all major components are plugins, and many things can be done using 
