@@ -430,6 +430,9 @@ char *ask(const char *question)
 		bnirc_usleep(10);
 	} while(buf == NULL);
 
+	assert(buf[strlen(buf) - 1] == '\n');
+	buf[strlen(buf) - 1] = 0;
+
 	return buf;
 }
 

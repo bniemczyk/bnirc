@@ -31,11 +31,6 @@ extern "C" int printf(const char *, ...);
 
 hash_t	options;
 
-typedef struct {
-	hash_header_t head;
-	char *value;
-} option_t;
-
 static	int	set_hook	( int, char *[] );
 static	int	unset_hook	( int, char *[] );
 

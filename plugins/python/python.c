@@ -349,6 +349,21 @@ static int run_py_server_string ( int argc, char *argv[] )
  * the python module functions
  */
 
+static PyObject *py_GetSettings ( PyObject *self, PyObject *args )
+{
+	PyObject *settings = PyList_New(0);
+	assert(settings != NULL);
+
+	option_t *i;
+	for(i = hash_first(options, option_t *); i != NULL; i = hash_next(options, i, option_t *)) 
+	{
+		PyObject *opt = PyString_FromString(key(i));
+		PyList_Append(settings, opt);
+	}
+
+	return settings;
+}
+
 static PyObject *py_RegisterLoop ( PyObject *self, PyObject *args ) {
 	cio_out("RegisterLoop called\n");
 	loop_t *loop = malloc(sizeof *loop);
@@ -956,6 +971,8 @@ static PyMethodDef bnircMethods[] = {
 		"Urlize(string): Makes a URL usable string." },
 	{"Ask", py_Ask, METH_VARARGS,
 		"Ask(string): Ask the user for a question and prompt for the answer" },
+	{"GetSettings", py_GetSettings, METH_VARARGS,
+		"GetSettings(): returns a list of option names that can be used with StringOption and friends"},
 	{NULL, NULL, 0, NULL}
 };
 

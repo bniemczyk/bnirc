@@ -325,15 +325,22 @@ extern	window_t	active_window;
 
 void	set_active_window ( window_t );
 
+#include "list.h"
+
 /* option functions */
+typedef struct {
+	hash_header_t head;
+	char *value;
+} option_t;
+
+extern hash_t options;
+
 const char 	*string_option	( const char *name );
 const char 	*safe_string_option	( const char *name );
 int		int_option	( const char *name );
 int		bool_option	( const char *name );
 void		set_option	( const char *name, const char *value );
 void dump_options_fd ( int fd );
-
-#include "list.h"
 
 /*
  * used by history.c and the io routines

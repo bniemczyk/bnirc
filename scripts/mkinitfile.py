@@ -21,12 +21,22 @@ def mkifile():
 	seperate = bnirc.Ask("Would you like channels in seperate windows, or in one common window (enter 'common' for 1 window, anything else for seperate)?")
 
 	f = open(init_file, "w")
-	f.write("/set default_nick %s" % (nick))
-	f.write("/server %s" % (server))
+	f.write('''# bnIRC initialization file
+# for help visit #bnirc on irc.freenode.net\n\n
+''')
+	bnirc.SetOption("default_nick", nick)
+	for s in bnirc.GetSettings():
+		val = bnirc.StringOption(s)
+		if val == "" or val == None:
+			f.write("# /set %s\n" % (s))
+		else:
+			f.write("/set %s %s\n" % (s, bnirc.StringOption(s)))
+
+	f.write("\n/server %s\n" % (server))
 
 	win = 1
 	for i in channels:
-		f.write("/window %d\n" % win)
+		f.write("\n/window %d\n" % win)
 		f.write("/join %s\n" % i)
 		if seperate != "common\n": win += 1
 
