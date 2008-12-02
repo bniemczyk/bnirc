@@ -421,8 +421,8 @@ void send_char_to_input ( int c ) {
 char *ask(const char *question)
 {
 	assert(question != NULL);
-	io_colored_out(USER_WHITE, "[Input Required] ");
-	io_colored_out(USER_RED, "%s\n", question);
+	io_colored_out(USER_RED, "[Input Required] ");
+	io_colored_out(USER_WHITE, "%s\n", question);
 
 	char *buf;
 	do {

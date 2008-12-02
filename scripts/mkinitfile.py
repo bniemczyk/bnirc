@@ -7,8 +7,12 @@ import os
 home_dir = os.getenv("HOME")
 init_file = home_dir + "/.bnirc"
 
-def mkifile():
-	bnirc.ColoredMsg("It appears you do not have a .bnirc file.  We will create one now\n", bnirc.USER_WHITE)
+def mkifile(from_command=False):
+	if not from_command:
+		bnirc.ColoredMsg("It appears you do not have a .bnirc file.  We will create one now\n", bnirc.USER_WHITE)
+	else:
+		bnirc.ColoredMsg("Wizard to create a new .bnirc file\n", bnirc.USER_WHITE)
+	
 	nick = bnirc.Ask("What nick name would you like to use?")
 	server = bnirc.Ask("What IRC server would you like to connect to?")
 	channels = bnirc.Ask("What channels would you like to join (seperate with spaces)?").split()
@@ -46,6 +50,11 @@ def mkifile():
 	bnirc.ColoredMsg("Don't forget to modify %s later to fit your needs\n" % init_file, bnirc.USER_WHITE)
 	bnirc.ColoredMsg("You can get help at ", bnirc.USER_WHITE)
 	bnirc.ColoredMsg("#bnirc on irc.freenode.net\n", bnirc.USER_BLUE)
+
+def mkifile_cmd(args):
+	mkifile(from_command=True)
+
+bnirc.RegisterCommand("mkinifile", "mkinifile", "run wizard and create a .bnirc", 1, 1, mkifile_cmd)
 
 try:
 	is_there = open(init_file)

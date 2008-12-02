@@ -7,7 +7,7 @@ Standards-Version: 3.7.3
 Homepage: http://sf.net/projects/bnirc
 
 Package: bnirc
-Architecture: any
+Architecture: i386 amd64
 Depends: ${misc:Depends}, libncursesw5, libreadline5, libncurses5, libc6, python2.5
 Description: ncurses irc client with python scripting
  bnIRC is a full IRC client and development framework.  For development, 
