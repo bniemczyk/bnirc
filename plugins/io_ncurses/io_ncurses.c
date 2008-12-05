@@ -453,6 +453,12 @@ static void refresh_info_line(void)
 		i += 6;
 	}
 
+	if (page_up) {
+		const char *msg = " You are paged up.";
+		waddstr(line_window, msg);
+		i += strlen(msg);
+	}
+
 	for (; i < size_x - 1; i++)
 		waddch(line_window, ' ');
 
