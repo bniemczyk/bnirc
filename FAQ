@@ -1,7 +1,7 @@
 How come when i join channels they are all in the same window?
 irssi has the annoying habit of opening you a new window everytime you join a channel
 this can be extremely irritating if you chill in 20 rooms that are mostly idle, so in bnirc you have
-to manually switch the window by pressing F{1-12} or with /win {1-12}, if you want to open 3 channels in sep windows
+to manually switch the window by pressing ALT-{1-10} or with /win {1-10}, if you want to open 3 channels in sep windows
 in your ~/.bnirc do this:
 
 /win 1
@@ -55,8 +55,8 @@ where can i get a sample .bnirc file
 sample.bnirc should have come with your distribution
 
 how do i change my window in my .bnirc file?
-/win {1-12} or
-/window {1-12}
+/win {1-10} or
+/window {1-10}
 
 i read about command <x> for irc, but it doesnt show up in /help !
 only commands that bnirc actually parses locally will show up in help
