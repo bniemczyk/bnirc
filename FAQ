@@ -49,7 +49,7 @@ just put /nick <backup> before your preferred name, like
 where can i get help?
 /connect irc.freenode.net
 /nick lostnewb
-/join #justlinux
+/join #bnirc
 
 where can i get a sample .bnirc file
 sample.bnirc should have come with your distribution
