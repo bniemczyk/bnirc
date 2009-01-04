@@ -1,315 +1,303 @@
-2005-01-26  maccorin  <maccorin@maccorin.homelinux.org>
+commit 966e08592a27e6c218decc831a17aa90f2056f61
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Jan 4 16:10:09 2009 -0500
 
-	* src/poll.c, include/irc.h, configure.ac:
-	check errno after a poll before reporting a BUG() [because EINTR is ok].
+    Changed version number to 1.1
 
-2005-01-25  maccorin  <maccorin@maccorin.homelinux.org>
+commit fde1d0b247699b349d5561bfbd2df870e5d7e637
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Thu Dec 25 20:47:21 2008 -0500
 
-	* plugins/io_ncurses/io_ncurses.c, plugins/script/script.c, configure.ac:
-	now takes CPPFLAGS from environment on ./configure and adds to them, instead
-	of writing over them
+    changed #justlinux to #bnirc in the FAQ
 
-	script now builds on my sparc box, although it is still failing to execute functions
+commit 72d9888dfa83bc27656150bc9a4de68c128a0ceb
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Wed Dec 10 21:01:30 2008 -0500
 
-	* src/plugin.c, include/irc.h, src/bnirc.c, src/io.c, src/parse_input_string.c, ChangeLog:
-	cleaned up warnings on FBSD-sparc64
+    changed F{1-12} to ALT-{1-10}
 
-	* src/user.c: privmsg_print now calls ctcp_in_hook when approriate
+commit c27c4557f982ba909648d9dc3c8f109c4bcf3e29
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Fri Dec 5 15:14:43 2008 -0500
 
-2005-01-25  maccorin  <maccorin@maccorin.homelinux.org>
+    Added message if you are paged up
 
-	* src/user.c: privmsg_print now calls ctcp_in_hook when approriate
+commit c7ccfe5dc627d771948dbc5c90f910f57a9df9b6
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Mon Dec 1 21:05:38 2008 -0500
 
-2005-01-23  maccorin  <maccorin@maccorin.homelinux.org>
+    Added mkinitfile command
+    Added myself to AUTHORS
+    Specified i386 and amd64 targets in debian/control, until it's tested on
+    other platforms
 
-	* src/support.c: fixed fuckinggoogleit.com links
+commit 37aeb36ea03ff98d9c22d0f5baf14dda0032ec04
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Nov 30 19:03:50 2008 -0500
 
-	* src/Makefile.am, src/irc.c, src/networkio.c, src/parse_input_string.c, src/plugin.c, src/support.c, include/plugin.h:
-	various bug fixes
-	added deps field to plugin_t
-	moved networkio.c to more sensible name irc.c
-	fixed bnirc_getline() to return error on EOF like GNU's does
+    Added /set lines to auto-generate .bnirc script
 
-2005-01-21  maccorin  <maccorin@maccorin.homelinux.org>
+commit 90cb3749ce3fcb1edfd13e9dd76bb17d1de5a6c4
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Nov 30 18:13:12 2008 -0500
 
-	* plugins/server_strings/server_strings.c:
-	fixed bug where nicks stayed around in tab complete
+    Added script that creates a .bnirc with help from the user if one
+    doens't already exist
 
-	* plugins/io_ncurses/io_ncurses.c:
-	fixed the bug where the lines cut off at the original size of the term instead of
-	the real size
+commit b1f8ea8fcde805587faface40c9bc7a7eac397f7
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Nov 30 17:28:59 2008 -0500
 
-	* src/away.c, ChangeLog, common.tmplt: updated changelog
-	added display_away option
+    Added 'ask' method to ease making a build.bnirc python script
 
-2005-01-21  maccorin  <maccorin@maccorin.homelinux.org>
+commit 1f47b41e3a47fe12e78f70feb6c088fd3080b0f7
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Nov 30 14:06:09 2008 -0500
 
-	* plugins/io_ncurses/io_ncurses.c:
-	added some new color schemes to io_ncurses info line
+    slang defines removed from config.h.in
 
-	* src/bnirc.c, src/user.c, buildrelease.sh: fixed bug in recv_nick
+commit b8f6c3c4ca1413ecbb7df7875073955d2c961a9d
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Nov 30 13:50:58 2008 -0500
 
-2005-01-20  maccorin  <maccorin@maccorin.homelinux.org>
+    libtool fixes... god i hate autotools
 
-	* plugins/server_strings/server_strings.c:
-	keeps user state after they quit if flags are set now
+commit be5e9a5c02c28d52f50b6d3a3acc354c52e1f4ca
+Author: Brandon Niemczyk <brandon@cartesoft.us>
+Date:   Sun Nov 30 13:45:14 2008 -0500
 
-	* include/config.h.in: fixing build system...
+    Removed LT_INIT from configure.ac and removed checks for libslang
 
-	* scripts/Makefile.in, src/Makefile.in, plugins/rserver/Makefile.in, plugins/script/Makefile.in, plugins/server_strings/Makefile.in, include/Makefile.in, plugins/Makefile.in, plugins/ctcp/Makefile.in, plugins/dcc/Makefile.in, plugins/debug/Makefile.in, plugins/hello/Makefile.in, plugins/io_ncurses/Makefile.in, plugins/irc_input/Makefile.in, configure, configure.ac, Makefile.in:
-	removed configure script and Makefile.in files from cvs
+commit 2d72f19ed435719bd18428a2a25be0208e1d4072
+Author: Brandon Niemczyk <brandon@cartesoft.us>
+Date:   Sun Nov 30 13:30:21 2008 -0500
 
-	* plugins/Makefile.am, plugins/Makefile.in, plugins/script/script.c, scripts/startup.sl, default.tmplt, include/list.h, nocurses.tmplt, common.tmplt:
-	scripting is fixed [including festival stuff]
+    Fixed dependancies in debian/control so that they don't auto-include all linked libs
 
-	* include/config.h.in, plugins/io_ncurses/io_ncurses.c, plugins/script/script.c, scripts/startup.sl, src/parse_server_string.c, common.tmplt, configure:
-	now has the hide_info_line option
-	as well as the /sinfoc command to set the color of your info line
+commit eaa03bc9023ea039d1bd1f16a6fdf934f0bbd4f0
+Author: Brandon Niemczyk <brandon@cartesoft.us>
+Date:   Sun Nov 30 12:27:32 2008 -0500
 
-2005-01-19  maccorin  <maccorin@maccorin.homelinux.org>
+    removed libtool from the tree... ./configure should create it
 
-	* plugins/io_ncurses/io_ncurses.c, configure.ac:
-	now uses default colors instead of black/white (although the api still assumes BLACK/WHITE)
+commit 49aa63435fd961d5fc6eeb76be52de397ebc7845
+Author: Brandon Niemczyk <brandon@cartesoft.us>
+Date:   Sun Nov 30 12:19:36 2008 -0500
 
-	* plugins/io_ncurses/io_ncurses.c:
-	fixed resizing so it doesn't kill all the text
+    Changed libtool version to a version that works in debian
 
-	* src/user.c, common.tmplt: fixed /queue command
+commit c32e7862b243ee3d9c203f5e9a98aef319affd59
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Nov 30 12:06:14 2008 -0500
 
-	* src/user.c:
-	that's it... i'm done coding for today... see the last 2 commits... god i'm
-	having issues
+    Added libtool to avoid version issues
 
-	* src/user.c:
-	stupid mistakes.... fixes both handle_away_msg call and highlighting issues....
+commit 7a68f3ae3d73c8725958fd76d36d2e70dd45227a
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Nov 30 12:02:55 2008 -0500
 
-	* src/user.c:
-	forgot to add handle_away_msg() call when i wrote the new privmsg code
+    Fixed ltmain.sh to not be a symlink
 
-	* src/bnirc.c, src/connect.c, src/options.c, src/support.c, include/irc.h, configure.ac:
-	mostly cleanups, especially make_argv and make_max_argv
-	the sigsegv handler now displays variables as well
+commit 53a60a58a36b9a949c122ed269c015a9e39b3ba2
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Nov 30 11:22:27 2008 -0500
 
-	* src/poll.c: fixed stupid typo in comment
+    Modernized the libtool version and changed bnirc version number to 'git'
 
-	* src/networkio.c, src/user.c, configure.ac, configure:
-	fixed irc_nick going to wrong server on reconnect
-	check for ncurses then curses in configure.ac added (why was it commented out?)
+commit 974d57601637b44d5acfa04c176f7d647994056a
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Nov 30 11:05:55 2008 -0500
 
-2005-01-18  maccorin  <maccorin@maccorin.homelinux.org>
+    Cleaned up files in debian/
 
-	* src/user.c:
-	the ACTION keyword on ctcp actions shouldn't be printed anymore
+commit 964e47d969fd3a2f4aa47bf34246e29c98fa213c
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Nov 30 10:58:29 2008 -0500
 
-2005-01-17  maccorin  <maccorin@maccorin.homelinux.org>
+    Added debian directory to create debs
 
-	* src/bnirc.c, ChangeLog:
-	fixed build error on non-linux systems where print_backtrace() was not defined
+commit cc9aebeffd1cc541386696236f44f921a14b9243
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sat Nov 29 14:31:12 2008 -0500
 
-	* src/bnirc.c:
-	added signal handler for SIGSEGV that prints out a backtrace
+    Fixed clock on newer kernels, for some reason SIGALRM and poll()
+    interact badly on newer kernels.  This changes that.  Once the real
+    cause is found, poll() should be changed to use -1 as a timeout, and we
+    can remove the call to sig_handler in run_timed_funcs (sigalrm.c)
 
-2005-01-16  maccorin  <maccorin@maccorin.homelinux.org>
+commit ae45c111360840a9aa498bf6e0ab1c77e605cad3
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Fri Nov 28 19:46:22 2008 -0500
 
-	* ChangeLog: fixed changelog... it was all fscked up
+    No longer create the external python bnirc module.  The setup.py is still included in the
+    distribution though.
 
-	* ChangeLog: dummy-op
+commit 12353aafb5aa3f53b370311f568d03dca11066b0
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Fri Nov 21 18:10:58 2008 -0500
 
-	* plugins/server_strings/server_strings.c, src/networkio.c, src/user.c, ChangeLog:
-	fixes a stupid segfault from actions...
+    sort works now, and it's using qsort from stdlib... i forgot that existed
 
-	* ChangeLog, src/user.c:
-	using auto-update for changelogs now, added strlen() check in action_print() so nasty irc servers can't exploit us...
+commit dc0f34df02f8dd730b5d2cffdd6fec6393769c6a
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Fri Nov 21 17:26:11 2008 -0500
 
-	* plugins/irc_input/irc_input.c, plugins/server_strings/server_strings.c, src/channel.c, src/io.c, src/networkio.c, src/support.c, src/user.c, include/irc.h, include/user.h, plugins/ctcp/ctcp.c:
-	got rid of that ugly channel_msg() function, and replaced it with user->privmsg_print()
+    Added nick sorting, there's a bug though so don't push this out yet
 
-	* src/channel.c, src/networkio.c, include/channel.h:
-	added default nick because some people were getting confused...
-	now rejoins channels on a reconnect
+commit 8564ae35e2dcd08ffffdcad5ee9741343d0586fc
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Fri Nov 21 15:12:46 2008 -0500
 
-	* src/support.c: sync
+    removed SIGSEGV handler so that crashes are obvious
 
-2005-01-15  maccorin  <maccorin@maccorin.homelinux.org>
+commit 386792a497677bb8d536b3e668b30da03530fd32
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Tue Nov 18 11:45:58 2008 -0500
 
-	* src/channel.c: sync
+    Added more to the TODO
 
-	* src/networkio.c, src/support.c, include/irc.h:
-	added bnirc_zmalloc [support.c] and added a malloc() macro [irc.h], so now
-	all calls to malloc are guaranteed to return a zero-filled region of memory
+commit a8587c50dd37a06ed5549da58304c5a4421afde3
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Tue Nov 18 10:40:49 2008 -0500
 
-	* src/networkio.c, src/readme.c:
-	fixed reconnects (i think... haven't died yet, so it's not tested)
+    Cleaned up the TODO list... no code changes
 
-	* sample.bnirc: updated to use new auto-made backup nicks
+commit 91f0ef598c0994fd9a4ac862cd577f299f720427
+Author: brandon <brandon@brandon-ubuntu.(none)>
+Date:   Sat Nov 8 19:13:22 2008 -0500
 
-	* README: updated to point to wiki
+    fix to make it so that no control characters get displayed
 
-2005-01-14  maccorin  <maccorin@maccorin.homelinux.org>
+commit bd0cc383c425056b28e729217cf0faa727f34a6a
+Author: Brandon Niemczyk <brandon.niemczyk@gmail.com>
+Date:   Sat Nov 8 04:24:32 2008 -0500
 
-	* src/connect.c, src/networkio.c, src/support.c, plugins/irc_input/irc_input.c:
-	added auto-reconnect to the new connection interface
+    Fixed ALT-n to not show ^[n in the input area
 
-	* plugins/server_strings/server_strings.c: added timestamp to joins
+commit a814ace8df15149b5ed1560797a251fac52fa7ca
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Fri Nov 7 12:52:02 2008 -0500
 
-	* src/parse_input_string.c:
-	sending stderr to /dev/null on /exec now, because it was causing problems with some scripting engines (esp regina) acting funny when redirected to stdout
+    Set poll() to timeout once a second so that the clock always updates for everyone
 
-	* src/connect.c, src/networkio.c:
-	the user wasn't being set to NULL when a connection was created... this was causing some major PITA bugs
+commit c2c75ed5dfd992dc2a4676510bd2d2ffd7953fbe
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Wed Nov 5 10:33:41 2008 -0500
 
-	* src/parse_server_string.c, src/poll.c, src/connect.c, src/parse_input_string.c:
-	sync
+    fixed configure to not include plugins/script
 
-2005-01-13  maccorin  <maccorin@maccorin.homelinux.org>
+commit 2564c922841bc9ea858696b0cd7be811e9ab69c7
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Wed Nov 5 10:28:10 2008 -0500
 
-	* src/support.c:
-	fixed strncpy() with no termination in urlize [support.c]
+    Fixed segfault when the ncurses plugin gets unloaded
 
-	* plugins/irc_input/irc_input.c, src/parse_input_string.c, src/parse_server_string.c, buildrelease.sh, include/irc.h:
-	/join #channel #otherchannel now works
+commit ccc47820009f36c4e549f5aa1c88a26e776ca7aa
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Tue Nov 4 11:27:39 2008 -0500
 
-	* buildrelease.sh, configure: fixed buildrelease.sh script
+    Modernized the FAQ
 
-	* src/user.c, plugins/server_strings/server_strings.c, include/user.h:
-	fixed tab-completion bug... i missed a paranthase ... god emacs highlighting is weird
+commit 6577aa3304363ac04017a1805ca5eec3aaaa60a3
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Mon Nov 3 17:28:19 2008 -0500
 
-	* src/networkio.c, plugins/io_ncurses/io_ncurses.c:
-	fixed the annoying bug where the line went away as soon as anyone spoke in a different window
+    totally removed the plugins/script directory
 
-	* src/support.c:
-	aha! the alias problems were from string_replace where the results where never
-	null-terminated.... this could have/probably did cause all kinds of nasty
-	hard-to-track down memory-corruption bugs...
+commit ce76209ee7596aaddec601c7a907a49c35cd3f29
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Mon Nov 3 17:12:31 2008 -0500
 
-	* src/networkio.c, src/parse_input_string.c, configure, buildrelease.sh:
-	everything seems to be in a semi-stable state now, i still need to track down
-	why aliases are fucked up though, as I bet that will lead to fixing some other
-	bugs as well...
+    Disabled the slang plugin... it's been deprecated by the python one forever
+    and is broken on some systems
 
-	* plugins/irc_input/irc_input.c, src/networkio.c, src/parse_input_string.c, common.tmplt:
-	sync
+commit bb584b11d2199295beae3e563a9e56c4cdb1e716
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Thu Oct 30 12:29:45 2008 -0400
 
-	* src/bnirc.c, src/networkio.c, src/parse_input_string.c, src/support.c, configure.ac, configure:
-	if the formatting is fucked up, i apologize, i'm forcing myself to learn emacs
+    Added python2.5 check to configure script
 
-	added some comments to clarify how things work
-	fixed problem in irc_server_nick()
+commit dbb77534ddb36e4338571fef5da089705af6215e
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Thu Oct 30 11:02:09 2008 -0400
 
-	* src/networkio.c: sync
+    ALT-{1-10} now switch windows
 
-	* src/networkio.c, src/parse_input_string.c, src/support.c, src/user.c, common.tmplt:
-	fixed a nasty bug in grab_nick() where it never NULL-terminated the nick it returned...
+commit cccaef9c14664cee2fa4df24bb7f8a7b19b49a14
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Tue Oct 28 18:37:17 2008 -0400
 
-	fixed bug in irc_server_nick() where it accessed serv->user->name before checking if serv->user was non-NULL
+    Fixed off by one error in parse_server_string.c that was causing a crash if
+    an attempt was made to connect to orwell.freenode.net
 
-2005-01-12  maccorin  <maccorin@maccorin.homelinux.org>
+commit 1641cde9a7dc7505594b37aa058b1a9949903365
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Tue Oct 28 17:00:00 2008 -0400
 
-	* src/networkio.c, src/support.c, src/user.c, src/users.c, include/irc.h, plugins/server_strings/server_strings.c, src/channel.c, configure, buildrelease.sh:
-	runnable now...
+    updated README to remove dead link to docs
 
-	* Makefile.am, Makefile.in, buildrelease.sh, plugins/server_strings/server_strings.c, src/networkio.c, src/parse_input_string.c, src/user.c:
-	added some debugging output to help track down the problems with the new user.c and channel.c
+commit e1506f743a4a6d9f1980a6717b21b501da46ad33
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Tue Oct 28 15:33:06 2008 -0400
 
-	* buildrelease.sh, configure, configure.ac, include/Makefile.am, include/Makefile.in, include/channel.h, include/ircserver.h, include/user.h:
-	added buildrelease.sh and updated configure.ac so i can tell what version i am running easily
+    Set the locale on startup in bnirc.c
 
-	* plugins/server_strings/server_strings.c, src/Makefile.am, src/Makefile.in, src/away.c, src/bnirc.c, src/channel.c, src/io.c, src/networkio.c, src/parse_input_string.c, src/plugin.c, src/support.c, src/user.c, plugins/ctcp/ctcp.c, plugins/io_ncurses/io_ncurses.c, plugins/irc_input/irc_input.c, plugins/script/script.c, include/config.h.in, include/irc.h, include/list.h, include/plugin.h, plugins/Makefile.am, plugins/Makefile.in, common.tmplt, configure, configure.ac, default.tmplt, nocurses.tmplt:
-	restructuring in process, this compiles but will not run correctly... im working on it
+commit 8a881b1a73e30d8f04f7d81eba4908bdda18f7ec
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Tue Oct 28 15:24:53 2008 -0400
 
-2005-01-11  maccorin  <maccorin@maccorin.homelinux.org>
+    Modified configure script to use ncursesw by default
 
-	* scripts/startup.sl, src/networkio.c, include/irc.h, plugins/irc_input/irc_input.c, plugins/server_strings/server_strings.c:
-	sync
+commit c8b15c6aec7370811e2a9ce221ae2ed21a76aa1d
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Mon Oct 27 10:36:42 2008 -0400
 
-	* include/list.h, src/networkio.c:
-	multiple servers fixed possibly? hash_find(_nc)? doesnt die now if a NULL is sent to it
+    Added pastebin script
 
-	* plugins/io_ncurses/Makefile.am, plugins/io_ncurses/Makefile.in, plugins/io_ncurses/io_ncurses.c:
-	Initial cvs import
+commit 6d820204f1e68dd1194d2f25f0f9f74889ec2b56
+Author: Brandon Niemczyk <brandon@Brandon.localdomain>
+Date:   Mon Oct 27 10:35:52 2008 -0400
 
-	* plugins/io_ncurses/Makefile.am, plugins/io_ncurses/Makefile.in, plugins/io_ncurses/io_ncurses.c:
-	New file.
+    Added pastebin script.
 
-	* plugins/irc_input/Makefile.am, plugins/irc_input/Makefile.in, plugins/irc_input/irc_input.c, plugins/script/Makefile.in:
-	Initial cvs import
+commit 2771fd76fbd38e2a9d8e0076c676b15594187f56
+Author: Brandon Niemczyk <brandon.niemczyk@gmail.com>
+Date:   Sat Oct 25 16:37:13 2008 -0400
 
-	* plugins/irc_input/Makefile.am, plugins/irc_input/Makefile.in, plugins/irc_input/irc_input.c, plugins/script/Makefile.in:
-	New file.
+    Added /disconnect command
 
-	* plugins/hello/Makefile.in, plugins/hello/hello.c, plugins/rserver/Makefile.am, plugins/rserver/Makefile.in, plugins/rserver/rserver.c, plugins/script/Makefile.am, plugins/script/script.c, plugins/server_strings/Makefile.am, plugins/server_strings/Makefile.in, plugins/server_strings/server_strings.c:
-	Initial cvs import
+commit f6644a47444ba7085f669df1d269f17d360b5843
+Author: Brandon Niemczyk <brandon.niemczyk@gmail.com>
+Date:   Sat Oct 25 15:02:02 2008 -0400
 
-	* plugins/hello/Makefile.in, plugins/hello/hello.c, plugins/rserver/Makefile.am, plugins/rserver/Makefile.in, plugins/rserver/rserver.c, plugins/script/Makefile.am, plugins/script/script.c, plugins/server_strings/Makefile.am, plugins/server_strings/Makefile.in, plugins/server_strings/server_strings.c:
-	New file.
+    Added -g to CFLAGS
 
-	* plugins/hello/Makefile.am: Initial cvs import
+commit b376a9628de9d2b629af11fb71a56e896d5155ea
+Author: Brandon Niemczyk <brandon.niemczyk@gmail.com>
+Date:   Sat Oct 25 09:35:29 2008 -0400
 
-	* plugins/hello/Makefile.am: New file.
+    fixed CFLAGS issue for real
 
-	* plugins/Makefile.in, plugins/ctcp/Makefile.am, plugins/ctcp/Makefile.in, plugins/ctcp/ctcp.c, plugins/dcc/Makefile.am, plugins/dcc/Makefile.in, plugins/dcc/dcc.c, plugins/debug/Makefile.am, plugins/debug/Makefile.in, plugins/debug/debug.c:
-	Initial cvs import
+commit 142902ce0efcbd53ea9c803088f5512bee46efb9
+Author: Brandon Niemczyk <brandon.niemczyk@gmail.com>
+Date:   Sat Oct 25 03:13:06 2008 -0400
 
-	* plugins/Makefile.in, plugins/ctcp/Makefile.am, plugins/ctcp/Makefile.in, plugins/ctcp/ctcp.c, plugins/dcc/Makefile.am, plugins/dcc/Makefile.in, plugins/dcc/dcc.c, plugins/debug/Makefile.am, plugins/debug/Makefile.in, plugins/debug/debug.c:
-	New file.
+    Added -O0 to the CFLAGS, because gcc-4.2 optimizes the ncurses library badly
 
-	* include/Makefile.in, include/config.h.in, include/list.h, include/plugin.h, plugins/Makefile.am:
-	Initial cvs import
+commit 4ab23f3c7361b0cc4d5bc35a54a395a3cead3b7b
+Author: Brandon Niemczyk <brandon@brandon-home-pc.home>
+Date:   Sat Oct 25 00:53:54 2008 -0400
 
-	* include/Makefile.in, include/config.h.in, include/list.h, include/plugin.h, plugins/Makefile.am:
-	New file.
+    Fixed an issue where the correct nick didn't show up if it was changed because your nick was already in use.
 
-	* include/Makefile.am, include/irc.h, scripts/Makefile.am, scripts/Makefile.in, scripts/bot.sl, scripts/startup.sl, src/bnirc.c, src/plugin.c, src/readme.c, src/users.c:
-	Initial cvs import
+commit b11f391012d804461f61ee5f20b7405ab4a53dbc
+Author: Brandon Niemczyk <brandon@brandon-home-pc.home>
+Date:   Sat Oct 25 00:22:27 2008 -0400
 
-	* include/Makefile.am, include/irc.h, scripts/Makefile.am, scripts/Makefile.in, scripts/bot.sl, scripts/startup.sl, src/bnirc.c, src/plugin.c, src/readme.c, src/users.c:
-	New file.
+    Fixed a bug on reconnect
 
-	* src/Makefile.in, src/options.c, src/poll.c, src/support.c:
-	Initial cvs import
+commit 83ff026c3c6c6109bbe91027222790d4edcc61ae
+Author: Brandon Niemczyk <brandon@brandon-home-pc.home>
+Date:   Sat Oct 25 00:20:45 2008 -0400
 
-	* src/Makefile.in, src/options.c, src/poll.c, src/support.c: New file.
-
-	* src/Makefile.am, src/away.c, src/connect.c, src/faq.c, src/history.c, src/networkio.c, src/parse_input_string.c, src/parse_server_string.c:
-	Initial cvs import
-
-	* src/Makefile.am, src/away.c, src/connect.c, src/faq.c, src/history.c, src/networkio.c, src/parse_input_string.c, src/parse_server_string.c:
-	New file.
-
-	* COPYING, ChangeLog, INSTALL, bot.tmplt, nocurses.tmplt, src/io.c:
-	Initial cvs import
-
-	* COPYING, ChangeLog, INSTALL, bot.tmplt, nocurses.tmplt, src/io.c:
-	New file.
-
-	* AUTHORS, Makefile.am, Makefile.in, common.tmplt, missing, ylwrap:
-	Initial cvs import
-
-	* AUTHORS, Makefile.am, Makefile.in, common.tmplt, missing, ylwrap:
-	New file.
-
-	* config.sub, install-sh: Initial cvs import
-
-	* config.sub, install-sh: New file.
-
-	* config.guess: Initial cvs import
-
-	* config.guess: New file.
-
-	* configure, configure.ac, default.tmplt, sample.bnirc:
-	Initial cvs import
-
-	* configure, configure.ac, default.tmplt, sample.bnirc: New file.
-
-	* ltmain.sh: Initial cvs import
-
-	* ltmain.sh: New file.
-
-	* README, aclocal.m4: Initial cvs import
-
-	* README, aclocal.m4: New file.
-
-	* FAQ, NEWS, TODO, depcomp, logo: Initial cvs import
-
-	* FAQ, NEWS, TODO, depcomp, logo: New file.
-
+    Initial import of version 0.2.18
