@@ -1,2 +1,2 @@
-aclocal && automake -a && autoconf
+aclocal && automake -a -c && autoconf
 ./configure $*
