@@ -43,8 +43,6 @@ static int default_startup = 1;
 static int do_options(int argc, char *argv[])
 {
 	int c;
-    setlocale(LC_ALL, "");
-
 	while (1) {
 		c = getopt(argc, argv, "p:s:h");
 
@@ -120,6 +118,8 @@ static void stdin_poll_func(void *ignoreme)
 
 int main(int argc, char *argv[])
 {
+    setlocale(LC_ALL, "");
+
 	char *ts;
 	irc_poll_t stdin_poll = {
 		.callback = stdin_poll_func,

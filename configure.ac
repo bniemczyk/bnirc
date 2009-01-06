@@ -51,7 +51,7 @@ SNP_CHECK_PKG(ncursesw, printw, ncursesw/ncurses.h, [
                                             SNP_MAKE_TRUE(HAVE_ncursesw)
                                             ],
 
-[SNP_CHECK_PKG(ncurses, printw, ncurses.h, [
+SNP_MAKE_FALSE(CURSESW_AVAIL) [SNP_CHECK_PKG(ncurses, printw, ncurses.h, [
 		SNP_MAKE_TRUE(CURSES_AVAIL)
 		SNP_MAKE_TRUE(HAVE_curses)
 		SNP_MAKE_TRUE(HAVE_ncurses)
