@@ -20,4 +20,7 @@ cscope.out: FORCE
 deb: dist
 	dpkg-buildpackage -rfakeroot
 
+rpm: dist
+	rpmbuild --buildroot=/tmp/bnirc_stage -ta ${PACKAGE}-${VERSION}.tar.gz
+
 FORCE:
