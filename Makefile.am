@@ -23,4 +23,7 @@ deb: dist
 rpm: dist
 	rpmbuild --buildroot=/tmp/bnirc_stage -ta ${PACKAGE}-${VERSION}.tar.gz
 
+source-rpm: dist
+	rpmbuild -ts ${PACKAGE}-${VERSION}.tar.gz
+
 FORCE:
