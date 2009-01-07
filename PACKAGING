@@ -1,0 +1,97 @@
+This is for package bnIRC Maintainers.
+
+General Notes
+------------------------------------
+The prereqs for bnIRC are python and ncurses, binary packages 
+should use ncursesw for UTF support.  Much of the work
+for rpm and deb packages has been automated and can be done
+with a simple 'make rpm' or 'make deb' - please see format
+specific notes below.
+
+All binary packages should include the python and io_ncurses
+plugins.  This means you have to ensure that the -devel
+packages are installed before you build or else it will build
+without them and you won't get an error message.
+
+Getting the Correct Source for a Version
+--------------------------------------------------------
+bnirc is developed using git.  A "master" version is hosted on 
+github. If you are familiar with git you can clone
+git://github.com/bniemczyk/bnirc.git then checkout the branch
+for the corresponding version ie:
+    git clone git://github.com/bniemczyk/bnirc.git
+    cd bnirc
+    git branch --track 1.1.1 origin/1.1.1
+    git checkout 1.1.1
+
+For those of you that do not want to learn git and prefer
+tarballs you can download tarballs or zips from
+http://github.com/bniemczyk/bnirc/tree/1.1.1
+replacing 1.1.1 with the correct version
+
+Publishing your Package
+---------------------------------------------------------
+name your package with the following name scheme:
+bnirc-VERSION-RELEASE(OPTIONAL)-DISTRO-ARCH
+
+ex:
+bnirc-1.1.1-Etch-x86_64.deb
+bnirc-1.1.1-CentOS-i386.rpm
+
+You can send it to brandon.niemczyk@gmail.com or if you are
+a regular contributer and want direct sf.net access, talk to
+brandon on irc or email him.
+
+RPM Packages
+------------------------------------
+In order to build rpm packages you have to setup your
+environment a little bit first, but this should be a one
+time ordeal.
+
+First you need to create a .rpmmacros file in your home
+directory: vim ~/.rpmmacros
+
+Here is what mine looks like (without the #########):
+################## begin rpmmacros file ##################
+%packager Brandon Niemczyk <brandon.niemczyk@gmail.com>
+%vendor BnIRC
+
+%_topdir /home/brandon/rpm
+################# end rpmmacros file #####################
+
+now we need to make sure that %_topdir exists (in my case
+it is /home/brandon/rpm) along with some subdirectories:
+
+$ mkdir -p /home/brandon/rpm
+$ cd /home/brandon/rpm
+$ mkdir -p RPMS/i386 SRPMS BUILD SOURCES SPECS
+
+now we can build the package:
+$ cd <bnirc directory>
+$ yum install ncurses-devel python-devel
+$ ./configure
+$ make rpm
+
+the rpm will now be in /home/brandon/rpm/RPMS
+
+DEB Packages
+---------------------------------------
+You'll need a fairly recent version of debhelper (>= 0.7).
+This is so that the same debian control files can be used
+for debian and ubuntu.  If you are using debian etch, you'll
+need to install debhelper from debian backports. 
+http://www.backports.org/
+
+MAKE sure that the parent directory to bnirc is writeable
+because that is where dpkg-buildpackage puts the built
+package files
+
+edit debian/changelog and set the author/maintainer for
+the current release to yourself instead of brandon.niemczyk
+
+$ apt-get install libncursesw5-dev python2.5-dev
+$ ./configure
+$ make deb
+
+you should now have a .deb and all the debianized sources in 
+the parent directory
