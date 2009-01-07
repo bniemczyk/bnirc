@@ -14900,6 +14900,16 @@ else
 
 				snp_have_pkg=false
 
+		CURSESW_AVAIL=false
+		 if test "xtrue" = "xfalse"; then
+  CURSESW_AVAIL_TRUE=
+  CURSESW_AVAIL_FALSE='#'
+else
+  CURSESW_AVAIL_TRUE='#'
+  CURSESW_AVAIL_FALSE=
+fi
+
+
 
 				{ echo "$as_me:$LINENO: checking for printw in -lncurses" >&5
 echo $ECHO_N "checking for printw in -lncurses... $ECHO_C" >&6; }
@@ -15697,6 +15707,16 @@ fi
 else
 
 			snp_have_pkg=false
+
+		CURSESW_AVAIL=false
+		 if test "xtrue" = "xfalse"; then
+  CURSESW_AVAIL_TRUE=
+  CURSESW_AVAIL_FALSE='#'
+else
+  CURSESW_AVAIL_TRUE='#'
+  CURSESW_AVAIL_FALSE=
+fi
+
 
 
 				{ echo "$as_me:$LINENO: checking for printw in -lncurses" >&5
@@ -16877,7 +16897,7 @@ CFLAGS="$CFLAGS $EXT_CFLAGS"
 CPPFLAGS="$CPPFLAGS -Dstrcasecmp=strcmp_nc -Dstrncasecmp=strncmp_nc"
 LIBS="$LIBS $EXT_LIBS $PTHREAD_LIBS -no-undefined"
 
-ac_config_files="$ac_config_files Makefile src/Makefile include/Makefile plugins/Makefile plugins/hello/Makefile plugins/debug/Makefile plugins/dcc/Makefile plugins/ctcp/Makefile plugins/irc_input/Makefile plugins/server_strings/Makefile plugins/io_ncurses/Makefile plugins/rserver/Makefile scripts/Makefile plugins/python/Makefile"
+ac_config_files="$ac_config_files Makefile src/Makefile include/Makefile plugins/Makefile plugins/hello/Makefile plugins/debug/Makefile plugins/dcc/Makefile plugins/ctcp/Makefile plugins/irc_input/Makefile plugins/server_strings/Makefile plugins/io_ncurses/Makefile plugins/rserver/Makefile scripts/Makefile plugins/python/Makefile bnirc.spec"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -17014,6 +17034,13 @@ if test -z "${WIN32_TRUE}" && test -z "${WIN32_FALSE}"; then
   { { echo "$as_me:$LINENO: error: conditional \"WIN32\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
 echo "$as_me: error: conditional \"WIN32\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${CURSESW_AVAIL_TRUE}" && test -z "${CURSESW_AVAIL_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"CURSESW_AVAIL\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"CURSESW_AVAIL\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -17939,6 +17966,7 @@ do
     "plugins/rserver/Makefile") CONFIG_FILES="$CONFIG_FILES plugins/rserver/Makefile" ;;
     "scripts/Makefile") CONFIG_FILES="$CONFIG_FILES scripts/Makefile" ;;
     "plugins/python/Makefile") CONFIG_FILES="$CONFIG_FILES plugins/python/Makefile" ;;
+    "bnirc.spec") CONFIG_FILES="$CONFIG_FILES bnirc.spec" ;;
 
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}

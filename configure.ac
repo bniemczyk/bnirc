@@ -51,7 +51,7 @@ SNP_CHECK_PKG(ncursesw, printw, ncursesw/ncurses.h, [
                                             SNP_MAKE_TRUE(HAVE_ncursesw)
                                             ],
 
-[SNP_CHECK_PKG(ncurses, printw, ncurses.h, [
+SNP_MAKE_FALSE(CURSESW_AVAIL) [SNP_CHECK_PKG(ncurses, printw, ncurses.h, [
 		SNP_MAKE_TRUE(CURSES_AVAIL)
 		SNP_MAKE_TRUE(HAVE_curses)
 		SNP_MAKE_TRUE(HAVE_ncurses)
@@ -97,4 +97,4 @@ CFLAGS="$CFLAGS $EXT_CFLAGS"
 CPPFLAGS="$CPPFLAGS -Dstrcasecmp=strcmp_nc -Dstrncasecmp=strncmp_nc"
 LIBS="$LIBS $EXT_LIBS $PTHREAD_LIBS -no-undefined"
 
-AC_OUTPUT(Makefile src/Makefile include/Makefile plugins/Makefile plugins/hello/Makefile plugins/debug/Makefile plugins/dcc/Makefile plugins/ctcp/Makefile plugins/irc_input/Makefile plugins/server_strings/Makefile plugins/io_ncurses/Makefile plugins/rserver/Makefile scripts/Makefile plugins/python/Makefile)
+AC_OUTPUT(Makefile src/Makefile include/Makefile plugins/Makefile plugins/hello/Makefile plugins/debug/Makefile plugins/dcc/Makefile plugins/ctcp/Makefile plugins/irc_input/Makefile plugins/server_strings/Makefile plugins/io_ncurses/Makefile plugins/rserver/Makefile scripts/Makefile plugins/python/Makefile bnirc.spec)

@@ -1,0 +1,47 @@
+%define name @PACKAGE@
+%define version @VERSION@
+
+Summary: ncurses irc client with python scripting
+Name: %{name}
+Version: %{version}
+Source: %{name}-%{version}.tar.gz
+Release: 1
+URL: http://sf.net/projects/bnirc
+License: GPL version 2
+Group: Network/Irc
+Prefix: %{_prefix}
+
+%description
+bnIRC is a full IRC client and development framework.  For development, 
+all major components are plugins, and many things can be done using 
+the python scripting interface
+
+%prep
+%setup -q
+
+%build
+if [ -x ./configure ]; then
+	CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix}
+else
+	CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%{_prefix}
+fi
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+make DESTDIR="$RPM_BUILD_ROOT" install
+
+%clean
+rm -rf "$RPM_BUILD_ROOT"
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
+%files
+%defattr(-,root,root)
+%doc AUTHORS ChangeLog INSTALL COPYING README FAQ TODO NEWS
+%{_prefix}/*
+
+%changelog
+* Tue Jan 1 2009 Brandon Niemczyk
+- First draft of RPM spec file

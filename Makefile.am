@@ -1,6 +1,6 @@
 SUBDIRS = src include plugins scripts
 man_MANS = bnirc.1
-EXTRA_DIST = TODO sample.bnirc FAQ TODO default.tmplt logo nocurses.tmplt common.tmplt bnBot $(man_MANS)
+EXTRA_DIST = TODO sample.bnirc FAQ TODO default.tmplt logo nocurses.tmplt common.tmplt bnBot $(man_MANS) bnirc.spec.in bnirc.spec gentoo/metadata.xml gentoo/bnirc.ebuild
 CLEANFILES = default nocurses common
 
 startupdir = $(datadir)/$(PACKAGE)-$(VERSION)/startup
@@ -16,5 +16,8 @@ cscope: cscope.out
 
 cscope.out: FORCE
 	cscope -Rb
+
+deb: dist
+	dpkg-buildpackage -rfakeroot
 
 FORCE:
