@@ -17,4 +17,7 @@ cscope: cscope.out
 cscope.out: FORCE
 	cscope -Rb
 
+deb: dist
+	dpkg-buildpackage -rfakeroot
+
 FORCE:
