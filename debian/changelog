@@ -1,3 +1,10 @@
+bnirc (1.1.1) intrepid; urgency=low
+
+  * Added some build scripts, this has no functional changes for the enduser
+    it only matters for maintainers
+
+ -- Brandon Niemczyk <brandon@media-center>  Tue, 06 Jan 2009 19:43:41 -0500
+
 bnirc (1.1) intrepid; urgency=low
 
   * Bugfixes and a wizard to generate a .bnirc file, some documentation updates 
