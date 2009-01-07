@@ -23,11 +23,11 @@ AC_CHECK_LIB(ncursesw, printw, AC_SUBST(CURSES_LIB,-lncursesw),
     AC_CHECK_LIB(ncurses, printw, AC_SUBST(CURSES_LIBS,-lncurses), 
         AC_CHECK_LIB(curses, printw, AC_SUBST(CURSES_LIBS,-lcurses))))
 
-AC_CHECK_HEADER(windows.h,[LDFLAGS="${LDFLAGS} -L/usr/bin" win32=true],[AC_CHECK_LIB(termcap, tgetnum)])
+AC_CHECK_HEADER(windows.h,[LDFLAGS="${LDFLAGS} -L/usr/bin" win32=true],)
 
 AM_CONDITIONAL(WIN32, test "x${win32}" = "xtrue")
 
-AC_CHECK_LIB(readline, readline)
+#AC_CHECK_LIB(readline, readline)
 #AM_CONDITIONAL(SLANG_AVAIL, test "x${have_slang}" = "xyes")
 
 #AC_CHECK_LIB(ncurses, printw,[
