@@ -1,8 +1,99 @@
-commit 966e08592a27e6c218decc831a17aa90f2056f61
+commit bb5685f0f3725715150bdb679d6dc8596f18a596
+Merge: 7f7d959... b708940...
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Tue Jan 6 19:35:34 2009 -0500
+
+    Merge branch 'master' into 1.1.1
+    
+    Conflicts:
+    
+    	Makefile.in
+
+commit b70894036e1d5bd1f460da037270478871f97f94
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Tue Jan 6 19:32:09 2009 -0500
+
+    added make deb command
+
+commit cbf860a528642f0ea746a1cb9838b311f7a23f9a
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Tue Jan 6 18:02:39 2009 -0500
+
+    renamed gentoo ebuild to a generic non-version
+
+commit 5f2ba269f7477ddf2c4e1160997b52afe193d929
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Tue Jan 6 17:44:15 2009 -0500
+
+    Added gentoo build script and fixed autogen.sh
+
+commit da37c802cfa30acca3dd380d4433931a2de45d61
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Tue Jan 6 17:30:13 2009 -0500
+
+    Added config.guess
+
+commit 3ba3f189170a73b78badc4f206725975419c1fbd
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Tue Jan 6 17:29:46 2009 -0500
+
+    added config.sub
+
+commit afaeeb737ad79f958596780dc252b232ab4b3943
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Tue Jan 6 17:25:55 2009 -0500
+
+    Added real copies of libtool files
+
+commit ec24c78cbfe068c86d29675846a45756072df4b0
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Tue Jan 6 17:22:33 2009 -0500
+
+    updated setup scripts...
+
+commit f27b5aac9f2a6d6b973ce581e495f17543c64a76
+Author: brandon <brandon@localhost.localdomain>
+Date:   Tue Jan 6 12:20:37 2009 -0500
+
+    Added autogen script
+
+commit fd98a59e707bc26019117218dc9262c272d8cc2a
+Author: brandon <brandon@localhost.localdomain>
+Date:   Tue Jan 6 12:17:48 2009 -0500
+
+    Added rpm spec file to the distribution
+    you should be able to build an rpm now with the tarball via:
+    rpmbuild --buildroot=/some/stage/dir -ta bnIRC-${VERSION}.tar.gz
+
+commit 5c8236c73e71b2a2163b18a3a7c9d360fae182b0
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Mon Jan 5 19:09:27 2009 -0500
+
+    moved setlocale to beginning of main and fixed cursesw error in configure.ac
+
+commit 7f7d959fcf6eb355d2cd7e713e9ca26117573021
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Jan 4 16:24:21 2009 -0500
+
+    updated changelog
+
+commit 2d6ed56faadaf18c29787641e1546017b726a53f
 Author: Brandon Niemczyk <brandon@media-center.(none)>
 Date:   Sun Jan 4 16:10:09 2009 -0500
 
     Changed version number to 1.1
+
+commit bc551eb9005b88055107f35c52c8e40c9b247bbe
+Author: Brandon Niemczyk <brandon@media-center.(none)>
+Date:   Sun Jan 4 16:24:21 2009 -0500
+
+    updated changelog
+
+commit f16a1b8f7988620bf4433cb8ac9676dc327c13a4
+Author: Brandon Niemczyk <brandon@cartesoft.us>
+Date:   Wed Dec 31 12:22:34 2008 -0500
+
+    Added port option to .bnirc wizard
 
 commit fde1d0b247699b349d5561bfbd2df870e5d7e637
 Author: Brandon Niemczyk <brandon@media-center.(none)>
