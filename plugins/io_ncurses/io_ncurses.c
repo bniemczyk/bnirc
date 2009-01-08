@@ -641,8 +641,17 @@ static int set_color_hook(window_t w, int c)
 
 static int set_cur_pos_hook(size_t x)
 {
-	cursor_pos = x;
-	wmove(input_window, 0, x);
+    char buf[1024];
+    wmove(input_window, 0, 0);
+    int len = winnstr(input_window, buf, sizeof(buf) - 1);
+
+    //while(buf[strlen(buf)-1] & 0xc0)
+        //buf[strlen(buf)-1] = 0;
+
+    buf[len] = 0;
+    int offset = mbstowcs(NULL, buf, 0) - len;
+	cursor_pos = x+offset;
+	wmove(input_window, 0, cursor_pos);
 	return 0;
 }
 
