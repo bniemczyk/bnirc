@@ -191,8 +191,11 @@ static int join_hook(int argc, char *argv[])
 	assert(u);
 	free(nick);
 	u->add_channel(u, ch->name);
-	cwio_out(ch->win, "%s %s is now in %s [%s]\n", timestamp(), u->name,
-		 ch->name, u->server);
+
+    if(bool_option("show_joins")) {
+	    cwio_out(ch->win, "%s %s is now in %s [%s]\n", timestamp(), u->name,
+		    ch->name, u->server);
+    }
 
 	if (bool_option("about_channels")) {
 		/**************************************
@@ -286,8 +289,11 @@ static int part_hook(int argc, char *argv[])
 	if (!ch)
 		return -1;
 
-	cwio_out(ch->win, "%s %s has left %s [%s]\n",
-		 timestamp(), u->name, ch->name, argv[3]);
+    if(bool_option("show_parts")) {
+	    cwio_out(ch->win, "%s %s has left %s [%s]\n",
+		    timestamp(), u->name, ch->name, argv[3]);
+    }
+
 	u->rm_channel(u, ch->name);
 	free(nick);
 	return 0;

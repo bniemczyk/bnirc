@@ -1,4 +1,6 @@
 # set default options
+/set show_joins on
+/set show_parts on
 /set about_channels on
 /set force_server_respect off
 /set away_string logging msgs
