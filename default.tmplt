@@ -3,6 +3,6 @@
 /python __main__.py
 /python toc.py
 /python dcc.py
-/load io_ncurses
+/load bnirc_io_ncurses
 /logo
 /python mkinitfile.py

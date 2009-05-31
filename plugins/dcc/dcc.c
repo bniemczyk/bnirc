@@ -217,4 +217,4 @@ static plugin_t plugin = {
 	.plugin_init = init
 };
 
-REGISTER_PLUGIN(plugin, dcc)
+REGISTER_PLUGIN(plugin, bnirc_dcc)

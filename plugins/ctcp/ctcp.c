@@ -117,4 +117,4 @@ static plugin_t	plugin	= {
 	.ctcp_in_hook	= hook
 };
 
-REGISTER_PLUGIN(plugin, ctcp);
+REGISTER_PLUGIN(plugin, bnirc_ctcp);

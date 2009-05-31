@@ -1,10 +1,10 @@
 EXTRA_DIST=setup.py
 INCLUDES = -I$(top_srcdir)/include -I$(top_builddir)/include -I$(top_srcdir)/src -I.
 
-plugins_LTLIBRARIES = libpython.la
+plugins_LTLIBRARIES = libbnirc_python.la
 
-libpython_la_SOURCES = python.c
-libpython_la_LDFLAGS = $(PYLIB)
-libpython_la_LIBADD = $(top_builddir)/src/libbnirc.la
+libbnirc_python_la_SOURCES = python.c
+libbnirc_python_la_LDFLAGS = $(PYLIB)
+libbnirc_python_la_LIBADD = $(top_builddir)/src/libbnirc.la
 
 pluginsdir = @libdir@/$(PACKAGE)/plugins

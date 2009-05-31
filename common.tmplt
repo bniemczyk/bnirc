@@ -32,11 +32,11 @@
 /set show_all_server_strings off
 
 # load some plugins
-/load server_strings
-/load ctcp
-/load irc_input
-/load script
-/load python
+/load bnirc_server_strings
+/load bnirc_ctcp
+/load bnirc_irc_input
+/load bnirc_script
+/load bnirc_python
 
 # set some common aliases
 /alias j join

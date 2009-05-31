@@ -79,4 +79,4 @@ static plugin_t	plugin = {
 	.input_hook	= input_hook
 };
 
-REGISTER_PLUGIN(plugin, debug);
+REGISTER_PLUGIN(plugin, bnirc_debug);

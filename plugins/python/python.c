@@ -1172,4 +1172,4 @@ static plugin_t	plugin = {
 	.command_list = commands
 };
 
-REGISTER_PLUGIN(plugin, python);
+REGISTER_PLUGIN(plugin, bnirc_python);

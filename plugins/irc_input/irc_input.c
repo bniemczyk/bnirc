@@ -401,4 +401,4 @@ static plugin_t plugin = {
 	.command_list = commands
 };
 
-REGISTER_PLUGIN(plugin, irc_input);
+REGISTER_PLUGIN(plugin, bnirc_irc_input);

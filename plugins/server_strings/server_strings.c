@@ -657,4 +657,4 @@ static plugin_t plugin = {
 	.server_string_list = strings
 };
 
-REGISTER_PLUGIN(plugin, server_strings)
+REGISTER_PLUGIN(plugin, bnirc_server_strings)

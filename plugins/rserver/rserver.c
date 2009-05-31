@@ -54,4 +54,4 @@ static	plugin_t	plugin	= {
 	.io_driver	= &my_io_driver
 };
 
-REGISTER_PLUGIN(plugin, rserver);
+REGISTER_PLUGIN(plugin, bnirc_rserver);
