@@ -5,4 +5,3 @@
 /python dcc.py
 /load bnirc_io_ncurses
 /logo
-/python mkinitfile.py

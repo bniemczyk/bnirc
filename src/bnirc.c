@@ -175,7 +175,12 @@ int main(int argc, char *argv[])
 				plugin_input_hook(buf);
 				parse_input_string(buf);
 			}
-			fclose(init_f);
+			// for some reason this causes a segfault on some systems, there
+			// seems to be a race condition somewhere that I am missing
+			// since this should never be edited by the user, simply
+			// not releasing the handle doesn't really cause
+			// any problems, even though it is unelegant as hell
+			// fclose(init_f);
 			cio_out("%s parsed\n", init_fname);
 		} else {
 			io_colored_out(USER_RED,
