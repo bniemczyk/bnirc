@@ -201,7 +201,8 @@ int main(int argc, char *argv[])
 				plugin_input_hook(buf);
 				parse_input_string(buf);
 			}
-			fclose(init_f);
+			// see above
+			// fclose(init_f);
 			cio_out("%s parsed\n", init_fname);
 		} else {
 			io_colored_out(USER_RED,
