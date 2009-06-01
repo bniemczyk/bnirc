@@ -1,5 +1,6 @@
 you can put any commands in your ~/.bnirc file, they will be auto-executed on startup
-check sample.bnirc for an example
+check sample.bnirc for an example, alternatively run "/python mkinitfile.py" inside
+bnIRC for a wizard to create the startup file
 
 run /help to get a list of commands that the client knows
 LOTS MORE that aren't listed work, but are only passed to the server, but i'm not gonna list them

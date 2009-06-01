@@ -59,8 +59,5 @@ def mkifile_cmd(args):
 
 bnirc.RegisterCommand("mkinifile", "mkinifile", "run wizard and create a .bnirc", 1, 1, mkifile_cmd)
 
-try:
-    is_there = open(init_file)
-    is_there.close()
-except:
-    mkifile()
+if not os.path.exists(init_file):
+	mkifile()
