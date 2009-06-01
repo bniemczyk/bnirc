@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_INIT(include/config.h.in)
-AM_INIT_AUTOMAKE(bnIRC, git)
+AM_INIT_AUTOMAKE(bnIRC, 1.1.2)
 AM_CONFIG_HEADER(include/config.h)
 LT_INIT
 

@@ -1,3 +1,11 @@
+bnirc (1.1.2) squeeze; urgency=low
+
+  * fixed a segfault after .bnirc read
+
+  * changed plugin library names to use the bnirc_ namespace
+
+ -- Brandon Niemczyk <brandon.niemczyk@gmail.com>  Sun, 31 May 2009 19:43:41 -0500
+
 bnirc (1.1.1) intrepid; urgency=low
 
   * Added some build scripts, this has no functional changes for the enduser
