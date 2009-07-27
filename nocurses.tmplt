@@ -1,6 +1,5 @@
 /source startup/common
 /script startup.sl
 /python startup.py
-/python toc.py
 /python dcc.py
 /logo

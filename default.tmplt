@@ -1,7 +1,6 @@
 /source startup/common
 /script startup.sl
 /python __main__.py
-/python toc.py
 /python dcc.py
 /load bnirc_io_ncurses
 /logo
