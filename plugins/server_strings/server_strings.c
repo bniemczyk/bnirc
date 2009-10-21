@@ -636,6 +636,10 @@ static server_string_t strings[] = {
 	{"502", 1, 4, display_cdata},
 	{"632", 1, 4, display_cdata}, 	// ircops
 
+	// used for cookie response on at 
+	// least irc.umich.edu, possibly other servers too
+	{"998", 1, 3, display_cdata},
+
 	/* commands */
 	{"nick", 1, 3, nick_hook},
 	{"join", 1, 3, join_hook},
