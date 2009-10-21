@@ -311,6 +311,13 @@ static int wall_hook(int argc, char *argv[])
 	return 0;
 }
 
+static int quote_hook(int argc, char *argv[])
+{
+	assert(argc == 2);
+	irc_out("%s\n", argv[1]);
+	return 0;
+}
+
 static int names_hook(int argc, char *argv[])
 {
 	const char *channel = natural_channel_name();
@@ -344,9 +351,9 @@ static command_t commands[] = {
 	{"connect", "connect [server] [port]", 1, 3, connect_hook,
 	 "connects you to a server or sets your active server"
 	 ", if no arguments are given it shows you what server you are active on"},
-    {"disconnect", "disconnect [server]", 1, 2, disconnect_hook,
-     "disconnects you from [server] or the active server if no hostname"
-     " is provided"},
+    	{"disconnect", "disconnect [server]", 1, 2, disconnect_hook,
+     	 "disconnects you from [server] or the active server if no hostname"
+     	 " is provided"},
 	{"nick", "nick <nickname>", 2, 2, nick_hook, "sets your nickname"},
 	{"join", "join <channel>", 2, 2, join_hook,
 	 "join a channel, or switch to active channel"},
@@ -391,6 +398,7 @@ static command_t commands[] = {
 	{"who", "who [channel]", 1, 2, names_hook, "see /help names"},
 	{"wall", "wall <message>", 2, 2, wall_hook,
 	 "send a message to all channels your in"},
+	{"quote", "quote <raw irc command>", 2, 2, quote_hook, "send a raw command to the irc server" },
 	{NULL, NULL, 0, 0, NULL}
 };
 
