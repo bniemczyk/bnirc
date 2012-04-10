@@ -11,6 +11,9 @@
 /* CURSES_AVAIL */
 #undef CURSES_AVAIL
 
+/* SSL_AVAIL */
+#undef SSL_AVAIL
+
 /* Define to 1 if using `alloca.c'. */
 #undef C_ALLOCA
 
