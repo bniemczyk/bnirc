@@ -20,7 +20,7 @@ AC_STDC_HEADERS
 AC_CHECK_LIB(dl, dlopen, [AC_CHECK_HEADERS(dlfcn.h) LIBS="$LIBS -ldl"])
 AC_FUNC_ALLOCA
 
-AC_CHECK_LIB(ssl, SSL_open, [AC_CHECK_HEADERS(ssl.h) LIBS="$LIBS -lssl"])
+AC_SEARCH_LIBS([MD5], [ssl])
 
 SNP_PYTHON
 

@@ -12038,13 +12038,12 @@ _ACEOF
 fi
 
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for SSL_open in -lssl" >&5
-$as_echo_n "checking for SSL_open in -lssl... " >&6; }
-if ${ac_cv_lib_ssl_SSL_open+:} false; then :
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing MD5" >&5
+$as_echo_n "checking for library containing MD5... " >&6; }
+if ${ac_cv_search_MD5+:} false; then :
   $as_echo_n "(cached) " >&6
 else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lssl  $LIBS"
+  ac_func_search_save_LIBS=$LIBS
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -12054,39 +12053,45 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 #ifdef __cplusplus
 extern "C"
 #endif
-char SSL_open ();
+char MD5 ();
 int
 main ()
 {
-return SSL_open ();
+return MD5 ();
   ;
   return 0;
 }
 _ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_ssl_SSL_open=yes
-else
-  ac_cv_lib_ssl_SSL_open=no
+for ac_lib in '' ssl; do
+  if test -z "$ac_lib"; then
+    ac_res="none required"
+  else
+    ac_res=-l$ac_lib
+    LIBS="-l$ac_lib  $ac_func_search_save_LIBS"
+  fi
+  if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_search_MD5=$ac_res
 fi
 rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
+    conftest$ac_exeext
+  if ${ac_cv_search_MD5+:} false; then :
+  break
 fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_ssl_SSL_open" >&5
-$as_echo "$ac_cv_lib_ssl_SSL_open" >&6; }
-if test "x$ac_cv_lib_ssl_SSL_open" = xyes; then :
-  for ac_header in ssl.h
-do :
-  ac_fn_c_check_header_mongrel "$LINENO" "ssl.h" "ac_cv_header_ssl_h" "$ac_includes_default"
-if test "x$ac_cv_header_ssl_h" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_SSL_H 1
-_ACEOF
-
-fi
-
 done
- LIBS="$LIBS -lssl"
+if ${ac_cv_search_MD5+:} false; then :
+
+else
+  ac_cv_search_MD5=no
+fi
+rm conftest.$ac_ext
+LIBS=$ac_func_search_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_search_MD5" >&5
+$as_echo "$ac_cv_search_MD5" >&6; }
+ac_res=$ac_cv_search_MD5
+if test "$ac_res" != no; then :
+  test "$ac_res" = "none required" || LIBS="$ac_res $LIBS"
+
 fi
 
 
