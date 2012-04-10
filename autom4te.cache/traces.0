@@ -2578,7 +2578,7 @@ m4trace:configure.ac:50: -2- m4_pattern_allow([^SSL_AVAIL_TRUE$])
 m4trace:configure.ac:50: -2- m4_pattern_allow([^SSL_AVAIL_FALSE$])
 m4trace:configure.ac:50: -2- _AM_SUBST_NOTMAKE([SSL_AVAIL_TRUE])
 m4trace:configure.ac:50: -2- _AM_SUBST_NOTMAKE([SSL_AVAIL_FALSE])
-m4trace:configure.ac:50: -1- SNP_CHECK_PKG([ssl], [SSL_read], [openssl/sll.h], [
+m4trace:configure.ac:50: -1- SNP_CHECK_PKG([ssl], [SSL_read], [openssl/ssl.h], [
 		SSL_AVAIL=true
 		 if test "xtrue" = "xtrue"; then
   SSL_AVAIL_TRUE=

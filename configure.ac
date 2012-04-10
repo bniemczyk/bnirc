@@ -47,7 +47,7 @@ AM_CONDITIONAL(WIN32, test "x${win32}" = "xtrue")
 #
 
 
-SNP_CHECK_PKG(ssl, SSL_read, openssl/sll.h, SNP_MAKE_TRUE(SSL_AVAIL), SNP_MAKE_FALSE(SSL_AVAIL))
+SNP_CHECK_PKG(ssl, SSL_read, openssl/ssl.h, SNP_MAKE_TRUE(SSL_AVAIL), SNP_MAKE_FALSE(SSL_AVAIL))
 
 SNP_CHECK_PKG(ncursesw, printw, ncursesw/ncurses.h, [
                                             SNP_MAKE_TRUE(CURSESW_AVAIL)

@@ -12872,8 +12872,8 @@ fi
 $as_echo "$ac_cv_lib_ssl_SSL_read" >&6; }
 if test "x$ac_cv_lib_ssl_SSL_read" = xyes; then :
 
-			ac_fn_c_check_header_mongrel "$LINENO" "openssl/sll.h" "ac_cv_header_openssl_sll_h" "$ac_includes_default"
-if test "x$ac_cv_header_openssl_sll_h" = xyes; then :
+			ac_fn_c_check_header_mongrel "$LINENO" "openssl/ssl.h" "ac_cv_header_openssl_ssl_h" "$ac_includes_default"
+if test "x$ac_cv_header_openssl_ssl_h" = xyes; then :
 
 				snp_have_pkg=true
 
