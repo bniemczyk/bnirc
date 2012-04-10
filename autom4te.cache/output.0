@@ -621,6 +621,10 @@ CURSES_AVAIL_FALSE
 CURSES_AVAIL_TRUE
 CURSESW_AVAIL_FALSE
 CURSESW_AVAIL_TRUE
+HAVE_ssl_FALSE
+HAVE_ssl_TRUE
+SSL_AVAIL_FALSE
+SSL_AVAIL_TRUE
 CURSES_LIBS
 CURSES_LIB
 HAVE_PYTHON_FALSE
@@ -12042,63 +12046,6 @@ _ACEOF
 fi
 
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing MD5" >&5
-$as_echo_n "checking for library containing MD5... " >&6; }
-if ${ac_cv_search_MD5+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_func_search_save_LIBS=$LIBS
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char MD5 ();
-int
-main ()
-{
-return MD5 ();
-  ;
-  return 0;
-}
-_ACEOF
-for ac_lib in '' ssl; do
-  if test -z "$ac_lib"; then
-    ac_res="none required"
-  else
-    ac_res=-l$ac_lib
-    LIBS="-l$ac_lib  $ac_func_search_save_LIBS"
-  fi
-  if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_search_MD5=$ac_res
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext
-  if ${ac_cv_search_MD5+:} false; then :
-  break
-fi
-done
-if ${ac_cv_search_MD5+:} false; then :
-  
-else
-  ac_cv_search_MD5=no
-fi
-rm conftest.$ac_ext
-LIBS=$ac_func_search_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_search_MD5" >&5
-$as_echo "$ac_cv_search_MD5" >&6; }
-ac_res=$ac_cv_search_MD5
-if test "$ac_res" != no; then :
-  test "$ac_res" = "none required" || LIBS="$ac_res $LIBS"
-  
-fi
-
-
 
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for pthread_create in -lpthread" >&5
@@ -12887,6 +12834,115 @@ fi
 #	]
 #)
 #
+
+
+
+		
+				{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for SSL_read in -lssl" >&5
+$as_echo_n "checking for SSL_read in -lssl... " >&6; }
+if ${ac_cv_lib_ssl_SSL_read+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lssl  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char SSL_read ();
+int
+main ()
+{
+return SSL_read ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_ssl_SSL_read=yes
+else
+  ac_cv_lib_ssl_SSL_read=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_ssl_SSL_read" >&5
+$as_echo "$ac_cv_lib_ssl_SSL_read" >&6; }
+if test "x$ac_cv_lib_ssl_SSL_read" = xyes; then :
+  
+			ac_fn_c_check_header_mongrel "$LINENO" "openssl/sll.h" "ac_cv_header_openssl_sll_h" "$ac_includes_default"
+if test "x$ac_cv_header_openssl_sll_h" = xyes; then :
+  
+				snp_have_pkg=true
+				
+		SSL_AVAIL=true
+		 if test "xtrue" = "xtrue"; then
+  SSL_AVAIL_TRUE=
+  SSL_AVAIL_FALSE='#'
+else
+  SSL_AVAIL_TRUE='#'
+  SSL_AVAIL_FALSE=
+fi
+
+		
+$as_echo "@%:@define SSL_AVAIL /**/" >>confdefs.h
+
+		
+				
+else
+  
+				snp_have_pkg=false
+				
+		SSL_AVAIL=false
+		 if test "xtrue" = "xfalse"; then
+  SSL_AVAIL_TRUE=
+  SSL_AVAIL_FALSE='#'
+else
+  SSL_AVAIL_TRUE='#'
+  SSL_AVAIL_FALSE=
+fi
+
+	
+				
+fi
+
+
+			
+else
+  
+			snp_have_pkg=false
+			
+		SSL_AVAIL=false
+		 if test "xtrue" = "xfalse"; then
+  SSL_AVAIL_TRUE=
+  SSL_AVAIL_FALSE='#'
+else
+  SSL_AVAIL_TRUE='#'
+  SSL_AVAIL_FALSE=
+fi
+
+	
+			
+fi
+
+		 if test "x$snp_have_pkg" = "xtrue"; then
+  HAVE_ssl_TRUE=
+  HAVE_ssl_FALSE='#'
+else
+  HAVE_ssl_TRUE='#'
+  HAVE_ssl_FALSE=
+fi
+
+		if test "x$snp_have_pkg" = "xtrue"; then
+			LIBS="$LIBS -lssl"
+		fi
+		
 
 
 		
@@ -13911,6 +13967,18 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${WIN32_TRUE}" && test -z "${WIN32_FALSE}"; then
   as_fn_error $? "conditional \"WIN32\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+fi
+if test -z "${SSL_AVAIL_TRUE}" && test -z "${SSL_AVAIL_FALSE}"; then
+  as_fn_error $? "conditional \"SSL_AVAIL\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+fi
+if test -z "${SSL_AVAIL_TRUE}" && test -z "${SSL_AVAIL_FALSE}"; then
+  as_fn_error $? "conditional \"SSL_AVAIL\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+fi
+if test -z "${HAVE_ssl_TRUE}" && test -z "${HAVE_ssl_FALSE}"; then
+  as_fn_error $? "conditional \"HAVE_ssl\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5 
 fi
 if test -z "${CURSESW_AVAIL_TRUE}" && test -z "${CURSESW_AVAIL_FALSE}"; then

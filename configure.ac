@@ -20,8 +20,6 @@ AC_STDC_HEADERS
 AC_CHECK_LIB(dl, dlopen, [AC_CHECK_HEADERS(dlfcn.h) LIBS="$LIBS -ldl"])
 AC_FUNC_ALLOCA
 
-AC_SEARCH_LIBS([MD5], [ssl])
-
 SNP_PYTHON
 
 AC_CHECK_LIB(ncursesw, printw, AC_SUBST(CURSES_LIB,-lncursesw),
@@ -48,6 +46,9 @@ AM_CONDITIONAL(WIN32, test "x${win32}" = "xtrue")
 #)
 #
 
+
+SNP_CHECK_PKG(ssl, SSL_read, openssl/sll.h, SNP_MAKE_TRUE(SSL_AVAIL), SNP_MAKE_FALSE(SSL_AVAIL))
+
 SNP_CHECK_PKG(ncursesw, printw, ncursesw/ncurses.h, [
                                             SNP_MAKE_TRUE(CURSESW_AVAIL)
                                             SNP_MAKE_TRUE(CURSES_AVAIL) 
@@ -55,6 +56,7 @@ SNP_CHECK_PKG(ncursesw, printw, ncursesw/ncurses.h, [
                                             SNP_MAKE_TRUE(HAVE_ncurses)
                                             SNP_MAKE_TRUE(HAVE_ncursesw)
                                             ],
+
 
 SNP_MAKE_FALSE(CURSESW_AVAIL) [SNP_CHECK_PKG(ncurses, printw, ncurses.h, [
 		SNP_MAKE_TRUE(CURSES_AVAIL)
