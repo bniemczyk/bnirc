@@ -179,6 +179,36 @@ const char *irc_pick_server(void)
 	}
 }
 
+/**********************************************
+* how a server is picked:
+*  1) check if current_line_client is non-NULL
+*  2) check force_server_respect
+*  3) check the active channel
+*  4) default to server_name
+**********************************************/
+client_connection_t *irc_pick_server_connection(void)
+{
+	channel_t *ch = active_channel();
+
+	if (!server_name)
+		return NULL;
+
+	irc_server_t *tmp;
+	if (current_line_client != NULL) {
+		return (client_connection_t *) current_line_client;
+	}
+	if (bool_option("force_server_respect")) {
+		return server_name;
+	} else if (ch != NULL && strlen(ch->name)) {
+		tmp = hash_find_nc(connections, ch->server, irc_server_t *);
+		return &(tmp->con);
+	} else {
+		/* this should either be valid, or NULL */
+		tmp = hash_find_nc(connections, server_name, irc_server_t *);
+		return &(tmp->con);
+	}
+}
+
 const char *current_ip ( void )
 {
 	struct sockaddr_in addr;
@@ -418,10 +448,10 @@ static void after_connect(irc_server_t * serv)
 	static int already_pinging = 0;
 	char *username = get_username();
 	if (bool_option("server_password"))
-		fprintf(serv->con.con.poll.out, "PASS %s\n",
+		pollprintf(&(serv->con.con.poll), "PASS %s\n",
 			string_option("server_password"));
 
-	fprintf(serv->con.con.poll.out, "USER %s 0 * :%s\n",
+	pollprintf(&(serv->con.con.poll), "USER %s 0 * :%s\n",
 			bool_option("username") ? string_option("username") : username,
 		bool_option("realname") ? string_option("realname") :
 		"bnIRC User");

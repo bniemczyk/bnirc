@@ -453,6 +453,19 @@ static void refresh_info_line(void)
 		i += 6;
 	}
 
+#ifdef SSL_AVAIL
+	client_connection_t *con = irc_pick_server_connection();
+	if(con) {
+		if(con->poll.is_ssl) {
+			waddstr(line_window, "  *secure*");
+			i += 10;
+		} else {
+			waddstr(line_window, "  *insecure*");
+			i += 12;
+		}
+	}
+#endif
+
 	if (page_up) {
 		const char *msg = " You are paged up.";
 		waddstr(line_window, msg);

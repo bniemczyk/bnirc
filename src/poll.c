@@ -240,6 +240,14 @@ static void poll_loop_func  (void)
 	end_io_block();
 }
 
+void pollprintf(irc_poll_t *poll, const char *format, ...)
+{
+	va_list ap;
+	va_start(ap, format);
+	vpollprintf(poll, format, ap);
+	va_end(ap);
+}
+
 void vpollprintf(irc_poll_t *poll, const char *format, va_list ap)
 {
 	if(poll->is_ssl) {

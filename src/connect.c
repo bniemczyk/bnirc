@@ -45,12 +45,13 @@ void construct_ssl_client_connection(int port, const char *server, void (*callba
 
 	SSL_METHOD *method = SSLv23_method();
 	SSL_CTX *ctx = SSL_CTX_new(method);
+	SSL_CTX_set_mode(ctx, SSL_MODE_AUTO_RETRY);
 	SSL *ssl = SSL_new(ctx);
 	BIO *bio = BIO_new_socket((*con)->poll.fd, BIO_NOCLOSE);
  	// BIO_set_flags(bio, BIO_FLAGS_FLUSH_ON_WRITE);
 	// SSL_set_fd(ssl, (*con)->poll.fd);
 	SSL_set_bio(ssl, bio, bio);
-	SSL_set_mode(ssl, SSL_MODE_ENABLE_PARTIAL_WRITE|SSL_MODE_ACCEPT_MOVING_WRITE_BUFFER);
+	// SSL_set_mode(ssl, SSL_MODE_ENABLE_PARTIAL_WRITE|SSL_MODE_ACCEPT_MOVING_WRITE_BUFFER);
 
 	(*con)->poll.ssl = ssl;
 

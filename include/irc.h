@@ -457,6 +457,8 @@ typedef struct {
 	int		port;
 } client_connection_t;
 
+extern	client_connection_t *irc_pick_server_connection(void);
+
 typedef struct client_line_connection_s {
 	client_connection_t con;
 	void(*callback)(struct client_line_connection_s *, char *);
