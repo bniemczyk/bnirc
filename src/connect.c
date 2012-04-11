@@ -31,6 +31,40 @@ extern "C" int printf(const char *, ...);
 
 #include "irc.h"
 
+void construct_ssl_client_connection(int port, const char *server, void (*callback) (client_connection_t *),
+				     client_connection_t ** con)
+{
+
+#ifndef SSL_AVAIL
+	cio_out("SSL NOT AVAILABLE");
+	return;
+#else
+	construct_client_connection(port, server, callback, con);
+
+	(*con)->poll.is_ssl = 1;
+
+	SSL_METHOD *method = SSLv23_method();
+	SSL_CTX *ctx = SSL_CTX_new(method);
+	SSL *ssl = SSL_new(ctx);
+	BIO *bio = BIO_new_socket((*con)->poll.fd, BIO_NOCLOSE);
+ 	// BIO_set_flags(bio, BIO_FLAGS_FLUSH_ON_WRITE);
+	// SSL_set_fd(ssl, (*con)->poll.fd);
+	SSL_set_bio(ssl, bio, bio);
+	SSL_set_mode(ssl, SSL_MODE_ENABLE_PARTIAL_WRITE|SSL_MODE_ACCEPT_MOVING_WRITE_BUFFER);
+
+	(*con)->poll.ssl = ssl;
+
+	int hs = SSL_connect(ssl);
+	if(hs != 1) {
+		cio_out("Could not perform ssl handshake (error: %d)\n", SSL_get_error(ssl, hs));
+		unregister_poll(&((*con)->poll));
+		return;
+	} else {
+		cio_out("Successfully performed SSL handshake\n");
+	}
+#endif
+}
+
 /**********************************************
  * creates a connection and registers it with
  * our polling interface
@@ -51,6 +85,8 @@ void construct_client_connection(int port, const char *server,
 		*con = malloc(sizeof(client_connection_t));
 	}
 
+	(*con)->poll.is_ssl = 0;
+
 	if (bool_option("verbose"))
 		cio_out("attempting to resolve [%s]\n", server);
 
@@ -67,6 +103,8 @@ void construct_client_connection(int port, const char *server,
 	memcpy(&((*con)->address.sin_addr), host->h_addr, host->h_length);
 
 	(*con)->poll.fd = socket(PF_INET, SOCK_STREAM, 0);
+
+
 	if (connect
 	    ((*con)->poll.fd, (struct sockaddr *) &((*con)->address),
 	     sizeof(struct sockaddr_in))) {
@@ -108,7 +146,21 @@ static void line_callback(client_line_connection_t * con)
 		con->buf_size = 1024;
 	}
 
-	con->buf[con->cur_size] = fgetc(con->con.poll.in);
+	if(con->con.poll.is_ssl) {
+#ifdef SSL_AVAIL
+		char cbuf[1];
+		int bcnt = SSL_read(con->con.poll.ssl, cbuf, 1);
+		if(bcnt == 1) {
+			con->buf[con->cur_size] = cbuf[0];
+		} else if(bcnt != 0) {
+			cio_out("ssl_read returned %d (%s)\n", bcnt, ERR_error_string(SSL_get_error(con->con.poll.ssl,bcnt), NULL));
+		} else {
+			return;
+		}
+#endif
+	} else {
+		con->buf[con->cur_size] = fgetc(con->con.poll.in);
+	}
 	con->cur_size += 1;
 	con->buf[con->cur_size] = 0;
 
@@ -133,7 +185,7 @@ static void line_callback(client_line_connection_t * con)
 
 void construct_client_line_connection(int port, const char *server,
 				      client_line_callback_t callback,
-				      client_line_connection_t ** con)
+				      client_line_connection_t ** con, int ssl)
 {
 	if (*con == NULL) {
 		*con = malloc(sizeof(client_line_connection_t));
@@ -146,7 +198,11 @@ void construct_client_line_connection(int port, const char *server,
 	(*con)->buf_size = 0;
 	(*con)->buf = NULL;
 	(*con)->cur_size = 0;
-	construct_client_connection(port, server,
+
+	if(ssl)
+		construct_ssl_client_connection(port, server, (client_callback_t) line_callback, (client_connection_t **) con);
+	else
+		construct_client_connection(port, server,
 				    (client_callback_t) line_callback,
 				    (client_connection_t **) con);
 }

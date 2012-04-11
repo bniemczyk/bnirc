@@ -115,6 +115,12 @@
 #include <errno.h>
 #endif
 
+#ifdef SSL_AVAIL
+#include <openssl/bio.h>
+#include <openssl/ssl.h>
+#include <openssl/err.h>
+#endif
+
 #ifdef HAVE_BACKTRACE
 extern void __real_backtrace	( void );
 #define backtrace() __real_backtrace();
@@ -177,6 +183,8 @@ extern void __real_backtrace	( void );
 typedef unsigned	window_t;
 extern	ssize_t	bnirc_getline(char **, size_t *, FILE *);
 
+// extern void vpollprintf(irc_poll_t *p, const char *f, va_list ap);
+
 /* global variables */
 extern int	socket_fd;
 extern FILE *	netio;
@@ -207,7 +215,7 @@ extern	void	io_refresh_info_line	( void );
 extern	int	io_get_width	( void );
 
 /* some network io routines */
-extern 	void	irc_connect 	( int port, const char *server );
+extern 	void	irc_connect 	( int port, const char *server, int ssl);
 extern  int     irc_disconnect  ( const char *server );
 extern	void	irc_out(const char *fmt, ...) __attribute__ ((format (printf, 1, 2)));
 extern	void	irc_sout(const char *server, const char *fmt, ...) __attribute__ ((format (printf, 2, 3)));
@@ -417,6 +425,11 @@ extern	void	end_io_block		( void );
  **********************************************/
 typedef struct	{
 	int	fd;
+	int 	is_ssl;
+#ifdef SSL_AVAIL
+	BIO	*bio;
+	SSL	*ssl;
+#endif
 	void	*data;
 	void(*callback)(void *);
 	void(*error_callback)(void *);
@@ -459,7 +472,7 @@ typedef void(*client_callback_t)(client_connection_t *);
 typedef void(*client_line_callback_t)(client_line_connection_t *, char *);
 
 void	construct_client_connection ( int port, const char *server, client_callback_t, client_connection_t **);
-void	construct_client_line_connection ( int port, const char *server, client_line_callback_t, client_line_connection_t **);
+void	construct_client_line_connection ( int port, const char *server, client_line_callback_t, client_line_connection_t **, int ssl);
 extern	int user_wants_pong;
 
 /*

@@ -246,7 +246,7 @@ char *irc_get_current_nick(void)
 
 void irc_out(const char *fmt, ...)
 {
-	FILE *f;
+	// FILE *f;
 
 	irc_server_t *tmp =
 	    hash_find_nc(connections, irc_pick_server(), irc_server_t *);
@@ -256,13 +256,12 @@ void irc_out(const char *fmt, ...)
 		return;
 	}
 
-	f = tmp->con.con.poll.out;
+	// f = tmp->con.con.poll.out;
 
 	va_list ap;
 	va_start(ap, fmt);
-	vfprintf(f, fmt, ap);
+	vpollprintf(&(tmp->con.con.poll), fmt, ap);
 	va_end(ap);
-	fflush(f);
 
 }
 
@@ -289,10 +288,8 @@ void irc_sout(const char *servername, const char *fmt, ...)
 
 	va_list ap;
 	va_start(ap, fmt);
-	vfprintf(server->con.con.poll.out, fmt, ap);
+	vpollprintf(&(server->con.con.poll), fmt, ap);
 	va_end(ap);
-	fflush(server->con.con.poll.out);
-
 }
 
 char channels[12][256] = { "\0" };
@@ -467,7 +464,7 @@ int irc_disconnect(const char *hostname)
     return 0;
 }
 
-void irc_connect(int port, const char *server)
+void irc_connect(int port, const char *server, int ssl)
 {
 	if (hash_find_nc(connections, server, void *) != NULL) {
 		server_name = copy_string(server);
@@ -478,7 +475,7 @@ void irc_connect(int port, const char *server)
 	irc_server_t *new = malloc(sizeof(irc_server_t));
 	new->user = NULL;
 	client_line_connection_t *ptr = &(new->con);
-	construct_client_line_connection(port, server, irc_recv_callback, &ptr);
+	construct_client_line_connection(port, server, irc_recv_callback, &ptr, ssl);
 	new->con.con.poll.eof_callback = (void (*)(void *)) irc_reconnect;
 	new->con.con.poll.error_callback = (void (*)(void *)) irc_reconnect;
 
@@ -496,5 +493,6 @@ static void irc_reconnect(client_line_connection_t * client_connection)
     char *hostname = copy_string(client_connection->con.hostname);
     int port = client_connection->con.port;
     irc_disconnect(hostname);
-    irc_connect(port, hostname);
+    int ssl = ((client_connection_t *)client_connection)->poll.is_ssl;
+    irc_connect(port, hostname, ssl);
 }

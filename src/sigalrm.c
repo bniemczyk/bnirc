@@ -109,7 +109,7 @@ static int time_compare ( struct timeval *a, struct timeval *b )
 
 void del_timed_func ( void(*func)(void *) )
 {
-    alarm_t *a;
+    alarm_t *a = NULL;
     for(a = bottom(&queued); a != &queued; a = list_next(a))
     {
         if(a == NULL)

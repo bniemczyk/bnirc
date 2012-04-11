@@ -41,10 +41,30 @@ static int connect_hook(int argc, char *argv[])
 	}
 
 	if (argc < 3) {
-		irc_connect(6667, argv[1]);
+		irc_connect(6667, argv[1], 0);
 	} else {
 		buf = atoi(argv[2]);
-		irc_connect(buf, argv[1]);
+		irc_connect(buf, argv[1], 0);
+	}
+
+	return 0;
+}
+
+static int sslconnect_hook(int argc, char *argv[])
+{
+	int buf;
+
+	if (argc == 1) {
+		cio_out("current server is: %s\n",
+			server_name != NULL ? server_name : "(none)");
+		return 0;
+	}
+
+	if (argc < 3) {
+		irc_connect(6697, argv[1], 1);
+	} else {
+		buf = atoi(argv[2]);
+		irc_connect(buf, argv[1], 1);
 	}
 
 	return 0;
@@ -351,6 +371,10 @@ static command_t commands[] = {
 	{"connect", "connect [server] [port]", 1, 3, connect_hook,
 	 "connects you to a server or sets your active server"
 	 ", if no arguments are given it shows you what server you are active on"},
+	{"sslconnect", "sslconnect [server] [port]", 1, 3, sslconnect_hook,
+	 "securely connects you to a server or sets your active server"
+	 ", if no arguments are given it shows you what server you are active on"},
+
     	{"disconnect", "disconnect [server]", 1, 2, disconnect_hook,
      	 "disconnects you from [server] or the active server if no hostname"
      	 " is provided"},

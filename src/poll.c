@@ -240,6 +240,28 @@ static void poll_loop_func  (void)
 	end_io_block();
 }
 
+void vpollprintf(irc_poll_t *poll, const char *format, va_list ap)
+{
+	if(poll->is_ssl) {
+		size_t len = strlen(format) + (1024);
+		char *str = malloc(sizeof(char) * len);
+		vsnprintf(str, len, format, ap);
+#ifdef SSL_AVAIL
+		int sslwlen = SSL_write(poll->ssl, str, strlen(str));
+		if(sslwlen != strlen(str)) 
+		{
+			cio_out("SSL_write() returned %d\n", sslwlen);
+			if(sslwlen == -1) {
+				cio_out("%s\n", ERR_error_string(SSL_get_error(poll->ssl, sslwlen),NULL));
+			}
+		}
+		BIO_flush(poll->bio);
+#endif
+	} else {
+		vfprintf(poll->out, format, ap);
+	}
+}
+
 INIT_CODE(register_poll_loop) {
 	add_loop_hook(poll_loop_func);
 }

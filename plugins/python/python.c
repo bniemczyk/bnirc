@@ -720,7 +720,23 @@ static PyObject *py_Connect ( PyObject *self, PyObject *args )
 	if(!PyArg_ParseTuple(args, "si", &server, &port))
 		return NULL;
 
-	irc_connect(port, server);
+	irc_connect(port, server, 0);
+
+	RETURN_NOTHING;
+}
+
+static PyObject *py_SSLConnect ( PyObject *self, PyObject *args )
+{
+	int port;
+	const char *server;
+
+	if(bool_option("verbose"))
+		cio_out("py_Connect()\n");
+
+	if(!PyArg_ParseTuple(args, "si", &server, &port))
+		return NULL;
+
+	irc_connect(port, server, 1);
 
 	RETURN_NOTHING;
 }
@@ -939,6 +955,8 @@ static PyMethodDef bnircMethods[] = {
 		"IrcRaw(msg): Sends a raw message to the IRC server." },
 	{"IrcConnect", py_Connect, METH_VARARGS,
 		"IrcConnect(server, port): Connects to an IRC server." },
+	{"IrcSSLConnect", py_SSLConnect, METH_VARARGS,
+		"IrcSSLConnect(server, port): Connects to an IRC server via SSL." },
 	{"IrcNick", py_Nick, METH_VARARGS,
 		"IrcNick(nickname): Sets your nickname" },
 	{"IrcJoin", py_Join, METH_VARARGS,

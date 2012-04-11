@@ -120,6 +120,11 @@ int main(int argc, char *argv[])
 {
     setlocale(LC_ALL, "");
 
+#ifdef SSL_AVAIL
+	SSL_library_init();
+	SSL_load_error_strings();
+#endif
+
 	char *ts;
 	irc_poll_t stdin_poll = {
 		.callback = stdin_poll_func,
