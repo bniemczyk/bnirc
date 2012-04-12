@@ -31,6 +31,7 @@
 #include <ctype.h>
 #include "irc.h"
 
+#ifndef STRNDUP_AVAIL
 static char *strndup(const char *in, size_t n)
 {
 	size_t len = strlen(in);
@@ -42,6 +43,7 @@ static char *strndup(const char *in, size_t n)
 	out[n] = 0;
 	return out;
 }
+#endif
 
 static int rgx_debug;
 static int rgx_case_insens;

@@ -630,6 +630,8 @@ CURSES_LIB
 HAVE_PYTHON_FALSE
 HAVE_PYTHON_TRUE
 ALLOCA
+STRNDUP_AVAIL_FALSE
+STRNDUP_AVAIL_TRUE
 AS
 WIN32_FALSE
 WIN32_TRUE
@@ -2152,7 +2154,7 @@ $as_echo "$as_me: loading site script $ac_site_file" >&6;}
       || { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error $? "failed to load site script $ac_site_file
-See \`config.log' for more details" "$LINENO" 5 ; }
+See \`config.log' for more details" "$LINENO" 5; }
   fi
 done
 
@@ -2228,7 +2230,7 @@ if $ac_cache_corrupted; then
 $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
   { $as_echo "$as_me:${as_lineno-$LINENO}: error: changes in the environment can compromise the build" >&5
 $as_echo "$as_me: error: changes in the environment can compromise the build" >&2;}
-  as_fn_error $? "run \`make distclean' and/or \`rm $cache_file' and start over" "$LINENO" 5 
+  as_fn_error $? "run \`make distclean' and/or \`rm $cache_file' and start over" "$LINENO" 5
 fi
 ## -------------------- ##
 ## Main body of script. ##
@@ -2260,7 +2262,7 @@ for ac_dir in "$srcdir" "$srcdir/.." "$srcdir/../.."; do
   fi
 done
 if test -z "$ac_aux_dir"; then
-  as_fn_error $? "cannot find install-sh, install.sh, or shtool in \"$srcdir\" \"$srcdir/..\" \"$srcdir/../..\"" "$LINENO" 5 
+  as_fn_error $? "cannot find install-sh, install.sh, or shtool in \"$srcdir\" \"$srcdir/..\" \"$srcdir/../..\"" "$LINENO" 5
 fi
 
 # These three variables are undocumented and unsupported,
@@ -2390,7 +2392,7 @@ if (
       # broken ls alias from the environment.  This has actually
       # happened.  Such a system could not be considered "sane".
       as_fn_error $? "ls -t appears to fail.  Make sure there is not a broken
-alias in your environment" "$LINENO" 5 
+alias in your environment" "$LINENO" 5
    fi
 
    test "$2" = conftest.file
@@ -2400,7 +2402,7 @@ then
    :
 else
    as_fn_error $? "newly created file is older than distributed files!
-Check your system clock" "$LINENO" 5 
+Check your system clock" "$LINENO" 5
 fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
@@ -2426,6 +2428,108 @@ else
   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: \`missing' script is too old or missing" >&5
 $as_echo "$as_me: WARNING: \`missing' script is too old or missing" >&2;}
 fi
+
+install_sh=${install_sh-"\$(SHELL) $am_aux_dir/install-sh"}
+
+# Installed binaries are usually stripped using `strip' when the user
+# run `make install-strip'.  However `strip' might not be the right
+# tool to use in cross-compilation environments, therefore Automake
+# will honor the `STRIP' environment variable to overrule this program.
+if test "$cross_compiling" != no; then
+  if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}strip", so it can be a program name with args.
+set dummy ${ac_tool_prefix}strip; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_prog_STRIP+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$STRIP"; then
+  ac_cv_prog_STRIP="$STRIP" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_STRIP="${ac_tool_prefix}strip"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+STRIP=$ac_cv_prog_STRIP
+if test -n "$STRIP"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $STRIP" >&5
+$as_echo "$STRIP" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_prog_STRIP"; then
+  ac_ct_STRIP=$STRIP
+  # Extract the first word of "strip", so it can be a program name with args.
+set dummy strip; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_prog_ac_ct_STRIP+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$ac_ct_STRIP"; then
+  ac_cv_prog_ac_ct_STRIP="$ac_ct_STRIP" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_ac_ct_STRIP="strip"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+ac_ct_STRIP=$ac_cv_prog_ac_ct_STRIP
+if test -n "$ac_ct_STRIP"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_ct_STRIP" >&5
+$as_echo "$ac_ct_STRIP" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+  if test "x$ac_ct_STRIP" = x; then
+    STRIP=":"
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+$as_echo "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    STRIP=$ac_ct_STRIP
+  fi
+else
+  STRIP="$ac_cv_prog_STRIP"
+fi
+
+fi
+INSTALL_STRIP_PROGRAM="\$(install_sh) -c -s"
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for a thread-safe mkdir -p" >&5
 $as_echo_n "checking for a thread-safe mkdir -p... " >&6; }
@@ -2563,7 +2667,7 @@ if test "`cd $srcdir && pwd`" != "`pwd`"; then
   am__isrc=' -I$(srcdir)'
   # test to see if srcdir already configured
   if test -f $srcdir/config.status; then
-    as_fn_error $? "source directory already configured; run \"make distclean\" there first" "$LINENO" 5 
+    as_fn_error $? "source directory already configured; run \"make distclean\" there first" "$LINENO" 5
   fi
 fi
 
@@ -2607,108 +2711,6 @@ AUTOHEADER=${AUTOHEADER-"${am_missing_run}autoheader"}
 
 MAKEINFO=${MAKEINFO-"${am_missing_run}makeinfo"}
 
-install_sh=${install_sh-"\$(SHELL) $am_aux_dir/install-sh"}
-
-# Installed binaries are usually stripped using `strip' when the user
-# run `make install-strip'.  However `strip' might not be the right
-# tool to use in cross-compilation environments, therefore Automake
-# will honor the `STRIP' environment variable to overrule this program.
-if test "$cross_compiling" != no; then
-  if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}strip", so it can be a program name with args.
-set dummy ${ac_tool_prefix}strip; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if ${ac_cv_prog_STRIP+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$STRIP"; then
-  ac_cv_prog_STRIP="$STRIP" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_STRIP="${ac_tool_prefix}strip"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-fi
-fi
-STRIP=$ac_cv_prog_STRIP
-if test -n "$STRIP"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $STRIP" >&5
-$as_echo "$STRIP" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-fi
-if test -z "$ac_cv_prog_STRIP"; then
-  ac_ct_STRIP=$STRIP
-  # Extract the first word of "strip", so it can be a program name with args.
-set dummy strip; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if ${ac_cv_prog_ac_ct_STRIP+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$ac_ct_STRIP"; then
-  ac_cv_prog_ac_ct_STRIP="$ac_ct_STRIP" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_ac_ct_STRIP="strip"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-fi
-fi
-ac_ct_STRIP=$ac_cv_prog_ac_ct_STRIP
-if test -n "$ac_ct_STRIP"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_ct_STRIP" >&5
-$as_echo "$ac_ct_STRIP" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-  if test "x$ac_ct_STRIP" = x; then
-    STRIP=":"
-  else
-    case $cross_compiling:$ac_tool_warned in
-yes:)
-{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
-$as_echo "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
-ac_tool_warned=yes ;;
-esac
-    STRIP=$ac_ct_STRIP
-  fi
-else
-  STRIP="$ac_cv_prog_STRIP"
-fi
-
-fi
-INSTALL_STRIP_PROGRAM="\$(install_sh) -c -s"
-
 # We need awk for the "check" target.  The system "awk" is bad on
 # some platforms.
 # Always define AMTAR for backward compatibility.
@@ -2732,7 +2734,7 @@ esac
 
 
 macro_version='2.4'
-macro_revision='1.3294'
+macro_revision='1.3293'
 
     
     
@@ -2750,7 +2752,7 @@ ltmain="$ac_aux_dir/ltmain.sh"
 
 # Make sure we can run config.sub.
 $SHELL "$ac_aux_dir/config.sub" sun4 >/dev/null 2>&1 ||
-  as_fn_error $? "cannot run $SHELL $ac_aux_dir/config.sub" "$LINENO" 5 
+  as_fn_error $? "cannot run $SHELL $ac_aux_dir/config.sub" "$LINENO" 5
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking build system type" >&5
 $as_echo_n "checking build system type... " >&6; }
@@ -2761,16 +2763,16 @@ else
 test "x$ac_build_alias" = x &&
   ac_build_alias=`$SHELL "$ac_aux_dir/config.guess"`
 test "x$ac_build_alias" = x &&
-  as_fn_error $? "cannot guess build type; you must specify one" "$LINENO" 5 
+  as_fn_error $? "cannot guess build type; you must specify one" "$LINENO" 5
 ac_cv_build=`$SHELL "$ac_aux_dir/config.sub" $ac_build_alias` ||
-  as_fn_error $? "$SHELL $ac_aux_dir/config.sub $ac_build_alias failed" "$LINENO" 5 
+  as_fn_error $? "$SHELL $ac_aux_dir/config.sub $ac_build_alias failed" "$LINENO" 5
 
 fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_build" >&5
 $as_echo "$ac_cv_build" >&6; }
 case $ac_cv_build in
 *-*-*) ;;
-*) as_fn_error $? "invalid value of canonical build" "$LINENO" 5 ;;
+*) as_fn_error $? "invalid value of canonical build" "$LINENO" 5;;
 esac
 build=$ac_cv_build
 ac_save_IFS=$IFS; IFS='-'
@@ -2795,7 +2797,7 @@ else
   ac_cv_host=$ac_cv_build
 else
   ac_cv_host=`$SHELL "$ac_aux_dir/config.sub" $host_alias` ||
-    as_fn_error $? "$SHELL $ac_aux_dir/config.sub $host_alias failed" "$LINENO" 5 
+    as_fn_error $? "$SHELL $ac_aux_dir/config.sub $host_alias failed" "$LINENO" 5
 fi
 
 fi
@@ -2803,7 +2805,7 @@ fi
 $as_echo "$ac_cv_host" >&6; }
 case $ac_cv_host in
 *-*-*) ;;
-*) as_fn_error $? "invalid value of canonical host" "$LINENO" 5 ;;
+*) as_fn_error $? "invalid value of canonical host" "$LINENO" 5;;
 esac
 host=$ac_cv_host
 ac_save_IFS=$IFS; IFS='-'
@@ -3251,7 +3253,7 @@ fi
 test -z "$CC" && { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error $? "no acceptable C compiler found in \$PATH
-See \`config.log' for more details" "$LINENO" 5 ; }
+See \`config.log' for more details" "$LINENO" 5; }
 
 # Provide some information about the compiler.
 $as_echo "$as_me:${as_lineno-$LINENO}: checking for C compiler version" >&5
@@ -3366,7 +3368,7 @@ sed 's/^/| /' conftest.$ac_ext >&5
 { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error 77 "C compiler cannot create executables
-See \`config.log' for more details" "$LINENO" 5 ; }
+See \`config.log' for more details" "$LINENO" 5; }
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
@@ -3409,7 +3411,7 @@ else
   { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error $? "cannot compute suffix of executables: cannot compile and link
-See \`config.log' for more details" "$LINENO" 5 ; }
+See \`config.log' for more details" "$LINENO" 5; }
 fi
 rm -f conftest conftest$ac_cv_exeext
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_exeext" >&5
@@ -3468,7 +3470,7 @@ $as_echo "$ac_try_echo"; } >&5
 $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error $? "cannot run C compiled programs.
 If you meant to cross compile, use \`--host'.
-See \`config.log' for more details" "$LINENO" 5 ; }
+See \`config.log' for more details" "$LINENO" 5; }
     fi
   fi
 fi
@@ -3520,7 +3522,7 @@ sed 's/^/| /' conftest.$ac_ext >&5
 { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error $? "cannot compute suffix of object files: cannot compile
-See \`config.log' for more details" "$LINENO" 5 ; }
+See \`config.log' for more details" "$LINENO" 5; }
 fi
 rm -f conftest.$ac_cv_objext conftest.$ac_ext
 fi
@@ -3770,6 +3772,11 @@ else
   if test "$am_compiler_list" = ""; then
      am_compiler_list=`sed -n 's/^#*\([a-zA-Z0-9]*\))$/\1/p' < ./depcomp`
   fi
+  am__universal=false
+  case " $depcc " in #(
+     *\ -arch\ *\ -arch\ *) am__universal=true ;;
+     esac
+
   for depmode in $am_compiler_list; do
     # Setup a source with many dependencies, because some compilers
     # like to wrap large dependency lists on column 80 (with \), and
@@ -3787,7 +3794,17 @@ else
     done
     echo "${am__include} ${am__quote}sub/conftest.Po${am__quote}" > confmf
 
+    # We check with `-c' and `-o' for the sake of the "dashmstdout"
+    # mode.  It turns out that the SunPro C++ compiler does not properly
+    # handle `-M -o', and we need to detect this.  Also, some Intel
+    # versions had trouble with output in subdirs
+    am__obj=sub/conftest.${OBJEXT-o}
+    am__minus_obj="-o $am__obj"
     case $depmode in
+    gcc)
+      # This depmode causes a compiler race in universal mode.
+      test "$am__universal" = false || continue
+      ;;
     nosideeffect)
       # after this tag, mechanisms are not by side-effect, so they'll
       # only be used when explicitly requested
@@ -3797,19 +3814,23 @@ else
 	break
       fi
       ;;
+    msvisualcpp | msvcmsys)
+      # This compiler won't grok `-c -o', but also, the minuso test has
+      # not run yet.  These depmodes are late enough in the game, and
+      # so weak that their functioning should not be impacted.
+      am__obj=conftest.${OBJEXT-o}
+      am__minus_obj=
+      ;;
     none) break ;;
     esac
-    # We check with `-c' and `-o' for the sake of the "dashmstdout"
-    # mode.  It turns out that the SunPro C++ compiler does not properly
-    # handle `-M -o', and we need to detect this.
     if depmode=$depmode \
-       source=sub/conftest.c object=sub/conftest.${OBJEXT-o} \
+       source=sub/conftest.c object=$am__obj \
        depfile=sub/conftest.Po tmpdepfile=sub/conftest.TPo \
-       $SHELL ./depcomp $depcc -c -o sub/conftest.${OBJEXT-o} sub/conftest.c \
+       $SHELL ./depcomp $depcc -c $am__minus_obj sub/conftest.c \
          >/dev/null 2>conftest.err &&
        grep sub/conftst1.h sub/conftest.Po > /dev/null 2>&1 &&
        grep sub/conftst6.h sub/conftest.Po > /dev/null 2>&1 &&
-       grep sub/conftest.${OBJEXT-o} sub/conftest.Po > /dev/null 2>&1 &&
+       grep $am__obj sub/conftest.Po > /dev/null 2>&1 &&
        ${MAKE-make} -s -f confmf > /dev/null 2>&1; then
       # icc doesn't choke on unknown options, it will just issue warnings
       # or remarks (even with -Werror).  So we grep stderr for any message
@@ -3905,7 +3926,7 @@ esac
   done
 IFS=$as_save_IFS
   if test -z "$ac_cv_path_SED"; then
-    as_fn_error $? "no acceptable sed could be found in \$PATH" "$LINENO" 5 
+    as_fn_error $? "no acceptable sed could be found in \$PATH" "$LINENO" 5
   fi
 else
   ac_cv_path_SED=$SED
@@ -3981,7 +4002,7 @@ esac
   done
 IFS=$as_save_IFS
   if test -z "$ac_cv_path_GREP"; then
-    as_fn_error $? "no acceptable grep could be found in $PATH$PATH_SEPARATOR/usr/xpg4/bin" "$LINENO" 5 
+    as_fn_error $? "no acceptable grep could be found in $PATH$PATH_SEPARATOR/usr/xpg4/bin" "$LINENO" 5
   fi
 else
   ac_cv_path_GREP=$GREP
@@ -4047,7 +4068,7 @@ esac
   done
 IFS=$as_save_IFS
   if test -z "$ac_cv_path_EGREP"; then
-    as_fn_error $? "no acceptable egrep could be found in $PATH$PATH_SEPARATOR/usr/xpg4/bin" "$LINENO" 5 
+    as_fn_error $? "no acceptable egrep could be found in $PATH$PATH_SEPARATOR/usr/xpg4/bin" "$LINENO" 5
   fi
 else
   ac_cv_path_EGREP=$EGREP
@@ -4114,7 +4135,7 @@ esac
   done
 IFS=$as_save_IFS
   if test -z "$ac_cv_path_FGREP"; then
-    as_fn_error $? "no acceptable fgrep could be found in $PATH$PATH_SEPARATOR/usr/xpg4/bin" "$LINENO" 5 
+    as_fn_error $? "no acceptable fgrep could be found in $PATH$PATH_SEPARATOR/usr/xpg4/bin" "$LINENO" 5
   fi
 else
   ac_cv_path_FGREP=$FGREP
@@ -4230,7 +4251,7 @@ else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 fi
-test -z "$LD" && as_fn_error $? "no acceptable ld found in \$PATH" "$LINENO" 5 
+test -z "$LD" && as_fn_error $? "no acceptable ld found in \$PATH" "$LINENO" 5
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the linker ($LD) is GNU ld" >&5
 $as_echo_n "checking if the linker ($LD) is GNU ld... " >&6; }
 if ${lt_cv_prog_gnu_ld+:} false; then :
@@ -4576,7 +4597,7 @@ else
       # If test is not a shell built-in, we'll probably end up computing a
       # maximum length that is only half of the actual maximum length, but
       # we can't tell.
-      while { test "X"`env echo "$teststring$teststring" 2>/dev/null` \
+      while { test "X"`func_fallback_echo "$teststring$teststring" 2>/dev/null` \
 	         = "X$teststring$teststring"; } >/dev/null 2>&1 &&
 	      test $i != 17 # 1/2 MB should be enough
       do
@@ -5010,7 +5031,7 @@ linux* | k*bsd*-gnu | kopensolaris*-gnu)
   lt_cv_deplibs_check_method=pass_all
   ;;
 
-netbsd*)
+netbsd* | netbsdelf*-gnu)
   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
     lt_cv_deplibs_check_method='match_pattern /lib[^/]+(\.so\.[0-9]+\.[0-9]+|_pic\.a)$'
   else
@@ -6010,7 +6031,7 @@ case ${with_sysroot} in #(
  *)
    { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${with_sysroot}" >&5
 $as_echo "${with_sysroot}" >&6; }
-   as_fn_error $? "The sysroot must be an absolute path." "$LINENO" 5 
+   as_fn_error $? "The sysroot must be an absolute path." "$LINENO" 5
    ;;
 esac
 
@@ -7076,7 +7097,7 @@ else
   { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error $? "C preprocessor \"$CPP\" fails sanity check
-See \`config.log' for more details" "$LINENO" 5 ; }
+See \`config.log' for more details" "$LINENO" 5; }
 fi
 
 ac_ext=c
@@ -8348,6 +8369,9 @@ $as_echo_n "checking whether the $compiler linker ($LD) supports shared librarie
   openbsd*)
     with_gnu_ld=no
     ;;
+  linux* | k*bsd*-gnu | gnu*)
+    link_all_deplibs=no
+    ;;
   esac
 
   ld_shlibs=yes
@@ -8570,7 +8594,7 @@ _LT_EOF
       fi
       ;;
 
-    netbsd*)
+    netbsd* | netbsdelf*-gnu)
       if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
 	archive_cmds='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
 	wlarc=
@@ -8747,6 +8771,7 @@ _LT_EOF
 	if test "$aix_use_runtimelinking" = yes; then
 	  shared_flag="$shared_flag "'${wl}-G'
 	fi
+	link_all_deplibs=no
       else
 	# not using gcc
 	if test "$host_cpu" = ia64; then
@@ -9203,7 +9228,7 @@ $as_echo "$lt_cv_irix_exported_symbol" >&6; }
       link_all_deplibs=yes
       ;;
 
-    netbsd*)
+    netbsd* | netbsdelf*-gnu)
       if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
 	archive_cmds='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
       else
@@ -10056,6 +10081,7 @@ gnu*)
   library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}${major} ${libname}${shared_ext}'
   soname_spec='${libname}${release}${shared_ext}$major'
   shlibpath_var=LD_LIBRARY_PATH
+  shlibpath_overrides_runpath=no
   hardcode_into_libs=yes
   ;;
 
@@ -10237,6 +10263,18 @@ fi
   # people can always --disable-shared, the test was removed, and we
   # assume the GNU/Linux dynamic linker is in use.
   dynamic_linker='GNU/Linux ld.so'
+  ;;
+
+netbsdelf*-gnu)
+  version_type=linux
+  need_lib_prefix=no
+  need_version=no
+  library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}$major ${libname}${shared_ext}'
+  soname_spec='${libname}${release}${shared_ext}$major'
+  shlibpath_var=LD_LIBRARY_PATH
+  shlibpath_overrides_runpath=no
+  hardcode_into_libs=yes
+  dynamic_linker='NetBSD ld.elf_so'
   ;;
 
 netbsd*)
@@ -11841,6 +11879,59 @@ done
  LIBS="$LIBS -ldl"
 fi
 
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for strndup in -lc" >&5
+$as_echo_n "checking for strndup in -lc... " >&6; }
+if ${ac_cv_lib_c_strndup+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lc  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char strndup ();
+int
+main ()
+{
+return strndup ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_c_strndup=yes
+else
+  ac_cv_lib_c_strndup=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_c_strndup" >&5
+$as_echo "$ac_cv_lib_c_strndup" >&6; }
+if test "x$ac_cv_lib_c_strndup" = xyes; then :
+  
+		STRNDUP_AVAIL=true
+		 if test "xtrue" = "xtrue"; then
+  STRNDUP_AVAIL_TRUE=
+  STRNDUP_AVAIL_FALSE='#'
+else
+  STRNDUP_AVAIL_TRUE='#'
+  STRNDUP_AVAIL_FALSE=
+fi
+
+		
+$as_echo "@%:@define STRNDUP_AVAIL /**/" >>confdefs.h
+
+		
+fi
+
 ac_fn_c_check_type "$LINENO" "size_t" "ac_cv_type_size_t" "$ac_includes_default"
 if test "x$ac_cv_type_size_t" = xyes; then :
   
@@ -12173,15 +12264,15 @@ fi
 
 	
 	if test "x${have_python}" != "xyes"; then
-		pydefine=HAVE_PYTHON_2.5_H
+		pydefine=HAVE_PYTHON_2.7_H
 		pydefine=`echo $pydefine | sed 's/\./_/g' | sed 's/__/_/g'`
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for PyArg_ParseTuple in -lpython2.5" >&5
-$as_echo_n "checking for PyArg_ParseTuple in -lpython2.5... " >&6; }
-if ${ac_cv_lib_python2_5_PyArg_ParseTuple+:} false; then :
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for PyArg_ParseTuple in -lpython2.7" >&5
+$as_echo_n "checking for PyArg_ParseTuple in -lpython2.7... " >&6; }
+if ${ac_cv_lib_python2_7_PyArg_ParseTuple+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-lpython2.5  $LIBS"
+LIBS="-lpython2.7  $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -12201,34 +12292,115 @@ return PyArg_ParseTuple ();
 }
 _ACEOF
 if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_python2_5_PyArg_ParseTuple=yes
+  ac_cv_lib_python2_7_PyArg_ParseTuple=yes
 else
-  ac_cv_lib_python2_5_PyArg_ParseTuple=no
+  ac_cv_lib_python2_7_PyArg_ParseTuple=no
 fi
 rm -f core conftest.err conftest.$ac_objext \
     conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_python2_5_PyArg_ParseTuple" >&5
-$as_echo "$ac_cv_lib_python2_5_PyArg_ParseTuple" >&6; }
-if test "x$ac_cv_lib_python2_5_PyArg_ParseTuple" = xyes; then :
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_python2_7_PyArg_ParseTuple" >&5
+$as_echo "$ac_cv_lib_python2_7_PyArg_ParseTuple" >&6; }
+if test "x$ac_cv_lib_python2_7_PyArg_ParseTuple" = xyes; then :
   
-			ac_fn_c_check_header_mongrel "$LINENO" "python2.5/Python.h" "ac_cv_header_python2_5_Python_h" "$ac_includes_default"
-if test "x$ac_cv_header_python2_5_Python_h" = xyes; then :
+			ac_fn_c_check_header_mongrel "$LINENO" "python2.7/Python.h" "ac_cv_header_python2_7_Python_h" "$ac_includes_default"
+if test "x$ac_cv_header_python2_7_Python_h" = xyes; then :
   
 				have_python=yes 
-				LIBS="$LIBS -lpython2.5"
+				LIBS="$LIBS -lpython2.7"
 				
 		
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for directory to include python2.5/Python.h" >&5
-$as_echo_n "checking for directory to include python2.5/Python.h... " >&6; }
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for directory to include python2.7/Python.h" >&5
+$as_echo_n "checking for directory to include python2.7/Python.h... " >&6; }
 
 cat > conftest.c <<\_ACEOF
-#include <python2.5/Python.h>
+#include <python2.7/Python.h>
 int main() {return 0;}
 _ACEOF
 
-		tmp=`${CC} -E ${CPPFLAGS} conftest.c | grep "python2.5/Python.h" | sed 's/.*"\(.*\)\/.*/\1/' | uniq`
+		tmp=`${CC} -E ${CPPFLAGS} conftest.c | grep "python2.7/Python.h" | sed 's/.*"\(.*\)\/.*/\1/' | uniq`
+		if test "$tmp" != ""; then
+			CPPFLAGS="$CPPFLAGS -I$tmp"
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $tmp" >&5
+$as_echo "$tmp" >&6; }
+		else
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: none needed" >&5
+$as_echo "none needed" >&6; }
+		fi
+		rm -f conftest.$ac_objext conftest$ac_exeext
+
+				
+$as_echo "@%:@define HAVE_PYTHON_H /**/" >>confdefs.h
+ 
+			
+fi
+
+
+		
+fi
+
+	fi
+
+
+	
+	if test "x${have_python}" != "xyes"; then
+		pydefine=HAVE_PYTHON_2.6_H
+		pydefine=`echo $pydefine | sed 's/\./_/g' | sed 's/__/_/g'`
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for PyArg_ParseTuple in -lpython2.6" >&5
+$as_echo_n "checking for PyArg_ParseTuple in -lpython2.6... " >&6; }
+if ${ac_cv_lib_python2_6_PyArg_ParseTuple+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lpython2.6  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char PyArg_ParseTuple ();
+int
+main ()
+{
+return PyArg_ParseTuple ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_python2_6_PyArg_ParseTuple=yes
+else
+  ac_cv_lib_python2_6_PyArg_ParseTuple=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_python2_6_PyArg_ParseTuple" >&5
+$as_echo "$ac_cv_lib_python2_6_PyArg_ParseTuple" >&6; }
+if test "x$ac_cv_lib_python2_6_PyArg_ParseTuple" = xyes; then :
+  
+			ac_fn_c_check_header_mongrel "$LINENO" "python2.6/Python.h" "ac_cv_header_python2_6_Python_h" "$ac_includes_default"
+if test "x$ac_cv_header_python2_6_Python_h" = xyes; then :
+  
+				have_python=yes 
+				LIBS="$LIBS -lpython2.6"
+				
+		
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for directory to include python2.6/Python.h" >&5
+$as_echo_n "checking for directory to include python2.6/Python.h... " >&6; }
+
+cat > conftest.c <<\_ACEOF
+#include <python2.6/Python.h>
+int main() {return 0;}
+_ACEOF
+
+		tmp=`${CC} -E ${CPPFLAGS} conftest.c | grep "python2.6/Python.h" | sed 's/.*"\(.*\)\/.*/\1/' | uniq`
 		if test "$tmp" != ""; then
 			CPPFLAGS="$CPPFLAGS -I$tmp"
 			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $tmp" >&5
@@ -13943,147 +14115,151 @@ LTLIBOBJS=$ac_ltlibobjs
 
 if test -z "${AMDEP_TRUE}" && test -z "${AMDEP_FALSE}"; then
   as_fn_error $? "conditional \"AMDEP\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCC_TRUE}" && test -z "${am__fastdepCC_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCC\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${PALM_OS_TRUE}" && test -z "${PALM_OS_FALSE}"; then
   as_fn_error $? "conditional \"PALM_OS\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${WIN32_TRUE}" && test -z "${WIN32_FALSE}"; then
   as_fn_error $? "conditional \"WIN32\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${STRNDUP_AVAIL_TRUE}" && test -z "${STRNDUP_AVAIL_FALSE}"; then
+  as_fn_error $? "conditional \"STRNDUP_AVAIL\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_PYTHON_TRUE}" && test -z "${HAVE_PYTHON_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_PYTHON\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${WIN32_TRUE}" && test -z "${WIN32_FALSE}"; then
   as_fn_error $? "conditional \"WIN32\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${SSL_AVAIL_TRUE}" && test -z "${SSL_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"SSL_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${SSL_AVAIL_TRUE}" && test -z "${SSL_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"SSL_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_ssl_TRUE}" && test -z "${HAVE_ssl_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_ssl\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSESW_AVAIL_TRUE}" && test -z "${CURSESW_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSESW_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSESW_AVAIL_TRUE}" && test -z "${CURSESW_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSESW_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSES_AVAIL_TRUE}" && test -z "${CURSES_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSES_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_curses_TRUE}" && test -z "${HAVE_curses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_curses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_ncurses_TRUE}" && test -z "${HAVE_ncurses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_ncurses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_ncursesw_TRUE}" && test -z "${HAVE_ncursesw_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_ncursesw\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSES_AVAIL_TRUE}" && test -z "${CURSES_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSES_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_curses_TRUE}" && test -z "${HAVE_curses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_curses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_ncurses_TRUE}" && test -z "${HAVE_ncurses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_ncurses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSES_AVAIL_TRUE}" && test -z "${CURSES_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSES_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSES_AVAIL_TRUE}" && test -z "${CURSES_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSES_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_curses_TRUE}" && test -z "${HAVE_curses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_curses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSES_AVAIL_TRUE}" && test -z "${CURSES_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSES_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSES_AVAIL_TRUE}" && test -z "${CURSES_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSES_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_curses_TRUE}" && test -z "${HAVE_curses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_curses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_ncurses_TRUE}" && test -z "${HAVE_ncurses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_ncurses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSES_AVAIL_TRUE}" && test -z "${CURSES_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSES_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_curses_TRUE}" && test -z "${HAVE_curses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_curses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_ncurses_TRUE}" && test -z "${HAVE_ncurses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_ncurses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSES_AVAIL_TRUE}" && test -z "${CURSES_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSES_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSES_AVAIL_TRUE}" && test -z "${CURSES_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSES_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_curses_TRUE}" && test -z "${HAVE_curses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_curses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSES_AVAIL_TRUE}" && test -z "${CURSES_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSES_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${CURSES_AVAIL_TRUE}" && test -z "${CURSES_AVAIL_FALSE}"; then
   as_fn_error $? "conditional \"CURSES_AVAIL\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_curses_TRUE}" && test -z "${HAVE_curses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_curses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_ncurses_TRUE}" && test -z "${HAVE_ncurses_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_ncurses\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_ncursesw_TRUE}" && test -z "${HAVE_ncursesw_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_ncursesw\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5 
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 
 : "${CONFIG_STATUS=./config.status}"
@@ -14987,7 +15163,7 @@ do
     "plugins/python/Makefile") CONFIG_FILES="$CONFIG_FILES plugins/python/Makefile" ;;
     "bnirc.spec") CONFIG_FILES="$CONFIG_FILES bnirc.spec" ;;
 
-  *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5 ;;
+  *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
 done
 
@@ -15026,7 +15202,7 @@ $debug ||
 {
   tmp=./conf$$-$RANDOM
   (umask 077 && mkdir "$tmp")
-} || as_fn_error $? "cannot create a temporary directory in ." "$LINENO" 5 
+} || as_fn_error $? "cannot create a temporary directory in ." "$LINENO" 5
 ac_tmp=$tmp
 
 # Set up the scripts for CONFIG_FILES section.
@@ -15058,18 +15234,18 @@ _ACEOF
   echo "$ac_subst_vars" | sed 's/.*/&!$&$ac_delim/' &&
   echo "_ACEOF"
 } >conf$$subs.sh ||
-  as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5 
+  as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5
 ac_delim_num=`echo "$ac_subst_vars" | grep -c '^'`
 ac_delim='%!_!# '
 for ac_last_try in false false false false false :; do
   . ./conf$$subs.sh ||
-    as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5 
+    as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5
 
   ac_delim_n=`sed -n "s/.*$ac_delim\$/X/p" conf$$subs.awk | grep -c X`
   if test $ac_delim_n = $ac_delim_num; then
     break
   elif $ac_last_try; then
-    as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5 
+    as_fn_error $? "could not make $CONFIG_STATUS" "$LINENO" 5
   else
     ac_delim="$ac_delim!$ac_delim _$ac_delim!! "
   fi
@@ -15158,7 +15334,7 @@ if sed "s/$ac_cr//" < /dev/null > /dev/null 2>&1; then
 else
   cat
 fi < "$ac_tmp/subs1.awk" > "$ac_tmp/subs.awk" \
-  || as_fn_error $? "could not setup config files machinery" "$LINENO" 5 
+  || as_fn_error $? "could not setup config files machinery" "$LINENO" 5
 _ACEOF
 
 # VPATH may cause trouble with some makes, so we remove sole $(srcdir),
@@ -15207,7 +15383,7 @@ for ac_last_try in false false :; do
   if test -z "$ac_tt"; then
     break
   elif $ac_last_try; then
-    as_fn_error $? "could not make $CONFIG_HEADERS" "$LINENO" 5 
+    as_fn_error $? "could not make $CONFIG_HEADERS" "$LINENO" 5
   else
     ac_delim="$ac_delim!$ac_delim _$ac_delim!! "
   fi
@@ -15292,7 +15468,7 @@ cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
 _ACAWK
 _ACEOF
 cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
-  as_fn_error $? "could not setup config headers machinery" "$LINENO" 5 
+  as_fn_error $? "could not setup config headers machinery" "$LINENO" 5
 fi # test -n "$CONFIG_HEADERS"
 
 
@@ -15305,7 +15481,7 @@ do
   esac
   case $ac_mode$ac_tag in
   :[FHL]*:*);;
-  :L* | :C*:*) as_fn_error $? "invalid tag \`$ac_tag'" "$LINENO" 5 ;;
+  :L* | :C*:*) as_fn_error $? "invalid tag \`$ac_tag'" "$LINENO" 5;;
   :[FH]-) ac_tag=-:-;;
   :[FH]*) ac_tag=$ac_tag:$ac_tag.in;;
   esac
@@ -15333,7 +15509,7 @@ do
 	   [\\/$]*) false;;
 	   *) test -f "$srcdir/$ac_f" && ac_f="$srcdir/$ac_f";;
 	   esac ||
-	   as_fn_error 1 "cannot find input file: \`$ac_f'" "$LINENO" 5 ;;
+	   as_fn_error 1 "cannot find input file: \`$ac_f'" "$LINENO" 5;;
       esac
       case $ac_f in *\'*) ac_f=`$as_echo "$ac_f" | sed "s/'/'\\\\\\\\''/g"`;; esac
       as_fn_append ac_file_inputs " '$ac_f'"
@@ -15360,7 +15536,7 @@ $as_echo "$as_me: creating $ac_file" >&6;}
 
     case $ac_tag in
     *:-:* | *:-) cat >"$ac_tmp/stdin" \
-      || as_fn_error $? "could not create $ac_file" "$LINENO" 5  ;;
+      || as_fn_error $? "could not create $ac_file" "$LINENO" 5 ;;
     esac
     ;;
   esac
@@ -15497,7 +15673,7 @@ s&@MKDIR_P@&$ac_MKDIR_P&;t t
 $ac_datarootdir_hack
 "
 eval sed \"\$ac_sed_extra\" "$ac_file_inputs" | $AWK -f "$ac_tmp/subs.awk" \
-  >$ac_tmp/out || as_fn_error $? "could not create $ac_file" "$LINENO" 5 
+  >$ac_tmp/out || as_fn_error $? "could not create $ac_file" "$LINENO" 5
 
 test -z "$ac_datarootdir_hack$ac_datarootdir_seen" &&
   { ac_out=`sed -n '/\${datarootdir}/p' "$ac_tmp/out"`; test -n "$ac_out"; } &&
@@ -15513,7 +15689,7 @@ which seems to be undefined.  Please make sure it is defined" >&2;}
   -) cat "$ac_tmp/out" && rm -f "$ac_tmp/out";;
   *) rm -f "$ac_file" && mv "$ac_tmp/out" "$ac_file";;
   esac \
-  || as_fn_error $? "could not create $ac_file" "$LINENO" 5 
+  || as_fn_error $? "could not create $ac_file" "$LINENO" 5
  ;;
   :H)
   #
@@ -15524,19 +15700,19 @@ which seems to be undefined.  Please make sure it is defined" >&2;}
       $as_echo "/* $configure_input  */" \
       && eval '$AWK -f "$ac_tmp/defines.awk"' "$ac_file_inputs"
     } >"$ac_tmp/config.h" \
-      || as_fn_error $? "could not create $ac_file" "$LINENO" 5 
+      || as_fn_error $? "could not create $ac_file" "$LINENO" 5
     if diff "$ac_file" "$ac_tmp/config.h" >/dev/null 2>&1; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: $ac_file is unchanged" >&5
 $as_echo "$as_me: $ac_file is unchanged" >&6;}
     else
       rm -f "$ac_file"
       mv "$ac_tmp/config.h" "$ac_file" \
-	|| as_fn_error $? "could not create $ac_file" "$LINENO" 5 
+	|| as_fn_error $? "could not create $ac_file" "$LINENO" 5
     fi
   else
     $as_echo "/* $configure_input  */" \
       && eval '$AWK -f "$ac_tmp/defines.awk"' "$ac_file_inputs" \
-      || as_fn_error $? "could not create -" "$LINENO" 5 
+      || as_fn_error $? "could not create -" "$LINENO" 5
   fi
 # Compute "$ac_file"'s index in $config_headers.
 _am_arg="$ac_file"
@@ -15581,27 +15757,28 @@ $as_echo "$as_me: executing $ac_file commands" >&6;}
 
 
   case $ac_file$ac_mode in
-    "depfiles":C) test x"$AMDEP_TRUE" != x"" || # Autoconf 2.62 quotes --file arguments for eval, but not when files
-# are listed without --file.  Let's play safe and only enable the eval
-# if we detect the quoting.
-case $CONFIG_FILES in
-*\'*) eval set x "$CONFIG_FILES" ;;
-*)   set x $CONFIG_FILES ;;
-esac
-shift
-for mf
-do
-  # Strip MF so we end up with the name of the file.
-  mf=`echo "$mf" | sed -e 's/:.*$//'`
-  # Check whether this is an Automake generated Makefile or not.
-  # We used to match only the files named `Makefile.in', but
-  # some people rename them; so instead we look at the file content.
-  # Grep'ing the first line is not enough: some people post-process
-  # each Makefile.in and add a new line on top of each file to say so.
-  # Grep'ing the whole file is not good either: AIX grep has a line
-  # limit of 2048, but all sed's we know have understand at least 4000.
-  if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
-    dirpart=`$as_dirname -- "$mf" ||
+    "depfiles":C) test x"$AMDEP_TRUE" != x"" || {
+  # Autoconf 2.62 quotes --file arguments for eval, but not when files
+  # are listed without --file.  Let's play safe and only enable the eval
+  # if we detect the quoting.
+  case $CONFIG_FILES in
+  *\'*) eval set x "$CONFIG_FILES" ;;
+  *)   set x $CONFIG_FILES ;;
+  esac
+  shift
+  for mf
+  do
+    # Strip MF so we end up with the name of the file.
+    mf=`echo "$mf" | sed -e 's/:.*$//'`
+    # Check whether this is an Automake generated Makefile or not.
+    # We used to match only the files named `Makefile.in', but
+    # some people rename them; so instead we look at the file content.
+    # Grep'ing the first line is not enough: some people post-process
+    # each Makefile.in and add a new line on top of each file to say so.
+    # Grep'ing the whole file is not good either: AIX grep has a line
+    # limit of 2048, but all sed's we know have understand at least 4000.
+    if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
+      dirpart=`$as_dirname -- "$mf" ||
 $as_expr X"$mf" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
 	 X"$mf" : 'X\(//\)[^/]' \| \
 	 X"$mf" : 'X\(//\)$' \| \
@@ -15624,28 +15801,28 @@ $as_echo X"$mf" |
 	    q
 	  }
 	  s/.*/./; q'`
-  else
-    continue
-  fi
-  # Extract the definition of DEPDIR, am__include, and am__quote
-  # from the Makefile without running `make'.
-  DEPDIR=`sed -n 's/^DEPDIR = //p' < "$mf"`
-  test -z "$DEPDIR" && continue
-  am__include=`sed -n 's/^am__include = //p' < "$mf"`
-  test -z "am__include" && continue
-  am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
-  # When using ansi2knr, U may be empty or an underscore; expand it
-  U=`sed -n 's/^U = //p' < "$mf"`
-  # Find all dependency output files, they are included files with
-  # $(DEPDIR) in their names.  We invoke sed twice because it is the
-  # simplest approach to changing $(DEPDIR) to its actual value in the
-  # expansion.
-  for file in `sed -n "
-    s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
-       sed -e 's/\$(DEPDIR)/'"$DEPDIR"'/g' -e 's/\$U/'"$U"'/g'`; do
-    # Make sure the directory exists.
-    test -f "$dirpart/$file" && continue
-    fdir=`$as_dirname -- "$file" ||
+    else
+      continue
+    fi
+    # Extract the definition of DEPDIR, am__include, and am__quote
+    # from the Makefile without running `make'.
+    DEPDIR=`sed -n 's/^DEPDIR = //p' < "$mf"`
+    test -z "$DEPDIR" && continue
+    am__include=`sed -n 's/^am__include = //p' < "$mf"`
+    test -z "am__include" && continue
+    am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
+    # When using ansi2knr, U may be empty or an underscore; expand it
+    U=`sed -n 's/^U = //p' < "$mf"`
+    # Find all dependency output files, they are included files with
+    # $(DEPDIR) in their names.  We invoke sed twice because it is the
+    # simplest approach to changing $(DEPDIR) to its actual value in the
+    # expansion.
+    for file in `sed -n "
+      s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
+	 sed -e 's/\$(DEPDIR)/'"$DEPDIR"'/g' -e 's/\$U/'"$U"'/g'`; do
+      # Make sure the directory exists.
+      test -f "$dirpart/$file" && continue
+      fdir=`$as_dirname -- "$file" ||
 $as_expr X"$file" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
 	 X"$file" : 'X\(//\)[^/]' \| \
 	 X"$file" : 'X\(//\)$' \| \
@@ -15668,11 +15845,12 @@ $as_echo X"$file" |
 	    q
 	  }
 	  s/.*/./; q'`
-    as_dir=$dirpart/$fdir; as_fn_mkdir_p
-    # echo "creating $dirpart/$file"
-    echo '# dummy' > "$dirpart/$file"
+      as_dir=$dirpart/$fdir; as_fn_mkdir_p
+      # echo "creating $dirpart/$file"
+      echo '# dummy' > "$dirpart/$file"
+    done
   done
-done
+}
  ;;
     "libtool":C) 
     
@@ -16318,7 +16496,7 @@ _ACEOF
 ac_clean_files=$ac_clean_files_save
 
 test $ac_write_fail = 0 ||
-  as_fn_error $? "write failure creating $CONFIG_STATUS" "$LINENO" 5 
+  as_fn_error $? "write failure creating $CONFIG_STATUS" "$LINENO" 5
 
 
 # configure is writing to config.log, and then calls config.status.

@@ -1,7 +1,7 @@
-# generated automatically by aclocal 1.10.2 -*- Autoconf -*-
+# generated automatically by aclocal 1.10.3 -*- Autoconf -*-
 
 # Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004,
-# 2005, 2006, 2007, 2008  Free Software Foundation, Inc.
+# 2005, 2006, 2007, 2008, 2009  Free Software Foundation, Inc.
 # This file is free software; the Free Software Foundation
 # gives unlimited permission to copy and/or distribute it,
 # with or without modifications, as long as this notice is preserved.
@@ -1654,7 +1654,7 @@ AC_CACHE_VAL([lt_cv_sys_max_cmd_len], [dnl
       # If test is not a shell built-in, we'll probably end up computing a
       # maximum length that is only half of the actual maximum length, but
       # we can't tell.
-      while { test "X"`env echo "$teststring$teststring" 2>/dev/null` \
+      while { test "X"`func_fallback_echo "$teststring$teststring" 2>/dev/null` \
 	         = "X$teststring$teststring"; } >/dev/null 2>&1 &&
 	      test $i != 17 # 1/2 MB should be enough
       do
@@ -2476,6 +2476,7 @@ gnu*)
   library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}${major} ${libname}${shared_ext}'
   soname_spec='${libname}${release}${shared_ext}$major'
   shlibpath_var=LD_LIBRARY_PATH
+  shlibpath_overrides_runpath=no
   hardcode_into_libs=yes
   ;;
 
@@ -2638,6 +2639,18 @@ linux* | k*bsd*-gnu | kopensolaris*-gnu)
   # people can always --disable-shared, the test was removed, and we
   # assume the GNU/Linux dynamic linker is in use.
   dynamic_linker='GNU/Linux ld.so'
+  ;;
+
+netbsdelf*-gnu)
+  version_type=linux
+  need_lib_prefix=no
+  need_version=no
+  library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}$major ${libname}${shared_ext}'
+  soname_spec='${libname}${release}${shared_ext}$major'
+  shlibpath_var=LD_LIBRARY_PATH
+  shlibpath_overrides_runpath=no
+  hardcode_into_libs=yes
+  dynamic_linker='NetBSD ld.elf_so'
   ;;
 
 netbsd*)
@@ -3245,7 +3258,7 @@ linux* | k*bsd*-gnu | kopensolaris*-gnu)
   lt_cv_deplibs_check_method=pass_all
   ;;
 
-netbsd*)
+netbsd* | netbsdelf*-gnu)
   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
     lt_cv_deplibs_check_method='match_pattern /lib[[^/]]+(\.so\.[[0-9]]+\.[[0-9]]+|_pic\.a)$'
   else
@@ -4056,7 +4069,7 @@ m4_if([$1], [CXX], [
 	    ;;
 	esac
 	;;
-      netbsd*)
+      netbsd* | netbsdelf*-gnu)
 	;;
       *qnx* | *nto*)
         # QNX uses GNU C++, but need to define -shared option too, otherwise
@@ -4514,6 +4527,9 @@ m4_if([$1], [CXX], [
       ;;
     esac
     ;;
+  linux* | k*bsd*-gnu | gnu*)
+    _LT_TAGVAR(link_all_deplibs, $1)=no
+    ;;
   *)
     _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
     ;;
@@ -4576,6 +4592,9 @@ dnl Note also adjust exclude_expsyms for C++ above.
     ;;
   openbsd*)
     with_gnu_ld=no
+    ;;
+  linux* | k*bsd*-gnu | gnu*)
+    _LT_TAGVAR(link_all_deplibs, $1)=no
     ;;
   esac
 
@@ -4799,7 +4818,7 @@ _LT_EOF
       fi
       ;;
 
-    netbsd*)
+    netbsd* | netbsdelf*-gnu)
       if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
 	_LT_TAGVAR(archive_cmds, $1)='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
 	wlarc=
@@ -4976,6 +4995,7 @@ _LT_EOF
 	if test "$aix_use_runtimelinking" = yes; then
 	  shared_flag="$shared_flag "'${wl}-G'
 	fi
+	_LT_TAGVAR(link_all_deplibs, $1)=no
       else
 	# not using gcc
 	if test "$host_cpu" = ia64; then
@@ -5284,7 +5304,7 @@ _LT_EOF
       _LT_TAGVAR(link_all_deplibs, $1)=yes
       ;;
 
-    netbsd*)
+    netbsd* | netbsdelf*-gnu)
       if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
 	_LT_TAGVAR(archive_cmds, $1)='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
       else
@@ -8334,15 +8354,15 @@ m4_define([lt_dict_filter],
 
 # @configure_input@
 
-# serial 3294 ltversion.m4
+# serial 3293 ltversion.m4
 # This file is part of GNU Libtool
 
 m4_define([LT_PACKAGE_VERSION], [2.4])
-m4_define([LT_PACKAGE_REVISION], [1.3294])
+m4_define([LT_PACKAGE_REVISION], [1.3293])
 
 AC_DEFUN([LTVERSION_VERSION],
 [macro_version='2.4'
-macro_revision='1.3294'
+macro_revision='1.3293'
 _LT_DECL(, macro_version, 0, [Which release of libtool.m4 was used?])
 _LT_DECL(, macro_revision, 0)
 ])
@@ -8461,7 +8481,7 @@ AC_DEFUN([AM_AUTOMAKE_VERSION],
 [am__api_version='1.10'
 dnl Some users find AM_AUTOMAKE_VERSION and mistake it for a way to
 dnl require some minimum version.  Point them to the right macro.
-m4_if([$1], [1.10.2], [],
+m4_if([$1], [1.10.3], [],
       [AC_FATAL([Do not call $0, use AM_INIT_AUTOMAKE([$1]).])])dnl
 ])
 
@@ -8477,7 +8497,7 @@ m4_define([_AM_AUTOCONF_VERSION], [])
 # Call AM_AUTOMAKE_VERSION and AM_AUTOMAKE_VERSION so they can be traced.
 # This function is AC_REQUIREd by AM_INIT_AUTOMAKE.
 AC_DEFUN([AM_SET_CURRENT_AUTOMAKE_VERSION],
-[AM_AUTOMAKE_VERSION([1.10.2])dnl
+[AM_AUTOMAKE_VERSION([1.10.3])dnl
 m4_ifndef([AC_AUTOCONF_VERSION],
   [m4_copy([m4_PACKAGE_VERSION], [AC_AUTOCONF_VERSION])])dnl
 _AM_AUTOCONF_VERSION(m4_defn([AC_AUTOCONF_VERSION]))])
@@ -8570,14 +8590,14 @@ AC_CONFIG_COMMANDS_PRE(
 Usually this means the macro was only invoked conditionally.]])
 fi])])
 
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2009
 # Free Software Foundation, Inc.
 #
 # This file is free software; the Free Software Foundation
 # gives unlimited permission to copy and/or distribute it,
 # with or without modifications, as long as this notice is preserved.
 
-# serial 9
+# serial 10
 
 # There are a few dirty hacks below to avoid letting `AC_PROG_CC' be
 # written in clear, in which case automake, when reading aclocal.m4,
@@ -8634,6 +8654,16 @@ AC_CACHE_CHECK([dependency style of $depcc],
   if test "$am_compiler_list" = ""; then
      am_compiler_list=`sed -n ['s/^#*\([a-zA-Z0-9]*\))$/\1/p'] < ./depcomp`
   fi
+  am__universal=false
+  m4_case([$1], [CC],
+    [case " $depcc " in #(
+     *\ -arch\ *\ -arch\ *) am__universal=true ;;
+     esac],
+    [CXX],
+    [case " $depcc " in #(
+     *\ -arch\ *\ -arch\ *) am__universal=true ;;
+     esac])
+
   for depmode in $am_compiler_list; do
     # Setup a source with many dependencies, because some compilers
     # like to wrap large dependency lists on column 80 (with \), and
@@ -8651,7 +8681,17 @@ AC_CACHE_CHECK([dependency style of $depcc],
     done
     echo "${am__include} ${am__quote}sub/conftest.Po${am__quote}" > confmf
 
+    # We check with `-c' and `-o' for the sake of the "dashmstdout"
+    # mode.  It turns out that the SunPro C++ compiler does not properly
+    # handle `-M -o', and we need to detect this.  Also, some Intel
+    # versions had trouble with output in subdirs
+    am__obj=sub/conftest.${OBJEXT-o}
+    am__minus_obj="-o $am__obj"
     case $depmode in
+    gcc)
+      # This depmode causes a compiler race in universal mode.
+      test "$am__universal" = false || continue
+      ;;
     nosideeffect)
       # after this tag, mechanisms are not by side-effect, so they'll
       # only be used when explicitly requested
@@ -8661,19 +8701,23 @@ AC_CACHE_CHECK([dependency style of $depcc],
 	break
       fi
       ;;
+    msvisualcpp | msvcmsys)
+      # This compiler won't grok `-c -o', but also, the minuso test has
+      # not run yet.  These depmodes are late enough in the game, and
+      # so weak that their functioning should not be impacted.
+      am__obj=conftest.${OBJEXT-o}
+      am__minus_obj=
+      ;;
     none) break ;;
     esac
-    # We check with `-c' and `-o' for the sake of the "dashmstdout"
-    # mode.  It turns out that the SunPro C++ compiler does not properly
-    # handle `-M -o', and we need to detect this.
     if depmode=$depmode \
-       source=sub/conftest.c object=sub/conftest.${OBJEXT-o} \
+       source=sub/conftest.c object=$am__obj \
        depfile=sub/conftest.Po tmpdepfile=sub/conftest.TPo \
-       $SHELL ./depcomp $depcc -c -o sub/conftest.${OBJEXT-o} sub/conftest.c \
+       $SHELL ./depcomp $depcc -c $am__minus_obj sub/conftest.c \
          >/dev/null 2>conftest.err &&
        grep sub/conftst1.h sub/conftest.Po > /dev/null 2>&1 &&
        grep sub/conftst6.h sub/conftest.Po > /dev/null 2>&1 &&
-       grep sub/conftest.${OBJEXT-o} sub/conftest.Po > /dev/null 2>&1 &&
+       grep $am__obj sub/conftest.Po > /dev/null 2>&1 &&
        ${MAKE-make} -s -f confmf > /dev/null 2>&1; then
       # icc doesn't choke on unknown options, it will just issue warnings
       # or remarks (even with -Werror).  So we grep stderr for any message
@@ -8737,59 +8781,61 @@ _AM_SUBST_NOTMAKE([AMDEPBACKSLASH])dnl
 # gives unlimited permission to copy and/or distribute it,
 # with or without modifications, as long as this notice is preserved.
 
-#serial 4
+#serial 5
 
 # _AM_OUTPUT_DEPENDENCY_COMMANDS
 # ------------------------------
 AC_DEFUN([_AM_OUTPUT_DEPENDENCY_COMMANDS],
-[# Autoconf 2.62 quotes --file arguments for eval, but not when files
-# are listed without --file.  Let's play safe and only enable the eval
-# if we detect the quoting.
-case $CONFIG_FILES in
-*\'*) eval set x "$CONFIG_FILES" ;;
-*)   set x $CONFIG_FILES ;;
-esac
-shift
-for mf
-do
-  # Strip MF so we end up with the name of the file.
-  mf=`echo "$mf" | sed -e 's/:.*$//'`
-  # Check whether this is an Automake generated Makefile or not.
-  # We used to match only the files named `Makefile.in', but
-  # some people rename them; so instead we look at the file content.
-  # Grep'ing the first line is not enough: some people post-process
-  # each Makefile.in and add a new line on top of each file to say so.
-  # Grep'ing the whole file is not good either: AIX grep has a line
-  # limit of 2048, but all sed's we know have understand at least 4000.
-  if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
-    dirpart=`AS_DIRNAME("$mf")`
-  else
-    continue
-  fi
-  # Extract the definition of DEPDIR, am__include, and am__quote
-  # from the Makefile without running `make'.
-  DEPDIR=`sed -n 's/^DEPDIR = //p' < "$mf"`
-  test -z "$DEPDIR" && continue
-  am__include=`sed -n 's/^am__include = //p' < "$mf"`
-  test -z "am__include" && continue
-  am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
-  # When using ansi2knr, U may be empty or an underscore; expand it
-  U=`sed -n 's/^U = //p' < "$mf"`
-  # Find all dependency output files, they are included files with
-  # $(DEPDIR) in their names.  We invoke sed twice because it is the
-  # simplest approach to changing $(DEPDIR) to its actual value in the
-  # expansion.
-  for file in `sed -n "
-    s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
-       sed -e 's/\$(DEPDIR)/'"$DEPDIR"'/g' -e 's/\$U/'"$U"'/g'`; do
-    # Make sure the directory exists.
-    test -f "$dirpart/$file" && continue
-    fdir=`AS_DIRNAME(["$file"])`
-    AS_MKDIR_P([$dirpart/$fdir])
-    # echo "creating $dirpart/$file"
-    echo '# dummy' > "$dirpart/$file"
+[{
+  # Autoconf 2.62 quotes --file arguments for eval, but not when files
+  # are listed without --file.  Let's play safe and only enable the eval
+  # if we detect the quoting.
+  case $CONFIG_FILES in
+  *\'*) eval set x "$CONFIG_FILES" ;;
+  *)   set x $CONFIG_FILES ;;
+  esac
+  shift
+  for mf
+  do
+    # Strip MF so we end up with the name of the file.
+    mf=`echo "$mf" | sed -e 's/:.*$//'`
+    # Check whether this is an Automake generated Makefile or not.
+    # We used to match only the files named `Makefile.in', but
+    # some people rename them; so instead we look at the file content.
+    # Grep'ing the first line is not enough: some people post-process
+    # each Makefile.in and add a new line on top of each file to say so.
+    # Grep'ing the whole file is not good either: AIX grep has a line
+    # limit of 2048, but all sed's we know have understand at least 4000.
+    if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
+      dirpart=`AS_DIRNAME("$mf")`
+    else
+      continue
+    fi
+    # Extract the definition of DEPDIR, am__include, and am__quote
+    # from the Makefile without running `make'.
+    DEPDIR=`sed -n 's/^DEPDIR = //p' < "$mf"`
+    test -z "$DEPDIR" && continue
+    am__include=`sed -n 's/^am__include = //p' < "$mf"`
+    test -z "am__include" && continue
+    am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
+    # When using ansi2knr, U may be empty or an underscore; expand it
+    U=`sed -n 's/^U = //p' < "$mf"`
+    # Find all dependency output files, they are included files with
+    # $(DEPDIR) in their names.  We invoke sed twice because it is the
+    # simplest approach to changing $(DEPDIR) to its actual value in the
+    # expansion.
+    for file in `sed -n "
+      s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
+	 sed -e 's/\$(DEPDIR)/'"$DEPDIR"'/g' -e 's/\$U/'"$U"'/g'`; do
+      # Make sure the directory exists.
+      test -f "$dirpart/$file" && continue
+      fdir=`AS_DIRNAME(["$file"])`
+      AS_MKDIR_P([$dirpart/$fdir])
+      # echo "creating $dirpart/$file"
+      echo '# dummy' > "$dirpart/$file"
+    done
   done
-done
+}
 ])# _AM_OUTPUT_DEPENDENCY_COMMANDS
 
 
@@ -8821,7 +8867,7 @@ AU_DEFUN([AM_CONFIG_HEADER], [AC_CONFIG_HEADERS($@)])
 # Do all the work for Automake.                             -*- Autoconf -*-
 
 # Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004,
-# 2005, 2006, 2008 Free Software Foundation, Inc.
+# 2005, 2006, 2008, 2009 Free Software Foundation, Inc.
 #
 # This file is free software; the Free Software Foundation
 # gives unlimited permission to copy and/or distribute it,
@@ -8895,8 +8941,8 @@ AM_MISSING_PROG(AUTOCONF, autoconf)
 AM_MISSING_PROG(AUTOMAKE, automake-${am__api_version})
 AM_MISSING_PROG(AUTOHEADER, autoheader)
 AM_MISSING_PROG(MAKEINFO, makeinfo)
-AM_PROG_INSTALL_SH
-AM_PROG_INSTALL_STRIP
+AC_REQUIRE([AM_PROG_INSTALL_SH])dnl
+AC_REQUIRE([AM_PROG_INSTALL_STRIP])dnl
 AC_REQUIRE([AM_PROG_MKDIR_P])dnl
 # We need awk for the "check" target.  The system "awk" is bad on
 # some platforms.

@@ -18,6 +18,7 @@ SNP_CC
 dnl Checks for library functions.
 AC_STDC_HEADERS
 AC_CHECK_LIB(dl, dlopen, [AC_CHECK_HEADERS(dlfcn.h) LIBS="$LIBS -ldl"])
+AC_CHECK_LIB(c,strndup,[SNP_MAKE_TRUE(STRNDUP_AVAIL)])
 AC_FUNC_ALLOCA
 
 SNP_PYTHON
