@@ -41,13 +41,18 @@ typedef struct {
 } hook_t;
 
 static list_t head;
+static int head_initialized = 0;
 
 INIT_CODE(init_me) {
-	list_init(&head);
+    if(!head_initialized) {
+	    list_init(&head);
+        head_initialized = 1;
+    }
 }
 
 void add_loop_hook ( void(*func)(void) )
 {
+    init_me();
 	hook_t *hook = malloc(sizeof(hook_t));
 	hook->func = func;
 	push(&head, hook);
