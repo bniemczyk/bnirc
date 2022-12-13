@@ -1,5 +1,2 @@
-aclocal 
-automake -f --add-missing
-libtoolize -c --force
-autoconf
+autoreconf -vi
 ./configure $*
