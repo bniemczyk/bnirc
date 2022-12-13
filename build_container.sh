@@ -1,2 +1,2 @@
-docker buildx build --platform="linux/amd64,linux/arm64" -t docker.io/bniemczyk/bnirc build .
-docker push docker.io/bniemczyk/bnirc
+PLATFORMS="linux/arm64"
+docker buildx build --platform="${PLATFORMS}" --push -t docker.io/bniemczyk/bnirc .
