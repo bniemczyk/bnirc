@@ -1,4 +1,5 @@
-aclocal-1.10 && automake-1.10 -a -c 
+aclocal 
+automake -f --add-missing
 libtoolize -c --force
 autoconf
 ./configure $*
